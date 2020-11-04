@@ -20,19 +20,23 @@ $primary-background: radial-gradient(circle,  hsla(37, 65, 82, 1) 0%, hsla(15, 5
 $primary-main-font-color: $Overlook-Hotel-favorite-3-hsla;
 
 html {
-  background: $primary-background;
+  // background: $primary-background;
+  margin: 0;
+  background: $Overlook-Hotel-favorite-3-hsla;
   font-family: 'Ubuntu', sans-serif;
 }
 
 header {
+  position: relative;
   background: $Overlook-Hotel-favorite-1-hsla;
   color: $Overlook-Hotel-favorite-3-hsla;
   display: flex;
   justify-content: space-between;
   padding-left: 1em;
+  margin: 0;
 }
 
-.header {
+.header-and-welcome {
   font-size: 2.2em;
 }
 
@@ -44,6 +48,11 @@ nav {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
+}
+
+.nav-buttons-section {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .nav-button {
@@ -70,6 +79,12 @@ body {
 
 }
 
+.return-button {
+  width: 95%;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .booking {
   display: flex;
   flex-direction: column;
@@ -79,29 +94,45 @@ body {
 
 .available-on-date {
   font-size: xx-large;
+  color: $Overlook-Hotel-favorite-4-hsla;
 }
 
-.icantthinkofanythingelse {
+.filter-section {
+  width: 100%;
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
+  justify-content: center;
+
 }
 
 #button {
-  background: #732002;
+  // background: #732002;
   color: $Overlook-Hotel-favorite-3-hsla;
   border-radius: 0.5em;
-  margin: 0 0.8em 0.5em 1em;
+  // margin: 0 0.8em 0.5em 1em;
 }
 
-.back-to-choose-date {
-  width: 8em;
-  height: 5em;
+.back-to-choose-date-button {
+  position: fixed;
+  background: $Overlook-Hotel-favorite-4-hsla;
+  height: 3em;
+  width: 9em;
+  margin: 2em 5em 2em 2em
+}
+
+// .back-to-choose-date {
+//   height: 3em;
+//   width: 9em;
+// }
+
+label {
+  color:  #732002
 }
 
 .choose-by-type {
-  width: 8em;
-  height: 5em;
+  background: #732002;
+  width: fit-content;
+  height: 1.7em;
+  margin: 0 0 0 1em;
 }
 
 
@@ -117,6 +148,7 @@ body {
   border: #00998c solid .6em;
   border-radius: 1em;
   font-weight: bold;
+  margin-bottom: 2em;
 }
 
 .room-image {
