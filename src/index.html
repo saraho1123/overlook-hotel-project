@@ -1,12 +1,105 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <title>Webpack Starter Kit</title>
+    <title>Canyon Overlook Hotel</title>
   </head>
-  <body>
-    <h1>Webpack Starter Kit</h1>
+  <header>
+    <section>
+      <h1 class="header">
+        Canyon Overlook Hotel
+      </h1>
+      <h2 class="welcome">Welcome to your Adventure Headquarters, Sarah!</h2>
+    </section>
+    <nav>
+      <button label="past-bookings" class="past-bookings nav-button" type="button">Past Bookings</button>
+      <button label="current-bookings" class="current-bookings nav-button" type="button">Current Bookings</button>
+      <button label="upcoming-bookings" class="upcoming-bookings nav-button" type="button">Upcoming Bookings</button>
+      <button label="make-booking" class="make-booking nav-button" type="button">Book a room!</button>
+      <img class="snake-house-image" src="./images/snake-house-for-overlook.png" alt="Overlook logo" height="1em" width="100%">
 
-    <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
+    </nav>
+
+  </header>
+
+    
+   
+
+  <body>
+
+    <section class="login-view hidden">
+      Login View
+    </section>
+
+    <section class="user-home-view hidden">
+      User Booking View
+          <img src="./images/san-juan-evening.png" alt="Overlook logo" height="300px" width="400px">
+    </section>
+
+    <section class="user-book-room-view">
+
+      <article class="booking">
+        <h1 class="available-on-date">Canyon Overlook Rooms avaibable for 2020/12/15:</h1>
+        <section class="icantthinkofanythingelse">
+          <button class="back-to-choose-date" id="button" type="button">back to choose date</button>
+          <label for="filter-by-room-type">Filter by room type:</label>
+          <select class="choose-by-type" id="button" aria-haspopup="roomtype-listbox" aria-labelledby="filter-dropdown" label="filter-by-room-type" id="room-type">
+            <option value="choose">Choose Room Type</option>
+            <option value="junior">Junior</option>
+            <option value="single">Single</option>
+            <option value="suite">Suite</option>
+            <option value="residintial-suite">Residential Suite</option>
+          </select>
+        </section>
+        
+      </article>
+
+      <section class="cards-of-available-rooms">
+        <article class="room">
+          <img class="room-image" src="./images/desert-wisdom.png" alt="room-image">
+          <section class="room-details">
+            <h2 class="room-number-type">Room 1: Residential Suite</h2>
+            <article class="small-room-details">
+              <p class="num-beds small-details">Number of Beds: <span>1</span> </p>
+              <p class="bed-size small-details">Bed Size: <span>Queen</span></p>
+              <p class="bidet small-details">Has Bidet: <span>Yes</span></p>
+            </article>
+          </section>
+        </article>
+        <article class="room">
+          <img class="room-image" src="./images/hotel-room.jpg" alt="room-image">
+          <section class="room-details">
+            <h2 class="room-number-type">Room 1: Residential Suite</h2>
+            <article class="small-room-details">
+              <p class="num-beds small-details">Number of Beds: <span>1</span> </p>
+              <p class="bed-size small-details">Bed Size: <span>Queen</span></p>
+              <p class="bidet small-details">Has Bidet: <span>Yes</span></p>
+            </article>
+          </section>
+        </article>
+        <article class="room">
+          <img class="room-image" src="./images/hotel-room.jpg" alt="room-image">
+          <section class="room-details">
+            <h2 class="room-number-type">Room 1: Residential Suite</h2>
+            <article class="small-room-details">
+              <p class="num-beds small-details">Number of Beds: <span>1</span> </p>
+              <p class="bed-size small-details">Bed Size: <span>Queen</span></p>
+              <p class="bidet small-details">Has Bidet: <span>Yes</span></p>
+            </article>
+          </section>
+        </article>
+      </section>
+      Book Room View
+          <img src="./images/san-juan-day.png" alt="Overlook logo" height="300px" width="400px">
+    </section>
+
+    <section class="room-booked-view hidden">
+      Your adventure headquarters are booked for yyyy/mm/dd!
+    </section>
+
+    <section class="manager-view hidden">
+      Manager View
+    </section>
+    <!-- <img src="./images/san-juan-evening.png" alt="Overlook logo" height="300px" width="400px"> -->
 
     <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
   </body>

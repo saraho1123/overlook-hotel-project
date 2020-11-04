@@ -1,7 +1,149 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-;
+
+/* Color Theme Swatches in HSLA */
+$Overlook-Hotel-favorite-1-hsla: hsla(15, 100, 30, 1);
+$Overlook-Hotel-favorite-2-hsla: hsla(12, 100, 58, 1);
+$Overlook-Hotel-favorite-3-hsla: hsla(37, 65, 82, 1);
+$Overlook-Hotel-favorite-4-hsla: hsla(175, 100, 30, 1);
+$Overlook-Hotel-favorite-5-hsla: hsla(175, 100, 46, 1);
+
+/* Color Theme Swatches in HSLA */
+$Overlook-Hotel-2-1-hsla: hsla(16, 96, 23, 1);
+$Overlook-Hotel-2-2-hsla: hsla(16, 91, 63, 1);
+$Overlook-Hotel-2-3-hsla: hsla(16, 96, 49, 1);
+$Overlook-Hotel-2-4-hsla: hsla(15, 50, 30, 1);
+$Overlook-Hotel-2-5-hsla: hsla(15, 95, 38, 1);
+
+$primary-background: radial-gradient(circle,  hsla(37, 65, 82, 1) 0%, hsla(15, 50, 30, 1) 100%);
+// $primary-background: radial-gradient(circle, hsla(167, 65, 46, 1)0%, hsla(184, 87, 83, 1) 100%);
+
+$primary-main-font-color: $Overlook-Hotel-favorite-3-hsla;
+
+html {
+  background: $primary-background;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+header {
+  background: $Overlook-Hotel-favorite-1-hsla;
+  color: $Overlook-Hotel-favorite-3-hsla;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 1em;
+}
+
+.header {
+  font-size: 2.2em;
+}
+
+.welcome {
+  font-size: 1.2em;
+}
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.nav-button {
+  background: $Overlook-Hotel-favorite-4-hsla;
+  color: $Overlook-Hotel-favorite-3-hsla;
+  border-radius: 0.5em;
+  margin: 0 0.8em 0.5em 1em;
+  width: 11em;
+  height: 2.4em;
+}
+
+.snake-house-image {
+  height: 9em;
+  width: auto;
+  overflow: hidden;
+}
 
 body {
-  background: $primary-background;
+  color: $primary-main-font-color;
+}
+
+.user-book-room-view {
+  text-align: center;
+
+}
+
+.booking {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 2em 2em 2em;
+}
+
+.available-on-date {
+  font-size: xx-large;
+}
+
+.icantthinkofanythingelse {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+#button {
+  background: #732002;
+  color: $Overlook-Hotel-favorite-3-hsla;
+  border-radius: 0.5em;
+  margin: 0 0.8em 0.5em 1em;
+}
+
+.back-to-choose-date {
+  width: 8em;
+  height: 5em;
+}
+
+.choose-by-type {
+  width: 8em;
+  height: 5em;
+}
+
+
+
+.cards-of-available-rooms {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.room {
+  border: #00998c solid .6em;
+  border-radius: 1em;
+  font-weight: bold;
+}
+
+.room-image {
+  border-radius: 0.6em;
+  height: 16em;
+  width: auto;
+  margin-top: 0em;
+}
+
+.room-details {
+  color: $Overlook-Hotel-2-4-hsla;
+  // border: $Overlook-Hotel-favorite-3-hsla solid 0.5em;
+  // border-radius: 1em;
+}
+
+.small-room-details {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: .1em;
+}
+
+.small-details {
+  margin: .1em;
+}
+
+.hidden {
+  display: none;
 }
