@@ -105,10 +105,8 @@ body {
 }
 
 #button {
-  // background: #732002;
   color: $Overlook-Hotel-favorite-3-hsla;
   border-radius: 0.5em;
-  // margin: 0 0.8em 0.5em 1em;
 }
 
 .back-to-choose-date-button {
@@ -119,23 +117,16 @@ body {
   margin: 2em 5em 2em 2em
 }
 
-// .back-to-choose-date {
-//   height: 3em;
-//   width: 9em;
-// }
-
 label {
-  color:  #732002
+  color: $Overlook-Hotel-favorite-1-hsla;
 }
 
 .choose-by-type {
-  background: #732002;
+  background: $Overlook-Hotel-favorite-1-hsla;
   width: fit-content;
   height: 1.7em;
   margin: 0 0 0 1em;
 }
-
-
 
 .cards-of-available-rooms {
   display: flex;
@@ -145,7 +136,7 @@ label {
 }
 
 .room {
-  border: #00998c solid .6em;
+  border: $Overlook-Hotel-favorite-4-hsla solid .6em;
   border-radius: 1em;
   font-weight: bold;
   margin-bottom: 2em;
@@ -160,8 +151,6 @@ label {
 
 .room-details {
   color: $Overlook-Hotel-2-4-hsla;
-  // border: $Overlook-Hotel-favorite-3-hsla solid 0.5em;
-  // border-radius: 1em;
 }
 
 .small-room-details {
