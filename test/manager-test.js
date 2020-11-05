@@ -36,7 +36,7 @@ describe('Manager', () => {
   });
 
   it('should be able to select a user by name', () => {
-    manager.selectGuest("Silly Goosefloose");
+    manager.selectGuest("name", "Silly Goosefloose");
 
     expect(manager.selectedGuest.name).to.equal("Silly Goosefloose");
   });

@@ -1,6 +1,8 @@
+import Hotel from '../src/Hotel';
 
-class Manager {
+class Manager extends Hotel {
   constructor(userData, roomData, bookingsData) {
+    super(userData, roomData, bookingsData)
     this.users = userData;
     this.rooms = roomData;
     this.bookings = bookingsData;
@@ -9,43 +11,6 @@ class Manager {
     this.guestBookings; // GOES ON BOTH
     // this.guestTotalSpent; // GOES ON GUEST CLASS!
   }
-
-  selectGuest(name) {
-    this.selectedGuest = this.users.find(user => {
-      return user.name === name;
-    })
-  }
-
-  getSelectedGuestBookings() {
-    this.bookings = this.bookings.filter(booking => {
-      return booking.userID === this.selectedGuest.id;
-    })
-  }
-/*
-FOR GUEST CLASS!
-  getGuestTotalSpent() {
-    return this.rooms.reduce((totalSpent, room) => {
-      this.bookings.forEach(booking => {
-        if (booking.roomNumber === room.number) {
-          totalSpent += room.costPerNight
-      }
-    })
-      return totalSpent
-    }, 0) 
-  }
-  */
-
-  /*
-  PERHAPS USE THIS ON A PARENT CLASS??
-  consolidateGuestData() {
-    this.selectedGuestData = {
-      // id: this.selectguest.id,
-      // name: this.selectguest.name,
-      bookings: this.getSelectedGuestBookings(),
-      totalSpent: this.getGuestTotalSpent(),
-    }  
-  }
-  */
 
   bookRoomForGuest(userID, date, roomNumber) { // possibly put on a parent class
     let bookingData =  { userID: userID, date: date, roomNumber: roomNumber }

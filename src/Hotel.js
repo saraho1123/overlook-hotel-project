@@ -1,9 +1,9 @@
 class Hotel {
-  constructor(userData, roomData, bookingsData, userKey, userIdentifier) {
-    this.users = userData;
-    this.rooms = roomData;
+  constructor(usersData, roomsData, bookingsData) {
+    this.users = usersData
+    this.rooms = roomsData;
     this.bookings = bookingsData;
-    this.selectedGuest = 
+    this.selectedGuest = null;
   }
 
   selectGuest(userKey, userIdentifier) {
@@ -11,6 +11,24 @@ class Hotel {
       return user[userKey] === userIdentifier;
     })
   }
+
+  getSelectedGuestBookings() {
+    this.bookings = this.bookings.filter(booking => {
+      return booking.userID === this.selectedGuest.id;
+    })
+  }
+
+     /*
+  PERHAPS USE THIS ON A PARENT CLASS??
+  consolidateGuestData() {
+    this.selectedGuestData = {
+      // id: this.selectguest.id,
+      // name: this.selectguest.name,
+      bookings: this.getSelectedGuestBookings(),
+      totalSpent: this.getGuestTotalSpent(),
+    }  
+  }
+  */
 }
 
 export default Hotel;

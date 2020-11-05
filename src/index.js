@@ -19,3 +19,36 @@ import './images/snake-house-for-overlook.png'
 
 
 console.log('This is the JavaScript entry file - your code begins here.');
+
+
+/*
+
+l
+
+let manager = new Manager(userData, roomData, bookingData)
+let loggedInGuest = manager.selectGuest("id", 01) // id will need to come from login userName
+let guestBookings = manager.getSelectedGuestBookings()
+
+GUEST LOGIN
+let guest = new Guest(userData, roomData, bookingData);
+let currentGuest = guest.selectGuest("id", 01) // id will need to come from login userName
+// display name right away
+let currentGuestBookings = guest.getSelectedGuestBookings() // display right away
+
+MANAGER LOGIN
+let manager = new Manager(userData, roomData, bookingData)
+
+
+
+*/
+
+/*
+fetch all data on login?
+
+
+LOGIN
+if customerUserName && password match
+then fetch
+and
+instantiate either manager or guest
+*/

@@ -1,10 +1,21 @@
+
+/*
+vh
+vw
+take percentage of alloted pixels on the sreen
+50vw is half of the screen
+
+rem vs em
+em is based off parent font size
+rem is based off of head font size (based more off the whole page)
+*/
 /* This is an example of using Sass, otherwise plain CSS works too*/
 
 /* Color Theme Swatches in HSLA */
 $Overlook-Hotel-favorite-1-hsla: hsla(15, 100, 30, 1);
 $Overlook-Hotel-favorite-2-hsla: hsla(12, 100, 58, 1);
-$Overlook-Hotel-favorite-3-hsla: hsla(37, 65, 82, 1);
-$Overlook-Hotel-favorite-4-hsla: hsla(175, 100, 30, 1);
+$Overlook-Hotel-favorite-3-hsla: hsla(37, 65, 90, 1);
+$Overlook-Hotel-favorite-4-hsla: hsla(175, 100, 25, 1);
 $Overlook-Hotel-favorite-5-hsla: hsla(175, 100, 46, 1);
 
 /* Color Theme Swatches in HSLA */
@@ -76,13 +87,29 @@ body {
 
 .user-book-room-view {
   text-align: center;
-
+  display: flex;
+  flex-direction: column;
 }
 
-.return-button {
-  width: 95%;
+// .return-button {
+//   width: 95%;
+//   display: flex;
+//   justify-content: flex-end;
+// }
+.booking-header {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+}
+
+.back-to-choose-date-button {
+  position: absolute;
+  justify-self: flex-start;
+  background: $Overlook-Hotel-favorite-4-hsla;
+  height: 3em;
+  width: 9em;
+  margin: 2em 2em 2em 40vw
 }
 
 .booking {
@@ -109,13 +136,7 @@ body {
   border-radius: 0.5em;
 }
 
-.back-to-choose-date-button {
-  position: fixed;
-  background: $Overlook-Hotel-favorite-4-hsla;
-  height: 3em;
-  width: 9em;
-  margin: 2em 5em 2em 2em
-}
+
 
 label {
   color: $Overlook-Hotel-favorite-1-hsla;
@@ -131,7 +152,8 @@ label {
 .cards-of-available-rooms {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  flex-wrap: wrap;
+  // justify-content: space-around;
   text-align: center;
 }
 
@@ -139,7 +161,9 @@ label {
   border: $Overlook-Hotel-favorite-4-hsla solid .6em;
   border-radius: 1em;
   font-weight: bold;
-  margin-bottom: 2em;
+  margin: 2vw;
+  // max-width: 25vw;
+  min-width: 25vw;
 }
 
 .room-image {
@@ -147,6 +171,7 @@ label {
   height: 16em;
   width: auto;
   margin-top: 0em;
+  min-width: 25vw;
 }
 
 .room-details {
