@@ -47,6 +47,7 @@ describe('Manager', () => {
     expect(manager.guestBookings).to.deep.equal([  
       {"id":"5fwrgu4i7k55hl6sz","userID":1,"date":"2020/04/22","roomNumber":1,"roomServiceCharges":[]},
       {"id":"5fwrgu4i7k55hl6t9","userID":1,"date":"2020/04/21","roomNumber":5,"roomServiceCharges":[]},
+      {"id":"5fwrgu4i7k55hl6t0","userID":1,"date":"2020/04/21","roomNumber":1,"roomServiceCharges":[]}
     ])
   });
 
@@ -54,7 +55,29 @@ describe('Manager', () => {
     manager.getSelectedGuestBookings(1);
     manager.getGuestTotalSpent(manager.guestBookings);
 
-    expect(manager.guestTotalSpent).to.deep.equal(565.64)
+    expect(manager.guestTotalSpent).to.deep.equal(924.04)
   });
+
+  it('should be able to book a room for selected user', () => {
+    expect(manager.bookRoomForGuest(1, '2020/11/14', 4)).to.deep.equal(
+      {
+        "userID": 1,
+        "date": "2020/11/14",
+        "roomNumber": 4
+    })
+  });
+
+  it('should be able to delete a booking for a guest', () => {
+    expect(manager.deleteBookingForGuest("5fwrgu4i7k55hl6t9")).to.deep.equal(
+      {
+        id: "5fwrgu4i7k55hl6t9",
+      }
+    )
+  });
+
+  it('should be able to get total revenue for today', () => {
+    expect(manager.getTodaysTotalRevenue('2020/04/21', manager.rooms, manager.bookings))
+    .to.deep.equal(565.64)
+  })
 
 })
