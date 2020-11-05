@@ -5,25 +5,27 @@ class Manager {
     this.rooms = roomData;
     this.bookings = bookingsData;
     this.selectedGuest;
-    this.guestBookings;
-    this.guestTotalSpent; // function to select user
+    // this.selectedGuestData = consolidateGuestData();
+    this.guestBookings; // GOES ON BOTH
+    // this.guestTotalSpent; // GOES ON GUEST CLASS!
   }
 
-  selectGuest(userID) {
+  selectGuest(name) {
     this.selectedGuest = this.users.find(user => {
-      return user.id === userID;
+      return user.name === name;
     })
   }
 
-  getSelectedGuestBookings(userID) {
-    this.guestBookings = this.bookings.filter(booking => {
-      return booking.userID === userID
+  getSelectedGuestBookings() {
+    this.bookings = this.bookings.filter(booking => {
+      return booking.userID === this.selectedGuest.id;
     })
   }
-
-  getGuestTotalSpent(bookings) {
-    this.guestTotalSpent = this.rooms.reduce((totalSpent, room) => {
-      let cost = bookings.forEach(booking => {
+/*
+FOR GUEST CLASS!
+  getGuestTotalSpent() {
+    return this.rooms.reduce((totalSpent, room) => {
+      this.bookings.forEach(booking => {
         if (booking.roomNumber === room.number) {
           totalSpent += room.costPerNight
       }
@@ -31,8 +33,21 @@ class Manager {
       return totalSpent
     }, 0) 
   }
+  */
 
-  bookRoomForGuest(userID, date, roomNumber) {
+  /*
+  PERHAPS USE THIS ON A PARENT CLASS??
+  consolidateGuestData() {
+    this.selectedGuestData = {
+      // id: this.selectguest.id,
+      // name: this.selectguest.name,
+      bookings: this.getSelectedGuestBookings(),
+      totalSpent: this.getGuestTotalSpent(),
+    }  
+  }
+  */
+
+  bookRoomForGuest(userID, date, roomNumber) { // possibly put on a parent class
     let bookingData =  { userID: userID, date: date, roomNumber: roomNumber }
     // call fetchPOST here, I think
     return bookingData;
@@ -65,15 +80,5 @@ class Manager {
     return `${percentBooked}%`
   }
 }
-
-/*
-
-bookRoomForGuest (possibly on parent class)
-deleteBookingForGuest
-Total Rooms available for today
-Total revenue for today
-Percent rooms occupied for today
-
-*/
 
 export default Manager;
