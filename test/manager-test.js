@@ -78,10 +78,10 @@ describe('Manager', () => {
   it('should be able to get total revenue for today', () => {
     expect(manager.getTodaysTotalRevenue('2020/04/21', manager.rooms, manager.bookings))
     .to.deep.equal(565.64)
-  })
+  });
 
   it('should calculate percent of rooms occupied for today', () => {
-    expect(manager.calculatePercentOccupied('2020/04/21', manager.bookings))
+    expect(manager.calculatePercentOccupied('2020/04/21'))
     .to.equal('40%')
   })
 

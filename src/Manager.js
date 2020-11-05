@@ -34,28 +34,17 @@ class Manager {
 
   bookRoomForGuest(userID, date, roomNumber) {
     let bookingData =  { userID: userID, date: date, roomNumber: roomNumber }
-    // call fetchPOST here
+    // call fetchPOST here, I think
     return bookingData;
   }
 
   deleteBookingForGuest(bookingID) {
     let bookingToCancel = {id: bookingID}
-    // call fetchDELETE here
+    // call fetchDELETE here, I think
     return bookingToCancel;
   }
 
   getTodaysTotalRevenue(date, rooms, bookings) {
-    /*
-    what? array of rooms w/ costs/night and array of rooms booked w/ dates & roomNum
-    want? integer
-    methods? reduce
-    how?
-    reduce rooms to access cost/night
-    forEach bookings to access roomNum
-    acc += cost/night
-
-    PROBABLY NEED TO NUKE THIS AND START OVER!!!
-    */
     return bookings.reduce((total, booking) => {
       if (booking.date === date) {
         rooms.forEach(room => {
@@ -68,10 +57,13 @@ class Manager {
    }, 0)
   } 
 
-  calculatePercentOccupied(date, bookings) {
-    /
+  calculatePercentOccupied(date) {
+   let todaysBookings = this.bookings.filter(booking => {
+    return booking.date === date;
+    })
+    let percentBooked = Math.round((todaysBookings.length/this.rooms.length) * 100);
+    return `${percentBooked}%`
   }
-
 }
 
 /*
@@ -81,7 +73,6 @@ deleteBookingForGuest
 Total Rooms available for today
 Total revenue for today
 Percent rooms occupied for today
-
 
 */
 
