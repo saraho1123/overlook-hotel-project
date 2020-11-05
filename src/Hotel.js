@@ -4,6 +4,7 @@ class Hotel {
     this.rooms = roomsData;
     this.bookings = bookingsData;
     this.selectedGuest = null;
+    this.selectedGuestBookings = null;
   }
 
   selectGuest(userKey, userIdentifier) {
@@ -13,8 +14,9 @@ class Hotel {
   }
 
   getSelectedGuestBookings() {
-    this.bookings = this.bookings.filter(booking => {
-      return booking.userID === this.selectedGuest.id;
+    this.selectedGuestBookings = this.bookings.filter(booking => {
+      let guestBookings = booking.userID === this.selectedGuest.id;
+      return guestBookings;
     })
   }
 

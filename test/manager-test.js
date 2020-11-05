@@ -41,10 +41,10 @@ describe('Manager', () => {
     expect(manager.selectedGuest.name).to.equal("Silly Goosefloose");
   });
 
-  it('should be able to find all bookings for selected user', () => {
+  it('should be able to find all bookings for selected guest', () => {
     manager.selectGuest("Isaac Osgood");
     manager.getSelectedGuestBookings()
-    expect(manager.bookings).to.deep.equal([  
+    expect(manager.selectedGuestBookings).to.deep.equal([  
       {"id":"5fwrgu4i7k55hl6sz","userID":1,"date":"2020/04/22","roomNumber":1,"roomServiceCharges":[]},
       {"id":"5fwrgu4i7k55hl6t9","userID":1,"date":"2020/04/21","roomNumber":5,"roomServiceCharges":[]},
       {"id":"5fwrgu4i7k55hl6t0","userID":1,"date":"2020/04/21","roomNumber":1,"roomServiceCharges":[]}

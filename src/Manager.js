@@ -3,13 +3,13 @@ import Hotel from '../src/Hotel';
 class Manager extends Hotel {
   constructor(userData, roomData, bookingsData) {
     super(userData, roomData, bookingsData)
-    this.users = userData;
-    this.rooms = roomData;
-    this.bookings = bookingsData;
-    this.selectedGuest;
-    // this.selectedGuestData = consolidateGuestData();
-    this.guestBookings; // GOES ON BOTH
-    // this.guestTotalSpent; // GOES ON GUEST CLASS!
+    // this.users = userData;
+    // this.rooms = roomData;
+    // this.bookings = bookingsData;
+    // this.selectedGuest;
+    // // this.selectedGuestData = consolidateGuestData();
+    // this.guestBookings; // GOES ON BOTH
+    // // this.guestTotalSpent; // GOES ON GUEST CLASS!
   }
 
   bookRoomForGuest(userID, date, roomNumber) { // possibly put on a parent class
