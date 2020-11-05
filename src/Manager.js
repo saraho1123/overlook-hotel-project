@@ -32,20 +32,57 @@ class Manager {
     }, 0) 
   }
 
-}
-// ROOM: {"number": 1,"roomType": "residential suite","bidet": true,"bedSize": "queen","numBeds": 1,"costPerNight":358.4},
-// BOOKING: {"id":"5fwrgu4i7k55hl6t9","userID":1,"date":"2020/04/21","roomNumber":5,"roomServiceCharges":[]},
+  bookRoomForGuest(userID, date, roomNumber) {
+    let bookingData =  { userID: userID, date: date, roomNumber: roomNumber }
+    // call fetchPOST here
+    return bookingData;
+  }
 
+  deleteBookingForGuest(bookingID) {
+    let bookingToCancel = {id: bookingID}
+    // call fetchDELETE here
+    return bookingToCancel;
+  }
+
+  getTodaysTotalRevenue(date, rooms, bookings) {
+    /*
+    what? array of rooms w/ costs/night and array of rooms booked w/ dates & roomNum
+    want? integer
+    methods? reduce
+    how?
+    reduce rooms to access cost/night
+    forEach bookings to access roomNum
+    acc += cost/night
+
+    PROBABLY NEED TO NUKE THIS AND START OVER!!!
+    */
+    return bookings.reduce((total, booking) => {
+      let roomCost = rooms.forEach(room => {
+        if (booking.date === date) {
+          console.log(booking.date)
+          return room.costPerNight
+        } 
+      })  
+      console.log(roomCost)
+      total += roomCost;
+      return total;
+   }, 0)
+  } 
+
+  calculatePercentOccupied(date, bookings) {
+
+  }
+
+}
 
 /*
-searchForGuest:
-		return: 
-		name
-		all bookings for guest
-		total of all $ spent by guest
+
 bookRoomForGuest (possibly on parent class)
 deleteBookingForGuest
-getTotalRevenue
+Total Rooms available for today
+Total revenue for today
+Percent rooms occupied for today
+
 
 */
 
