@@ -57,20 +57,19 @@ class Manager {
     PROBABLY NEED TO NUKE THIS AND START OVER!!!
     */
     return bookings.reduce((total, booking) => {
-      let roomCost = rooms.forEach(room => {
-        if (booking.date === date) {
-          console.log(booking.date)
-          return room.costPerNight
-        } 
-      })  
-      console.log(roomCost)
-      total += roomCost;
+      if (booking.date === date) {
+        rooms.forEach(room => {
+          if (booking.roomNumber === room.number) {
+            total += room.costPerNight
+          }
+        })  
+      } 
       return total;
    }, 0)
   } 
 
   calculatePercentOccupied(date, bookings) {
-
+    /
   }
 
 }
