@@ -35,28 +35,31 @@ describe('Manager', () => {
     expect(manager.bookings[0].roomNumber).to.equal(1);
   });
 
-  it('should be able to select a user by id', () => {
-    manager.selectGuest(5);
+  it('should be able to select a user by name', () => {
+    manager.selectGuest("Silly Goosefloose");
 
     expect(manager.selectedGuest.name).to.equal("Silly Goosefloose");
   });
 
   it('should be able to find all bookings for selected user', () => {
-    manager.getSelectedGuestBookings(1);
-
-    expect(manager.guestBookings).to.deep.equal([  
+    manager.selectGuest("Isaac Osgood");
+    manager.getSelectedGuestBookings()
+    expect(manager.bookings).to.deep.equal([  
       {"id":"5fwrgu4i7k55hl6sz","userID":1,"date":"2020/04/22","roomNumber":1,"roomServiceCharges":[]},
       {"id":"5fwrgu4i7k55hl6t9","userID":1,"date":"2020/04/21","roomNumber":5,"roomServiceCharges":[]},
       {"id":"5fwrgu4i7k55hl6t0","userID":1,"date":"2020/04/21","roomNumber":1,"roomServiceCharges":[]}
     ])
   });
 
+  /*
+  Put on GUEST CLASS
   it('should be able to calculate total spent by selected guest on bookings', () => {
-    manager.getSelectedGuestBookings(1);
-    manager.getGuestTotalSpent(manager.guestBookings);
+    manager.selectGuest("Isaac Osgood");
+    manager.getSelectedGuestBookings();
 
-    expect(manager.guestTotalSpent).to.deep.equal(924.04)
+    expect(manager.getGuestTotalSpent(manager.guestBookings)).to.deep.equal(924.04)
   });
+  */
 
   it('should be able to book a room for selected user', () => {
     expect(manager.bookRoomForGuest(1, '2020/11/14', 4)).to.deep.equal(
