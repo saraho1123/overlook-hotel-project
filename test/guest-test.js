@@ -56,5 +56,19 @@ describe('Guest', () => {
     ]);
   });
 
+  it('should return all rooms available for selected date', () => {
+    expect(guest.filterRoomsBySelectedDate("2020/04/21")).to.deep.equal([
+      {"number": 2,"roomType": "suite","bidet": false,"bedSize":"full","numBeds":2,"costPerNight":477.38},
+      {"number":4,"roomType":"junior suite","bidet":true,"bedSize":"queen","numBeds":1,"costPerNight":397.02},
+      {"number":5,"roomType":"single room","bidet":true,"bedSize":"twin","numBeds":2,"costPerNight":207.24}
+    ]);
+  });
+
+  it('should return all rooms available for selected date and type', () => {
+    expect(guest.filterRoomsbyTypeOnDate('junior suite')).to.deep.equal([
+      {"number":4,"roomType":"junior suite","bidet":true,"bedSize":"queen","numBeds":1,"costPerNight":397.02},
+    ])
+  });
+
 });
 
