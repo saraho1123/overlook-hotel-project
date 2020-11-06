@@ -12,11 +12,11 @@ class Manager extends Hotel {
     // // this.guestTotalSpent; // GOES ON GUEST CLASS!
   }
 
-  bookRoomForGuest(userID, date, roomNumber) { // possibly put on a parent class
-    let bookingData =  { userID: userID, date: date, roomNumber: roomNumber }
-    // call fetchPOST here, I think
-    return bookingData;
-  }
+  // bookRoomForGuest(userID, date, roomNumber) { // possibly put on a parent class
+  //   let bookingData =  { userID: userID, date: date, roomNumber: roomNumber }
+  //   // call fetchPOST here, I think
+  //   return bookingData;
+  // }
 
   deleteBookingForGuest(bookingID) {
     let bookingToCancel = {id: bookingID}
