@@ -20,6 +20,12 @@ class Hotel {
     })
   }
 
+  bookRoomForGuest(userID, date, roomNumber) { // possibly put on a parent class
+    let bookingData =  { userID: userID, date: date, roomNumber: roomNumber }
+    // call fetchPOST here, I think
+    return bookingData;
+  }
+
      /*
   PERHAPS USE THIS ON A PARENT CLASS??
   consolidateGuestData() {
