@@ -3,20 +3,7 @@ import Hotel from '../src/Hotel';
 class Manager extends Hotel {
   constructor(userData, roomData, bookingsData) {
     super(userData, roomData, bookingsData)
-    // this.users = userData;
-    // this.rooms = roomData;
-    // this.bookings = bookingsData;
-    // this.selectedGuest;
-    // // this.selectedGuestData = consolidateGuestData();
-    // this.guestBookings; // GOES ON BOTH
-    // // this.guestTotalSpent; // GOES ON GUEST CLASS!
   }
-
-  // bookRoomForGuest(userID, date, roomNumber) { // possibly put on a parent class
-  //   let bookingData =  { userID: userID, date: date, roomNumber: roomNumber }
-  //   // call fetchPOST here, I think
-  //   return bookingData;
-  // }
 
   deleteBookingForGuest(bookingID) {
     let bookingToCancel = {id: bookingID}
@@ -34,14 +21,14 @@ class Manager extends Hotel {
         })  
       } 
       return total;
-   }, 0)
+    }, 0)
   } 
 
   calculatePercentOccupied(date) {
-   let todaysBookings = this.bookings.filter(booking => {
-    return booking.date === date;
+    let todaysBookings = this.bookings.filter(booking => {
+      return booking.date === date;
     })
-    let percentBooked = Math.round((todaysBookings.length/this.rooms.length) * 100);
+    let percentBooked = Math.round((todaysBookings.length / this.rooms.length) * 100);
     return `${percentBooked}%`
   }
 }
