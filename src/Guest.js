@@ -3,21 +3,14 @@ import Hotel from '../src/Hotel';
 class Guest extends Hotel {
   constructor(usersData, roomsData, bookingsData) {
     super(usersData, roomsData, bookingsData)
-    // this.users = usersData
-    // this.rooms = roomsData;
-    // this.bookings = bookingsData;
-    // this.selectedGuest = null;
-    // this.selectedGuestBookings = null;
-      this.pastBookings = [];
-      this.upcomingBookings = [];
-      this.verySorryMessage = 'There are no available rooms of this time for the date you have picked. We are so very sorry! We love all our guests and really hope to see you very soon! Please click the "Choose New Date" button, or choose a different style of room for this date. '
+    this.pastBookings = [];
+    this.upcomingBookings = [];
+    this.verySorryMessage = 'There are no available rooms of this time for the date you have picked. We are so very sorry! We love all our guests and really hope to see you very soon! Please click the "Choose New Date" button, or choose a different style of room for this date. '
   }
 
   convertDateToUsableFormat(date) {
     let todaysDate = new Date(date);
-    // if you don't pass in a date, it just uses TODAY's date automically! 
-    // .toLocaleDateString
-    return todaysDate.getTime();
+    return todaysDate.toLocaleDateString();
   }
 
   seperatePastFromUpcomingBookings(date) {
@@ -34,8 +27,8 @@ class Guest extends Hotel {
       this.bookings.forEach(booking => {
         if (booking.roomNumber === room.number) {
           totalSpent += room.costPerNight
-      }
-    })
+        }
+      })
       return totalSpent
     }, 0) 
   }
@@ -50,7 +43,7 @@ class Guest extends Hotel {
   }
 
   listVacantRoomsByDate(date) {
-   const bookedRoomNumbers = this.listOccupiedRoomsByDate(date)
+    const bookedRoomNumbers = this.listOccupiedRoomsByDate(date)
     const availableRoomsOnDate = this.rooms.reduce((available, room) => {
       !bookedRoomNumbers.includes(room.number) ? available.push(room) : null;
       return available
@@ -82,8 +75,8 @@ class Guest extends Hotel {
       this.bookings.forEach(booking => {
         if (booking.roomNumber === room.number) {
           totalSpent += (room.costPerNight * 100)
-      }
-    })
+        }
+      })
       return totalSpent 
     }, 0) 
     return total / 100
