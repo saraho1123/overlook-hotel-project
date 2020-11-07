@@ -20,7 +20,7 @@ class Hotel {
     })
   }
 
-  bookRoomForGuest(userID, date, roomNumber) { // possibly put on a parent class
+  bookRoomForGuest(userID, date, roomNumber) { 
     let bookingData =  { userID: userID, date: date, roomNumber: roomNumber }
     // call fetchPOST here, I think
     return bookingData;
