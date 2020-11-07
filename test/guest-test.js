@@ -44,7 +44,7 @@ describe('Guest', () => {
         "userID": 1,
         "date": "2020/11/14",
         "roomNumber": 4
-    })
+      })
   });
 
   it('should be able to seperate past bookings from upcoming bookings', () => {
@@ -99,7 +99,7 @@ describe('Guest', () => {
         "userID": 3,
         "date": "2020/11/15",
         "roomNumber": 3
-    })
+      })
   });
 
 });
