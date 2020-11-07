@@ -15,6 +15,8 @@ class Guest extends Hotel {
 
   convertDateToUsableFormat(date) {
     let todaysDate = new Date(date);
+    // if you don't pass in a date, it just uses TODAY's date automically! 
+    // .toLocaleDateString
     return todaysDate.getTime();
   }
 
@@ -56,7 +58,7 @@ class Guest extends Hotel {
     return availableRoomsOnDate;
   }
 
-  filterRoomsbyTypeOnDate(type, date) {
+  filterRoomsByTypeOnDate(type, date) {
     const currentRoomsAvailable = this.listVacantRoomsByDate(date)
     const roomType = this.rooms.filter(room => {
       return room.roomType === type;
@@ -64,13 +66,14 @@ class Guest extends Hotel {
     return roomType.reduce((typesAvailable, room) => {
       currentRoomsAvailable.forEach(available => {
         if (available === room) {
-          typesAvailable.push(room)
-        } else {
-          return `${this.verySorryMessage}` // this is not working. I think it has to do with what is returned where
-          // ALSO ... you have added data to the sample-booking-data and will need to adjust other tests to reflect this!
-        }
+          typesAvailable.push(room);
+        } 
       })
-      return typesAvailable
+      if (typesAvailable.length === 0) {
+        return `${this.verySorryMessage}`;
+      } else {
+        return typesAvailable;
+      }
     }, [])
   }
   

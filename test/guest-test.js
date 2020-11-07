@@ -30,6 +30,11 @@ describe('Guest', () => {
       {"id":"5fwrgu4i7k55hl6t9","userID":1,"date":"2020/04/21","roomNumber":5,"roomServiceCharges":[]},
       {"id":"5fwrgu4i7k55hl6t0","userID":1,"date":"2020/04/21","roomNumber":1,"roomServiceCharges":[]},
       {"id":"5fwrgu4i7k55hl6t3","userID":1,"date":"2020/05/21","roomNumber":3,"roomServiceCharges":[]},
+      {"id":"occupied1","userID":1,"date":"2020/06/27","roomNumber":1,"roomServiceCharges":[]},
+      {"id":"occupied2","userID":1,"date":"2020/06/27","roomNumber":2,"roomServiceCharges":[]},
+      {"id":"occupied3","userID":1,"date":"2020/06/27","roomNumber":3,"roomServiceCharges":[]},
+      {"id":"occupied4","userID":1,"date":"2020/06/27","roomNumber":4,"roomServiceCharges":[]},
+      {"id":"occupied5","userID":1,"date":"2020/06/27","roomNumber":5,"roomServiceCharges":[]},
     ])
   });
 
@@ -53,6 +58,11 @@ describe('Guest', () => {
     ]);
     expect(guest.upcomingBookings).to.deep.equal([
       {"id":"5fwrgu4i7k55hl6t3","userID":1,"date":"2020/05/21","roomNumber":3,"roomServiceCharges":[]},
+      {"id":"occupied1","userID":1,"date":"2020/06/27","roomNumber":1,"roomServiceCharges":[]},
+      {"id":"occupied2","userID":1,"date":"2020/06/27","roomNumber":2,"roomServiceCharges":[]},
+      {"id":"occupied3","userID":1,"date":"2020/06/27","roomNumber":3,"roomServiceCharges":[]},
+      {"id":"occupied4","userID":1,"date":"2020/06/27","roomNumber":4,"roomServiceCharges":[]},
+      {"id":"occupied5","userID":1,"date":"2020/06/27","roomNumber":5,"roomServiceCharges":[]},
     ]);
   });
 
@@ -65,13 +75,13 @@ describe('Guest', () => {
   });
 
   it('should return all rooms available for selected date and type', () => {
-    expect(guest.filterRoomsbyTypeOnDate('junior suite', "2020/04/21")).to.deep.equal([
+    expect(guest.filterRoomsByTypeOnDate('junior suite', "2020/04/21")).to.deep.equal([
       {"number":4,"roomType":"junior suite","bidet":true,"bedSize":"queen","numBeds":1,"costPerNight":397.02},
     ])
   });
 
   it('should apologize profusely and give suggestions to proceed if there are no available rooms', () => {
-    expect(guest.filterRoomsbyTypeOnDate('single room', "2020/06/27")).to.equal(
+    expect(guest.filterRoomsByTypeOnDate('single room', "2020/06/27")).to.equal(
       'There are no available rooms of this time for the date you have picked. We are so very sorry! We love all our guests and really hope to see you very soon! Please click the "Choose New Date" button, or choose a different style of room for this date. '
     )
   })
