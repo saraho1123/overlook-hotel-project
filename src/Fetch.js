@@ -27,6 +27,21 @@ class APIRequests {
     .then(data => console.log(data))
     .catch(error => console.log(error))
   }
+
+  deleteData(urlPath, inputID) {
+    return fetch(`${this.urlRoot}${urlPath}`, {
+      method: 'DELETE',
+      headers: {
+       'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: inputID,
+      })
+    })
+    .then(response => response.json())
+    .then(data => console.log(data)) // I am not sure that is what I want to do here??
+    .catch(error => console.log(error)) 
+  }
 }
 
 export default APIRequests;

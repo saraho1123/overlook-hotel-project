@@ -27,6 +27,13 @@ describe('APIRequest', function() {
     expect(APIRequests.postData).to.have.been.called.with('bookings/bookings', 'bookings');
   });
 
+  it('should be able to post bookings', function() {
+    APIRequests.deleteData('bookings/bookings', 12085397154);
+// I need help on this one. I don't know why the test is saying deleteData is not a function
+    expect(APIRequests.deleteData).to.have.been.called(1);
+    expect(APIRequests.deleteData).to.have.been.called.with('bookings/bookings', 12085397154);
+  });
+
 });
 
 //   it('should be able to fetch user data', function() {
