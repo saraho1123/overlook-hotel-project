@@ -17,6 +17,7 @@ class Guest extends Hotel {
     return todaysDate.getTime();
   }
 
+
   seperatePastFromUpcomingBookings(date) {
     let todaysDate = this.convertDateToUsableFormat(date);
     return this.selectedGuestBookings.filter(booking => {
@@ -37,37 +38,60 @@ class Guest extends Hotel {
     }, 0) 
   }
 
-  filterRoomsBySelectedDate(date) {
-    /*
-    need to rethink this. 
-    need rooms! not bookings!
-    NEEDS MORE WORK WHEN I AM RESTED!
-    */
-    let todaysDate = this.convertDateToUsableFormat(date);
-    let bookedRooms = this.bookings.filter(booking => {
-      let bookingDate = this.convertDateToUsableFormat(booking.date);
-      return bookingDate === todaysDate; 
+  listOccupiedRoomsByDate(date) {
+    const bookedRoomsOnDate = this.bookings.filter(booking => {
+      return booking.date === date;
     })
-
-    let stuff =  this.rooms.filter(room => {
-      return bookedRooms.forEach(booked => {
-        if (booked.roomNumber !== room.number) {
-          return room;
-        }    
-      })
+    return bookedRoomsOnDate.map(booked => {
+      return booked.roomNumber
     })
-    return stuff;
   }
-  filterRoomsByTypeOnDate(type) {
-    let currentRoomsAvailable = filterRoomsBySelectedDate(date)
-    return this.rooms.filter(room => {
-      currentRoomsAvailable.forEach(available => {
 
-      })
+  listVacantRoomsByDate(date) {
+   const bookedRoomNumbers = this.listOccupiedRoomsByDate(date)
+    const availableRoomsOnDate = this.rooms.reduce((available, room) => {
+      !bookedRoomNumbers.includes(room.number) ? available.push(room) : null;
+      return available
+    }, [])
+    return availableRoomsOnDate;
+  }
+
+  filterRoomsbyTypeOnDate(type, date) {
+    const currentRoomsAvailable = this.listVacantRoomsByDate(date)
+    const roomType = this.rooms.filter(room => {
       return room.roomType === type;
     })
+    return roomType.reduce((typesAvailable, room) => {
+      currentRoomsAvailable.forEach(available => {
+        available === room ? typesAvailable.push(room) : null;
+      })
+      return typesAvailable
+    }, [])
   }
   
 }
 
+  // currentRoomsAvailable.forEach(available => {
+      //   if (room.roomType === type) {
+      //     typeAvailableRooms.push(room)
+      //   }
+      // })
+
 export default Guest;
+
+
+    // let todaysDate = this.convertDateToUsableFormat(date);
+    // let availableRooms = this.bookings.filter(booking => {
+    //   let bookingDate = this.convertDateToUsableFormat(booking.date);
+    //   return bookingDate !== todaysDate; 
+    // })
+    // // console.log(bookedRooms)
+    // // let stuff =  bookedRooms.filter(room => {
+    // //   return bookedRooms.forEach(booked => {
+    // //     if (booked.roomNumber !== room.number) {
+    // //       return room;
+    // //     }    
+    // //   })
+    // // })
+    // // return stuff;
+    // console.log(availableRooms)
