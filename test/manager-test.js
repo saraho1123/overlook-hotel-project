@@ -82,6 +82,6 @@ describe('Manager', () => {
   it('should calculate percent of rooms occupied for today', () => {
     expect(manager.calculatePercentOccupied('2020/04/21'))
       .to.equal('40%')
-  })
+  });
 
 })
