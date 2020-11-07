@@ -76,6 +76,20 @@ class Guest extends Hotel {
       }
     }, [])
   }
+
+  /*
+FOR GUEST CLASS!
+  getGuestTotalSpent() {
+    return this.rooms.reduce((totalSpent, room) => {
+      this.bookings.forEach(booking => {
+        if (booking.roomNumber === room.number) {
+          totalSpent += room.costPerNight
+      }
+    })
+      return totalSpent
+    }, 0) 
+  }
+  */
   
 }
 
