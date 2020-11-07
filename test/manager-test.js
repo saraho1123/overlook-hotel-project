@@ -57,16 +57,6 @@ describe('Manager', () => {
     ])
   });
 
-  /*
-  Put on GUEST CLASS
-  it('should be able to calculate total spent by selected guest on bookings', () => {
-    manager.selectGuest("Isaac Osgood");
-    manager.getSelectedGuestBookings();
-
-    expect(manager.getGuestTotalSpent(manager.guestBookings)).to.deep.equal(924.04)
-  });
-  */
-
   it('should be able to book a room for selected user', () => {
     expect(manager.bookRoomForGuest(1, '2020/11/14', 4)).to.deep.equal(
       {
@@ -86,12 +76,12 @@ describe('Manager', () => {
 
   it('should be able to get total revenue for today', () => {
     expect(manager.getTodaysTotalRevenue('2020/04/21', manager.rooms, manager.bookings))
-    .to.deep.equal(565.64)
+      .to.deep.equal(565.64)
   });
 
   it('should calculate percent of rooms occupied for today', () => {
     expect(manager.calculatePercentOccupied('2020/04/21'))
-    .to.equal('40%')
+      .to.equal('40%')
   })
 
 })
