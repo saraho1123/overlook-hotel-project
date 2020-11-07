@@ -84,7 +84,26 @@ describe('Guest', () => {
     expect(guest.filterRoomsByTypeOnDate('single room', "2020/06/27")).to.equal(
       'There are no available rooms of this time for the date you have picked. We are so very sorry! We love all our guests and really hope to see you very soon! Please click the "Choose New Date" button, or choose a different style of room for this date. '
     )
-  })
+  });
+
+    /*
+  Put on GUEST CLASS
+  it('should be able to calculate total spent by selected guest on bookings', () => {
+    manager.selectGuest("Isaac Osgood");
+    manager.getSelectedGuestBookings();
+
+    expect(manager.getGuestTotalSpent(manager.guestBookings)).to.deep.equal(924.04)
+  });
+  */
+
+  it('should be able to book a room for selected user', () => {
+    expect(guest.bookRoomForGuest(3, '2020/11/15', 3)).to.deep.equal(
+      {
+        "userID": 3,
+        "date": "2020/11/15",
+        "roomNumber": 3
+    })
+  });
 
 });
 
