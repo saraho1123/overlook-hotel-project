@@ -10,13 +10,13 @@ class Guest extends Hotel {
     // this.selectedGuestBookings = null;
       this.pastBookings = [];
       this.upcomingBookings = [];
+      this.verySorryMessage = 'There are no available rooms of this time for the date you have picked. We are so very sorry! We love all our guests and really hope to see you very soon! Please click the "Choose New Date" button, or choose a different style of room for this date. '
   }
 
   convertDateToUsableFormat(date) {
     let todaysDate = new Date(date);
     return todaysDate.getTime();
   }
-
 
   seperatePastFromUpcomingBookings(date) {
     let todaysDate = this.convertDateToUsableFormat(date);
@@ -63,7 +63,12 @@ class Guest extends Hotel {
     })
     return roomType.reduce((typesAvailable, room) => {
       currentRoomsAvailable.forEach(available => {
-        available === room ? typesAvailable.push(room) : null;
+        if (available === room) {
+          typesAvailable.push(room)
+        } else {
+          return `${this.verySorryMessage}` // this is not working. I think it has to do with what is returned where
+          // ALSO ... you have added data to the sample-booking-data and will need to adjust other tests to reflect this!
+        }
       })
       return typesAvailable
     }, [])
@@ -71,27 +76,4 @@ class Guest extends Hotel {
   
 }
 
-  // currentRoomsAvailable.forEach(available => {
-      //   if (room.roomType === type) {
-      //     typeAvailableRooms.push(room)
-      //   }
-      // })
-
 export default Guest;
-
-
-    // let todaysDate = this.convertDateToUsableFormat(date);
-    // let availableRooms = this.bookings.filter(booking => {
-    //   let bookingDate = this.convertDateToUsableFormat(booking.date);
-    //   return bookingDate !== todaysDate; 
-    // })
-    // // console.log(bookedRooms)
-    // // let stuff =  bookedRooms.filter(room => {
-    // //   return bookedRooms.forEach(booked => {
-    // //     if (booked.roomNumber !== room.number) {
-    // //       return room;
-    // //     }    
-    // //   })
-    // // })
-    // // return stuff;
-    // console.log(availableRooms)
