@@ -86,15 +86,12 @@ describe('Guest', () => {
     )
   });
 
-    /*
-  Put on GUEST CLASS
   it('should be able to calculate total spent by selected guest on bookings', () => {
-    manager.selectGuest("Isaac Osgood");
-    manager.getSelectedGuestBookings();
+    guest.selectGuest("Isaac Osgood");
+    guest.getSelectedGuestBookings();
 
-    expect(manager.getGuestTotalSpent(manager.guestBookings)).to.deep.equal(924.04)
+    expect(guest.calculateGuestTotalSpent(guest.selectedGuestBookings)).to.deep.equal(4919.14)
   });
-  */
 
   it('should be able to book a room for selected user', () => {
     expect(guest.bookRoomForGuest(3, '2020/11/15', 3)).to.deep.equal(
