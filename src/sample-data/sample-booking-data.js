@@ -10,3 +10,20 @@ const sampleBookingData = [
 ];
 
 export default sampleBookingData;
+
+[
+  {
+    id: '5fwrgu4i7k55hl6t9',
+    userID: 1,
+    date: '2020/04/21',
+    roomNumber: 5,
+    roomServiceCharges: []
+  },
+  {
+    id: '5fwrgu4i7k55hl6t0',
+    userID: 1,
+    date: '2020/04/21',
+    roomNumber: 1,
+    roomServiceCharges: []
+  }
+]
