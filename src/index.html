@@ -24,20 +24,23 @@
 
   <body>
 
-    <section class="login-view ">
+    <section class="login-view "> 
+      <!-- hide nav buttons! -->
       <h1 class="heading">Login to set up your adventure headquarters <br> at Canyon Overlook Hotel!</h1>
 
       <article class="login">
         <div>
-          <p class="login-label labels">Enter User Login Name: </p>
-          <input class="user-login input" label="user-login" type="text"> 
+          <label for="user-login" class="login-label labels">Enter User Login Name: 
+            <input class="user-login input" label="user-login" type="text"> 
+          </label>
         </div>
         <div>
-          <p class="login-label labels ">Enter password: </p>
-          <input class="user-password input" label="user-password" type="text">
+          <label for="user-password labels" class="login-label labels">Enter Password: 
+            <input class="user-password input" label="user-password" type="text">
+          </label>
         </div> 
         <div>
-          <button class="submit-login submit">Submit</button>
+          <button disabled class="submit-login submit">Submit</button>
         </div>
       </article>
     </section>
@@ -99,21 +102,27 @@
     </section>
 
     <section class="user-choose-date-view ">
+      <!-- hide Booking Button in Navs! -->
       <article>
         <h1 class="heading">Please choose a date to see available rooms:</h1>
 
         <div>
-          <p class="check-in-date-label labels">Check-in Date:</p>
-          <input class="check-in-date-input input" type="text">
+          <label for="dcheck-in-date-input labels" class="login-label labels">Check-in Date: 
+            <input class="check-in-date-input input" type="text">
+          </label>
+        </div>
+
+<!-- USE THESE IF YOU GET TO IT IN THE PROJECT ... -->
+        <!-- <div>
+          <label for="duration-input labels" class="login-label labels">Stay Duration: 
+            <input class="duration-input input" type="text">
+          </label>
         </div>
         <div>
-          <p class="duration-label labels">Stay Duration:</p>
-          <input class="duration-input input" type="text">
-        </div>
-        <div>
-          <p class="number-of-guests-label labels">Number of Adventurers:</p>
-          <input class="number-of-guests-input input" type="text">
-        </div>
+          <label for="number-of-guests-input labels" class="login-label labels">Number of Adventurers: 
+            <input class="number-of-guests-input input" type="text">
+          </label>
+        </div> -->
 
         <button class="see-available-rooms-button submit">See available rooms</button>
       </article>
@@ -121,6 +130,7 @@
     </section>
 
     <section class="user-book-room-view ">
+      <!-- HIDE BOOKING BUTTON IN NAVS! -->
       <!-- <article class="return-button"> -->
       <!-- </article> -->
       <article class="booking">
@@ -192,7 +202,7 @@
     </section>
 
     <section class="manager-view">
-
+<!-- HIDE NAV BUTTONS FOR MANAGER! -->
       <section class="all-hotel-info">
         <h1 class="heading">Hotel Details</h1>
         <article class="daily-totals">
@@ -204,8 +214,8 @@
           </h2>
         </article>
         <article class="rooms-available-for-date">
-          <label for="search-available-by-date">Find by date:</label>
-          <button class="search-available-by-date">date calendar thingy</button>        
+          <label for="search-available-by-date label">Find by date:</label>
+          <button class="search-available-by-date submit">date calendar thingy</button>        
         </article>
         <section class="list-rooms-available cards-of-rooms">
               <h2 class="heading2">Rooms available for <span>yyyy/mm/dd</span>:</h1>
@@ -217,7 +227,7 @@
                     <p class="bed-size small-details">Bed Size: <span>Queen</span></p>
                     <p class="bidet small-details">Has Bidet: <span>Yes</span></p>
                     <p class="cost small-details">Price: $<span>400.00</span></p>
-                    <button class="book-room-for-guest">Book this room for currently selected guest</button>
+                    <button class="book-room-for-guest submit">Book this room for currently selected guest</button>
                     only show this button if a guest is selected
                   </section>
                 </article>
@@ -231,7 +241,7 @@
                     <p class="bed-size small-details">Bed Size: <span>Queen</span></p>
                     <p class="bidet small-details">Has Bidet: <span>Yes</span></p>
                     <p class="cost small-details">Price: $<span>400.00</span></p>
-                    <button class="book-room-for-guest ">Book this room for currently selected guest</button>
+                    <button class="book-room-for-guest hidden submit">Book this room for currently selected guest</button>
                   </section>
                 </article>
               </article>
@@ -244,7 +254,7 @@
                     <p class="bed-size small-details">Bed Size: <span>Queen</span></p>
                     <p class="bidet small-details">Has Bidet: <span>Yes</span></p>
                     <p class="cost small-details">Price: $<span>400.00</span></p>
-                    <button class="book-room-for-guest ">Book this room for currently selected guest</button>
+                    <button class="book-room-for-guest hidden submit">Book this room for currently selected guest</button>
                   </section>
                 </article>
               </article>
@@ -255,8 +265,9 @@
 
       <section class="specific-guest-info">
         <h1 class="heading">Individual Guest Details</h1>
-        <label for="find-user-input">Find bookings and total spent for individual user:</label>
-        <input class="find-user-input"> 
+        <label for="find-user-input labels" class="login-label labels">Find bookings and total spent for individual user: 
+          <input class="find-user-input input"> 
+        </label>
         <!-- input user's full name or check out input fields from idea box -->
         <h2 class="heading2">Total spent by <span>Guest Name</span>: <span>$4000.00</span> </h2>
         <section class="list-rooms-available cards-of-rooms">
@@ -267,7 +278,7 @@
               <section class="small-room-details">
                 <p class="date-booked small-details">Date Booked: <span>yyyy/mm/dd</span></p>
                 <p class="cost small-details">Paid: $<span>400.00</span></p>
-                <button class="delete-booking-for-guest">Delete this upcoming booking</button>
+                <button class="delete-booking-for-guest submit">Delete this upcoming booking</button>
                 only show this button if the date is in the future! (set up a conditional)
               </section>
             </article>
@@ -279,7 +290,7 @@
               <section class="small-room-details">
                 <p class="date-booked small-details">Date Booked: <span>yyyy/mm/dd</span></p>
                 <p class="cost small-details">Paid: $<span>400.00</span></p>
-                <button class="delete-booking-for-guest ">Delete this upcoming booking</button>
+                <button class="delete-booking-for-guest hidden submit">Delete this upcoming booking</button>
               </section>
             </article>
           </article>
@@ -290,7 +301,7 @@
               <section class="small-room-details">
                 <p class="date-booked small-details">Date Booked: <span>yyyy/mm/dd</span></p>
                 <p class="cost small-details">Paid: $<span>400.00</span></p>
-                <button class="delete-booking-for-guest ">Delete this upcoming booking</button>
+                <button class="delete-booking-for-guest hidden submit">Delete this upcoming booking</button>
               </section>
             </article>
           </article>
