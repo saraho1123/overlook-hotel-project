@@ -11,7 +11,7 @@
       <h2 class="welcome">Welcome to your Adventure Headquarters, Sarah!</h2>
     </section>
     <nav>
-      <section class="nav-buttons-section">
+      <section class="nav-buttons-section hidden">
         <button label="past-bookings" class="past-bookings nav-button" type="button">Past Bookings</button>
       <button label="current-bookings" class="current-bookings nav-button" type="button">Current Bookings</button>
       <button label="upcoming-bookings" class="upcoming-bookings nav-button" type="button">Upcoming Bookings</button>
@@ -25,16 +25,33 @@
 
   <body>
 
-    <section class="login-view hidden">
-      Login View
+    <section class="login-view">
+      <article class="login">
+        <div>
+          <p class="login-labels">Enter User Login Name: </p>
+          <input class="user-login login-input" label="user-login" type="text"> 
+        </div>
+
+        <div>
+          <p class="login-labels">Enter password: </p>
+          <input class="user-password login-input" label="user-password" type="text">
+        </div>
+        
+        <div>
+          <button disable class="submit-login">Submit</button>
+        </div>
+      </article>
     </section>
 
     <section class="user-home-view hidden">
       User Booking View
           <img src="./images/san-juan-evening.png" alt="Overlook logo" height="300px" width="400px">
     </section>
+    <section class="user-choose-date-view hidden">
+      User choose date view
+    </section>
 
-    <section class="user-book-room-view">
+    <section class="user-book-room-view hidden">
       <!-- <article class="return-button"> -->
       <!-- </article> -->
       <article class="booking">
@@ -64,6 +81,7 @@
               <p class="num-beds small-details">Number of Beds: <span>1</span> </p>
               <p class="bed-size small-details">Bed Size: <span>Queen</span></p>
               <p class="bidet small-details">Has Bidet: <span>Yes</span></p>
+              <p class="cost small-details">Price: $<span>400.00</span></p>
             </article>
           </section>
         </article>
@@ -75,6 +93,7 @@
               <p class="num-beds small-details">Number of Beds: <span>1</span> </p>
               <p class="bed-size small-details">Bed Size: <span>Queen</span></p>
               <p class="bidet small-details">Has Bidet: <span>Yes</span></p>
+              <p class="cost small-details">Price: $<span>400.00</span></p>
             </article>
           </section>
         </article>
@@ -86,6 +105,7 @@
               <p class="num-beds small-details">Number of Beds: <span>1</span> </p>
               <p class="bed-size small-details">Bed Size: <span>Queen</span></p>
               <p class="bidet small-details">Has Bidet: <span>Yes</span></p>
+              <p class="cost small-details">Price: $<span>400.00</span></p>
             </article>
           </section>
         </article>
@@ -95,7 +115,10 @@
     </section>
 
     <section class="room-booked-view hidden">
-      Your adventure headquarters are booked for yyyy/mm/dd!
+      Room <span>25</span> is booked for your adventure headquarters on <span>yyyy/mm/dd</span>!
+      <button>
+        See all upcoming bookings
+      </button>
     </section>
 
     <section class="manager-view hidden">
