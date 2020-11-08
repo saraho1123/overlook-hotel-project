@@ -20,7 +20,6 @@ import './images/snake-house-for-overlook.png'
 
 console.log('This is the JavaScript entry file - your code begins here.');
 
-
 /*
 
 l
