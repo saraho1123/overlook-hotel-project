@@ -270,6 +270,38 @@ label {
   text-align: center;
 }
 
+// Manager Home View
+
+.manager-view {
+  // background: white;
+  // color: black;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+}
+
+.heading2 {
+  font-size: large;
+  color: $Overlook-Hotel-favorite-1-hsla;;
+}
+
+.all-hotel-info {
+  width: 45%;
+}
+
+.list-rooms-available {
+  display: flex;
+  flex-direction: column;
+}
+
+.center-bar {
+  width: 5%;
+}
+
+.specific-guest-info {
+  width: 45%;
+}
+
 .hidden {
   display: none;
 }

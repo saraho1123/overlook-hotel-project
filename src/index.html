@@ -11,12 +11,12 @@
       <h2 class="welcome">Welcome to your Adventure Headquarters, Sarah!</h2>
     </section>
     <nav>
-      <section class="nav-buttons-section">
+      <section class="nav-buttons-section ">
         <button label="past-bookings" class="past-bookings nav-button" type="button">Past Bookings</button>
       <!-- <button label="current-bookings" class="current-bookings nav-button" type="button">Current Bookings</button> -->
       <button label="upcoming-bookings" class="upcoming-bookings nav-button" type="button">Upcoming Bookings</button>
-      <button label="make-booking" class="make-booking nav-button" type="button" onClick = "this.style.visibility= 'hidden'">Book a room!</button>      
-      <!-- Use this for booking button ... need more research first!: onClick = "this.style.visibility= 'hidden'" -->
+      <button label="make-booking" class="make-booking nav-button" type="button" onClick = "this.style.visibility= ''">Book a room!</button>      
+      <!-- Use this for booking button ... need more research first!: onClick = "this.style.visibility= ''" -->
       </section>
     </nav>
     <img class="snake-house-image" src="./images/snake-house-for-overlook.png" alt="Overlook logo" height="1em" width="100%">
@@ -24,7 +24,7 @@
 
   <body>
 
-    <section class="login-view hidden">
+    <section class="login-view ">
       <h1 class="heading">Login to set up your adventure headquarters <br> at Canyon Overlook Hotel!</h1>
 
       <article class="login">
@@ -42,7 +42,7 @@
       </article>
     </section>
 
-    <section class="user-home-view hidden">
+    <section class="user-home-view ">
       <h1 class="user-total-spent heading">
         <span>Sarah</span>, You have spent $<span>4000.00</span> on your unforgetable adventures so far!
       </h1>
@@ -98,7 +98,7 @@
 
     </section>
 
-    <section class="user-choose-date-view hidden">
+    <section class="user-choose-date-view ">
       <article>
         <h1 class="heading">Please choose a date to see available rooms:</h1>
 
@@ -120,7 +120,7 @@
       User choose date view
     </section>
 
-    <section class="user-book-room-view hidden">
+    <section class="user-book-room-view ">
       <!-- <article class="return-button"> -->
       <!-- </article> -->
       <article class="booking">
@@ -181,7 +181,7 @@
           <img src="./images/san-juan-day.png" alt="Overlook logo" height="300px" width="400px">
     </section>
 
-    <section class="room-booked-view">
+    <section class="room-booked-view ">
       <h1 class="room-is-booked heading">
         <span>Sarah</span>, <br> Room <span>25</span> is booked <br> for your adventure headquarters on <br> <span>yyyy/mm/dd</span>!
       </h1>
@@ -191,8 +191,112 @@
       <img src="./images/desert-pool.png" alt="Overlook logo" height="300px" width="400px">
     </section>
 
-    <section class="manager-view hidden">
-      Manager View
+    <section class="manager-view">
+
+      <section class="all-hotel-info">
+        <h1 class="heading">Hotel Details</h1>
+        <article class="daily-totals">
+          <h2 class="total-revenue heading2">
+            Hotel total revenue for <span>yyyy/mm/dd</span>: <br>$<span>40,000</span>
+          </h2>
+          <h2 class="total-revenue heading2">
+            Percent rooms booked for <span>yyyy/mm/dd</span>: <br> <span>90</span>%
+          </h2>
+        </article>
+        <article class="rooms-available-for-date">
+          <label for="search-available-by-date">Find by date:</label>
+          <button class="search-available-by-date">date calendar thingy</button>        
+        </article>
+        <section class="list-rooms-available cards-of-rooms">
+              <h2 class="heading2">Rooms available for <span>yyyy/mm/dd</span>:</h1>
+              <article class="room booked-room">
+                <article class="rooms-available-cards room-details">
+                  <h2 class="room-number-type">Room 1: Residential Suite</h2>
+                  <section class="small-room-details">
+                    <p class="num-beds small-details">Number of Beds: <span>1</span> </p>
+                    <p class="bed-size small-details">Bed Size: <span>Queen</span></p>
+                    <p class="bidet small-details">Has Bidet: <span>Yes</span></p>
+                    <p class="cost small-details">Price: $<span>400.00</span></p>
+                    <button class="book-room-for-guest">Book this room for currently selected guest</button>
+                    only show this button if a guest is selected
+                  </section>
+                </article>
+              </article>
+
+              <article class="room booked-room">
+                <article class="rooms-available-cards room-details">
+                  <h2 class="room-number-type">Room 1: Residential Suite</h2>
+                  <section class="small-room-details">
+                    <p class="num-beds small-details">Number of Beds: <span>1</span> </p>
+                    <p class="bed-size small-details">Bed Size: <span>Queen</span></p>
+                    <p class="bidet small-details">Has Bidet: <span>Yes</span></p>
+                    <p class="cost small-details">Price: $<span>400.00</span></p>
+                    <button class="book-room-for-guest ">Book this room for currently selected guest</button>
+                  </section>
+                </article>
+              </article>
+
+              <article class="room booked-room">
+                <article class="rooms-available-cards room-details">
+                  <h2 class="room-number-type">Room 1: Residential Suite</h2>
+                  <section class="small-room-details">
+                    <p class="num-beds small-details">Number of Beds: <span>1</span> </p>
+                    <p class="bed-size small-details">Bed Size: <span>Queen</span></p>
+                    <p class="bidet small-details">Has Bidet: <span>Yes</span></p>
+                    <p class="cost small-details">Price: $<span>400.00</span></p>
+                    <button class="book-room-for-guest ">Book this room for currently selected guest</button>
+                  </section>
+                </article>
+              </article>
+
+        </section>
+      </section>
+      <div class="center-bar"></div>
+
+      <section class="specific-guest-info">
+        <h1 class="heading">Individual Guest Details</h1>
+        <label for="find-user-input">Find bookings and total spent for individual user:</label>
+        <input class="find-user-input"> 
+        <!-- input user's full name or check out input fields from idea box -->
+        <h2 class="heading2">Total spent by <span>Guest Name</span>: <span>$4000.00</span> </h2>
+        <section class="list-rooms-available cards-of-rooms">
+          <h2 class="heading2"> <span>Guest</span>'s booked rooms:</h1>
+          <article class="room booked-room">
+            <article class="rooms-available-cards room-details">
+              <h2 class="room-number-type">Room 1: Residential Suite</h2>
+              <section class="small-room-details">
+                <p class="date-booked small-details">Date Booked: <span>yyyy/mm/dd</span></p>
+                <p class="cost small-details">Paid: $<span>400.00</span></p>
+                <button class="delete-booking-for-guest">Delete this upcoming booking</button>
+                only show this button if the date is in the future! (set up a conditional)
+              </section>
+            </article>
+          </article>
+
+          <article class="room booked-room">
+            <article class="rooms-available-cards room-details">
+              <h2 class="room-number-type">Room 1: Residential Suite</h2>
+              <section class="small-room-details">
+                <p class="date-booked small-details">Date Booked: <span>yyyy/mm/dd</span></p>
+                <p class="cost small-details">Paid: $<span>400.00</span></p>
+                <button class="delete-booking-for-guest ">Delete this upcoming booking</button>
+              </section>
+            </article>
+          </article>
+
+          <article class="room booked-room">
+            <article class="rooms-available-cards room-details">
+              <h2 class="room-number-type">Room 1: Residential Suite</h2>
+              <section class="small-room-details">
+                <p class="date-booked small-details">Date Booked: <span>yyyy/mm/dd</span></p>
+                <p class="cost small-details">Paid: $<span>400.00</span></p>
+                <button class="delete-booking-for-guest ">Delete this upcoming booking</button>
+              </section>
+            </article>
+          </article>
+        </section>
+      </section>
+
     </section>
     <!-- <img src="./images/san-juan-evening.png" alt="Overlook logo" height="300px" width="400px"> -->
 
