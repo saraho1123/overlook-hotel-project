@@ -11,43 +11,112 @@
       <h2 class="welcome">Welcome to your Adventure Headquarters, Sarah!</h2>
     </section>
     <nav>
-      <section class="nav-buttons-section hidden">
+      <section class="nav-buttons-section">
         <button label="past-bookings" class="past-bookings nav-button" type="button">Past Bookings</button>
-      <button label="current-bookings" class="current-bookings nav-button" type="button">Current Bookings</button>
+      <!-- <button label="current-bookings" class="current-bookings nav-button" type="button">Current Bookings</button> -->
       <button label="upcoming-bookings" class="upcoming-bookings nav-button" type="button">Upcoming Bookings</button>
       <button label="make-booking" class="make-booking nav-button" type="button" onClick = "this.style.visibility= 'hidden'">Book a room!</button>      
       <!-- Use this for booking button ... need more research first!: onClick = "this.style.visibility= 'hidden'" -->
       </section>
     </nav>
     <img class="snake-house-image" src="./images/snake-house-for-overlook.png" alt="Overlook logo" height="1em" width="100%">
-
   </header>
 
   <body>
 
-    <section class="login-view">
+    <section class="login-view hidden">
+      <h1 class="heading">Login to set up your adventure headquarters <br> at Canyon Overlook Hotel!</h1>
+
       <article class="login">
         <div>
-          <p class="login-labels">Enter User Login Name: </p>
-          <input class="user-login login-input" label="user-login" type="text"> 
+          <p class="login-label labels">Enter User Login Name: </p>
+          <input class="user-login input" label="user-login" type="text"> 
         </div>
-
         <div>
-          <p class="login-labels">Enter password: </p>
-          <input class="user-password login-input" label="user-password" type="text">
-        </div>
-        
+          <p class="login-label labels ">Enter password: </p>
+          <input class="user-password input" label="user-password" type="text">
+        </div> 
         <div>
-          <button disable class="submit-login">Submit</button>
+          <button class="submit-login submit">Submit</button>
         </div>
       </article>
     </section>
 
     <section class="user-home-view hidden">
-      User Booking View
-          <img src="./images/san-juan-evening.png" alt="Overlook logo" height="300px" width="400px">
+      <h1 class="user-total-spent heading">
+        <span>Sarah</span>, You have spent $<span>4000.00</span> on your unforgetable adventures so far!
+      </h1>
+      <h2 class="your-previous-bookings">
+        Your previous Adventure Headquarter Bookings:
+      </h2>
+      <section class="current-bookings">
+          <section class="cards-of-rooms booked">
+            <article class="room booked-room">
+              <img class="room-image" src="./images/hotel-room.jpg" alt="room-image">
+              <section class="room-details">
+                <h2 class="room-number-type">Room 1: Residential Suite</h2>
+                <article class="small-room-details">
+                  <p class="num-beds small-details">Number of Beds: <span>1</span> </p>
+                  <p class="bed-size small-details">Bed Size: <span>Queen</span></p>
+                  <p class="bidet small-details">Has Bidet: <span>Yes</span></p>
+                  <p class="cost small-details">Paid: $<span>400.00</span></p>
+                  <p class="stayed small-details">Date Stayed: <span>yyyy/mm/dd</span></p>
+                </article>
+              </section>
+            </article>
+            <article class="room booked-room">
+              <img class="room-image" src="./images/hotel-room.jpg" alt="room-image">
+              <section class="room-details">
+                <h2 class="room-number-type">Room 1: Residential Suite</h2>
+                <article class="small-room-details">
+                  <p class="num-beds small-details">Number of Beds: <span>1</span> </p>
+                  <p class="bed-size small-details">Bed Size: <span>Queen</span></p>
+                  <p class="bidet small-details">Has Bidet: <span>Yes</span></p>
+                  <p class="cost small-details">Paid: $<span>400.00</span></p>
+                  <p class="stayed small-details">Date Stayed: <span>yyyy/mm/dd</span></p>
+                </article>
+              </section>
+            </article>
+            <article class="room booked-room">
+              <img class="room-image" src="./images/hotel-room.jpg" alt="room-image">
+              <section class="room-details">
+                <h2 class="room-number-type">Room 1: Residential Suite</h2>
+                <article class="small-room-details">
+                  <p class="num-beds small-details">Number of Beds: <span>1</span> </p>
+                  <p class="bed-size small-details">Bed Size: <span>Queen</span></p>
+                  <p class="bidet small-details">Has Bidet: <span>Yes</span></p>
+                  <p class="cost small-details">Paid: $<span>400.00</span></p>
+                  <p class="stayed small-details">Date Stayed: <span>yyyy/mm/dd</span></p>
+                </article>
+              </section>
+            </article>
+        </section>
+      </section>
+
+    
+      <img src="./images/san-juan-evening.png" alt="Overlook logo" height="300px" width="400px">
+
     </section>
+
     <section class="user-choose-date-view hidden">
+      <article>
+        <h1 class="heading">Please choose a date to see available rooms:</h1>
+
+        <div>
+          <p class="check-in-date-label labels">Check-in Date:</p>
+          <input class="check-in-date-input input" type="text">
+        </div>
+        <div>
+          <p class="duration-label labels">Stay Duration:</p>
+          <input class="duration-input input" type="text">
+        </div>
+        <div>
+          <p class="number-of-guests-label labels">Number of Adventurers:</p>
+          <input class="number-of-guests-input input" type="text">
+        </div>
+
+        <button class="see-available-rooms-button submit">See available rooms</button>
+      </article>
       User choose date view
     </section>
 
@@ -57,7 +126,7 @@
       <article class="booking">
         <div class="booking-header">
           <button class="back-to-choose-date-button" id="button" type="button">Choose New Date</button>
-          <h1 class="available-on-date">Canyon Overlook Rooms available for <span class="date">2020/12/19</span>:</h1>
+          <h1 class="available-on-date heading">Canyon Overlook Rooms available for <span class="date">2020/12/19</span>:</h1>
         </div>  
         <section class="filter-section">
           <label for="filter-by-room-type">Filter by room type:</label>
@@ -68,11 +137,9 @@
             <option value="suite">Suite</option>
             <option value="residintial-suite">Residential Suite</option>
           </select>
-        </section>
-        
+        </section>        
       </article>
-
-      <section class="cards-of-available-rooms">
+      <section class="cards-of-rooms">
         <article class="room">
           <img class="room-image" src="./images/hotel-room.jpg" alt="room-image">
           <section class="room-details">
@@ -114,11 +181,14 @@
           <img src="./images/san-juan-day.png" alt="Overlook logo" height="300px" width="400px">
     </section>
 
-    <section class="room-booked-view hidden">
-      Room <span>25</span> is booked for your adventure headquarters on <span>yyyy/mm/dd</span>!
-      <button>
+    <section class="room-booked-view">
+      <h1 class="room-is-booked heading">
+        <span>Sarah</span>, <br> Room <span>25</span> is booked <br> for your adventure headquarters on <br> <span>yyyy/mm/dd</span>!
+      </h1>
+      <button class="see-upcoming submit">
         See all upcoming bookings
       </button>
+      <img src="./images/desert-pool.png" alt="Overlook logo" height="300px" width="400px">
     </section>
 
     <section class="manager-view hidden">

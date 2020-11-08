@@ -84,6 +84,11 @@ nav {
 body {
   color: $primary-main-font-color;
 }
+
+.heading {
+  font-size: xx-large;
+  color: $Overlook-Hotel-favorite-4-hsla;
+}
 // Login View
 .login-view {
   display: flex;
@@ -96,28 +101,55 @@ body {
   margin: 5em;
 }
 
-.login-labels {
+.labels {
   color: $Overlook-Hotel-2-1-hsla;
 }
 
-.login-input {
-  // background: $Overlook-Hotel-2-1-hsla;
-  // color: $Overlook-Hotel-favorite-3-hsla;
-  // I want to change these colors, but I am going to save it for if I have time!
+.input {
+  margin-bottom: 2em;  
+  border-radius: 0.5em;
+  height: 1.5em;
+  background: $Overlook-Hotel-2-5-hsla; // probably need to adjust this color for accessibility
+  color: $Overlook-Hotel-favorite-3-hsla;
 }
 
-.user-login {
-  margin-bottom: 2em;
-  
-}
-
-.submit-login{
+.submit {
   margin: 2em;
-  // background: $Overlook-Hotel-favorite-4-hsla;
-  // color: $Overlook-Hotel-favorite-3-hsla;
-  // I want to change these colors, but I am going to save it for if I have time!
-  padding: .5em 2em .5em 2em;
+  // padding: .5em 2em .5em 2em;
+  background: #008075;
+  color: #f6e9d5;
+  border-radius: 0.5em;
+  margin: 0 0.8em 0.5em 1em;
+  width: 15em;
+  height: 3em;
 }
+
+// User Home View
+
+.user-home-view {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-total-spent {
+  color: $Overlook-Hotel-favorite-4-hsla;
+}
+
+.your-previous-bookings {
+  font-size: large;
+  color: $Overlook-Hotel-favorite-4-hsla;
+}
+
+// Choose Date View
+
+.user-choose-date-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
 
 // Book Room View
 
@@ -132,6 +164,14 @@ body {
 //   display: flex;
 //   justify-content: flex-end;
 // }
+
+.booking {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 2em 2em 2em;
+}
+
 .booking-header {
   display: flex;
   flex-direction: row;
@@ -146,18 +186,6 @@ body {
   height: 3em;
   width: 9em;
   margin: 2em 2em 2em 40vw
-}
-
-.booking {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 2em 2em 2em;
-}
-
-.available-on-date {
-  font-size: xx-large;
-  color: $Overlook-Hotel-favorite-4-hsla;
 }
 
 .filter-section {
@@ -185,7 +213,7 @@ label {
   margin: 0 0 0 1em;
 }
 
-.cards-of-available-rooms {
+.cards-of-rooms {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -229,6 +257,17 @@ label {
 .cost {
   font-size: x-large;
   font-weight: bolder;
+}
+
+// Room Booked!
+
+.room-booked-view {
+  margin: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .hidden {
