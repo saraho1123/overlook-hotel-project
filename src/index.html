@@ -8,10 +8,10 @@
       <h1 class="header-and-welcome">
         Canyon Overlook Hotel
       </h1>
-      <h2 class="welcome">Welcome to your Adventure Headquarters, Sarah!</h2>
+      <h2 class="welcome">Welcome to your Adventure Headquarters, <span class="heading-name">Sarah</span>!</h2>
     </section>
     <nav>
-      <section class="nav-buttons-section ">
+      <section class="nav-buttons-section hidden">
         <button label="past-bookings" class="past-bookings nav-button" type="button">Past Bookings</button>
       <!-- <button label="current-bookings" class="current-bookings nav-button" type="button">Current Bookings</button> -->
       <button label="upcoming-bookings" class="upcoming-bookings nav-button" type="button">Upcoming Bookings</button>
@@ -36,17 +36,19 @@
         </div>
         <div>
           <label for="user-password labels" class="login-label labels">Enter Password: 
-            <input class="user-password input" label="user-password" type="text">
+            <input class="user-password input" label="user-password" type="password">
           </label>
         </div> 
         <div>
-          <button disabled class="submit-login submit">Submit</button>
+          <button disabled class="submit-login submit disable-style">Submit</button>
         </div>
+        <div class="login-alert"></div>
+        <p></p>
       </article>
     </section>
 
-    <section class="user-home-view ">
-      <h1 class="user-total-spent heading">
+    <section class="guest-home-view hidden">
+      <h1 class="guest-total-spent heading">
         <span>Sarah</span>, You have spent $<span>4000.00</span> on your unforgetable adventures so far!
       </h1>
       <h2 class="your-previous-bookings heading2">
@@ -101,13 +103,13 @@
 
     </section>
 
-    <section class="user-choose-date-view ">
+    <section class="guest-choose-date-view hidden">
       <!-- hide Booking Button in Navs! -->
       <article>
         <h1 class="heading">Please choose a date to see available rooms:</h1>
 
         <div>
-          <label for="dcheck-in-date-input labels" class="login-label labels">Check-in Date: 
+          <label for="check-in-date-input labels" class="login-label labels">Check-in Date: 
             <input class="check-in-date-input input" type="text">
           </label>
         </div>
@@ -129,7 +131,7 @@
       User choose date view
     </section>
 
-    <section class="user-book-room-view ">
+    <section class="guest-book-room-view hidden">
       <!-- HIDE BOOKING BUTTON IN NAVS! -->
       <!-- <article class="return-button"> -->
       <!-- </article> -->
@@ -191,7 +193,7 @@
           <img src="./images/san-juan-day.png" alt="Overlook logo" height="300px" width="400px">
     </section>
 
-    <section class="room-booked-view ">
+    <section class="room-booked-view hidden">
       <h1 class="room-is-booked heading">
         <span>Sarah</span>, <br> Room <span>25</span> is booked <br> for your adventure headquarters on <br> <span>yyyy/mm/dd</span>!
       </h1>
@@ -201,7 +203,7 @@
       <img src="./images/desert-pool.png" alt="Overlook logo" height="300px" width="400px">
     </section>
 
-    <section class="manager-view">
+    <section class="manager-view hidden">
 <!-- HIDE NAV BUTTONS FOR MANAGER! -->
       <section class="all-hotel-info">
         <h1 class="heading">Hotel Details</h1>
@@ -209,6 +211,7 @@
           <h2 class="total-revenue heading2">
             Hotel total revenue for <span>yyyy/mm/dd</span>: <br>$<span>40,000</span>
           </h2>
+          <!-- Consider taking this out and inserting in JS with interpolation -->
           <h2 class="total-revenue heading2">
             Percent rooms booked for <span>yyyy/mm/dd</span>: <br> <span>90</span>%
           </h2>
@@ -265,10 +268,10 @@
 
       <section class="specific-guest-info">
         <h1 class="heading">Individual Guest Details</h1>
-        <label for="find-user-input labels" class="login-label labels">Find bookings and total spent for individual user: 
-          <input class="find-user-input input"> 
+        <label for="find-guest-input labels" class="login-label labels">Find bookings and total spent for individual guest: 
+          <input class="find-guest-input input"> 
         </label>
-        <!-- input user's full name or check out input fields from idea box -->
+        <!-- input guest's full name or check out input fields from idea box -->
         <h2 class="heading2">Total spent by <span>Guest Name</span>: <span>$4000.00</span> </h2>
         <section class="list-rooms-available cards-of-rooms">
           <h2 class="heading2"> <span>Guest</span>'s booked rooms:</h1>

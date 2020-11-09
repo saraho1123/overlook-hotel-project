@@ -125,6 +125,9 @@ body {
   height: 3em;
 }
 
+p {
+  color: $Overlook-Hotel-2-1-hsla;
+}
 // User Home View
 
 .user-home-view {
@@ -299,6 +302,11 @@ label {
 
 .specific-guest-info {
   width: 45vw;
+}
+
+.disable-style {
+  background: $Overlook-Hotel-favorite-5-hsla;
+  color: $Overlook-Hotel-2-1-hsla;
 }
 
 .hidden {

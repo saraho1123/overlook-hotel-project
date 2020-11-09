@@ -27,6 +27,12 @@ class APIRequests {
     .then(data => console.log(data))
     .catch(error => console.log(error))
   }
+  /*
+Need to update this.bookings.
+POST
+and then fetch the updated data so I can update this.bookings.
+ALSO DO THIS WITH DELETE.
+  */
 
   deleteData(urlPath, inputID) {
     return fetch(`${this.urlRoot}${urlPath}`, {
