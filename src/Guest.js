@@ -22,16 +22,28 @@ class Guest extends Hotel {
     })
   }
 
-  getGuestTotalSpent() {
-    return this.rooms.reduce((totalSpent, room) => {
-      this.bookings.forEach(booking => {
+  calculateGuestTotalSpent() {
+    const total = this.pastBookings.reduce((totalSpent, booking) => {
+      this.rooms.forEach(room => {
         if (booking.roomNumber === room.number) {
-          totalSpent += room.costPerNight
+          totalSpent += (room.costPerNight * 100)
         }
       })
-      return totalSpent
+      return totalSpent 
     }, 0) 
+    return total / 100
   }
+
+  // getGuestTotalSpent() {
+  //   return this.rooms.reduce((totalSpent, room) => {
+  //     this.bookings.forEach(booking => {
+  //       if (booking.roomNumber === room.number) {
+  //         totalSpent += (room.costPerNight * 100)
+  //       }
+  //     })
+  //     return totalSpent / 100
+  //   }, 0) 
+  // }
 
   listOccupiedRoomsByDate(date) {
     const bookedRoomsOnDate = this.bookings.filter(booking => {
@@ -70,17 +82,6 @@ class Guest extends Hotel {
     }, [])
   }
 
-  calculateGuestTotalSpent() {
-    const total = this.rooms.reduce((totalSpent, room) => {
-      this.bookings.forEach(booking => {
-        if (booking.roomNumber === room.number) {
-          totalSpent += (room.costPerNight * 100)
-        }
-      })
-      return totalSpent 
-    }, 0) 
-    return total / 100
-  }
   
 }
 

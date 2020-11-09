@@ -20,7 +20,6 @@ import Guest from './Guest';
 import Manager from './Manager';
 import APIRequests from './Fetch';
 
-
 // Query Selectors
 
 // inputs
@@ -39,6 +38,10 @@ const managerView = document.querySelector('.manager-view');
 // other elements
 const headingGuestName = document.querySelector('.heading-name');
 const loginAlert = document.querySelector('.login-alert');
+const guestViewPastBookings = document.querySelector('.cards-of-rooms');
+// const headingName = document.querySelector('.heading-name');
+// const spentName = document.querySelector('.spent-name');
+// const spentAmout = document.querySelector('.spent-amount');
 
 // Event Listeners
 window.addEventListener('keyup', allowWrongLoginAlerts);
@@ -70,8 +73,8 @@ let roomsData;
 Promise.all([retrievedUserData, retrievedBookingData, retrievedRoomData])
   .then(value => {
     usersData = value[0];
-    bookingsData = value[1].bookings;
-    roomsData = value[2].rooms;
+    bookingsData = value[1];
+    roomsData = value[2];
   })
 
 console.log('Time to really rock this project!');
@@ -97,10 +100,13 @@ function allowWrongLoginAlerts() {
 
 function validateUserLogin(event) {
   event.preventDefault()
+  // if (userLogin.value === 'customer17'  && userPassword.value === 'o') { // cheat login! ;) 
   if (userLogin.value.slice(0, 8) === 'customer' && userLogin.value.slice(8) > 0 && userLogin.value.slice(8) <= 50 && userPassword.value === 'Overlook2020') {
     guest = new Guest(usersData, roomsData, bookingsData);
     getGuest();
     enableGuestHomeView();
+    displayGuestNameDasboard();
+    displayGuestPastBookingsDasboard();
   } else if (userLogin.value === 'manager' && userPassword.value === 'Overlook2020') {
     manager = new Manager(usersData, roomsData, bookingsData);
     enableManagerView();
@@ -115,8 +121,8 @@ function validateUserLogin(event) {
 function getGuest() {
   let currentGuestID = Number(userLogin.value.slice(8));
   guest.selectGuest("id", currentGuestID)
-  console.log('loggedInGuest', guest.selectedGuest)
 }
+
 
 function enableGuestHomeView() {
   loginView.classList.add('hidden');
@@ -128,6 +134,51 @@ function enableGuestHomeView() {
 function enableManagerView() {
   loginView.classList.add('hidden');
   managerView.classList.remove('hidden');
+}
+
+function getToday() {
+  return new Date();
+}
+
+function getBookingsAndTotalSpent() {
+  let date = getToday();
+  guest.getSelectedGuestBookings();
+  guest.seperatePastFromUpcomingBookings(date);
+  return guest.calculateGuestTotalSpent();
+}
+
+function displayGuestNameDasboard() {
+  const headingName = document.querySelector('.heading-name');
+  const spentName = document.querySelector('.spent-name');
+  const spentAmout = document.querySelector('.spent-amount');
+  let spent = getBookingsAndTotalSpent();
+  headingName.innerText = guest.selectedGuest.name;
+  spentName.innerText = guest.selectedGuest.name;
+  spentAmout.innerText = spent;
+}
+
+function displayGuestPastBookingsDasboard() {
+  guest.pastBookings.map(booking => {
+    guest.rooms.forEach(room => {
+      if (booking.roomNumber === room.number) {
+        guestViewPastBookings.insertAdjacentHTML('afterbegin', `
+          <article class="room booked-room">
+          <img class="room-image" src="./images/hotel-room.jpg" alt="room-image">
+          <section class="room-details">
+            <h2 class="room-number-type">Room ${room.number}: ${room.roomType.toUpperCase()}</h2>
+            <article class="small-room-details">
+              <p class="num-beds small-details">Number of Beds: ${room.numBeds} </p>
+              <p class="bed-size small-details">Bed Size: ${room.bedSize}</p>
+              <p class="bidet small-details">Has Bidet: ${room.bidet}</p>
+              <p class="cost small-details">Paid: $${room.costPerNight}</p>
+              <p class="stayed small-details">Date Stayed: ${booking.date}</p>
+            </article>
+          </section>
+        </article>
+        `)
+      }
+    })
+  })
 }
 
 /*
