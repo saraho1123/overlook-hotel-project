@@ -20,7 +20,6 @@ import Guest from './Guest';
 import Manager from './Manager';
 import APIRequests from './Fetch';
 
-
 // Query Selectors
 
 // inputs
@@ -39,6 +38,9 @@ const managerView = document.querySelector('.manager-view');
 // other elements
 const headingGuestName = document.querySelector('.heading-name');
 const loginAlert = document.querySelector('.login-alert');
+// const headingName = document.querySelector('.heading-name');
+// const spentName = document.querySelector('.spent-name');
+// const spentAmout = document.querySelector('.spent-amount');
 
 // Event Listeners
 window.addEventListener('keyup', allowWrongLoginAlerts);
@@ -70,8 +72,8 @@ let roomsData;
 Promise.all([retrievedUserData, retrievedBookingData, retrievedRoomData])
   .then(value => {
     usersData = value[0];
-    bookingsData = value[1].bookings;
-    roomsData = value[2].rooms;
+    bookingsData = value[1];
+    roomsData = value[2];
   })
 
 console.log('Time to really rock this project!');
@@ -97,10 +99,12 @@ function allowWrongLoginAlerts() {
 
 function validateUserLogin(event) {
   event.preventDefault()
-  if (userLogin.value.slice(0, 8) === 'customer' && userLogin.value.slice(8) > 0 && userLogin.value.slice(8) <= 50 && userPassword.value === 'Overlook2020') {
+  if (userLogin.value === 'customer17'  && userPassword.value === 'o') {
+  // if (userLogin.value.slice(0, 8) === 'customer' && userLogin.value.slice(8) > 0 && userLogin.value.slice(8) <= 50 && userPassword.value === 'Overlook2020') {
     guest = new Guest(usersData, roomsData, bookingsData);
     getGuest();
     enableGuestHomeView();
+    insertGuestName();
   } else if (userLogin.value === 'manager' && userPassword.value === 'Overlook2020') {
     manager = new Manager(usersData, roomsData, bookingsData);
     enableManagerView();
@@ -118,6 +122,7 @@ function getGuest() {
   console.log('loggedInGuest', guest.selectedGuest)
 }
 
+
 function enableGuestHomeView() {
   loginView.classList.add('hidden');
   navSection.classList.remove('hidden');
@@ -128,6 +133,32 @@ function enableGuestHomeView() {
 function enableManagerView() {
   loginView.classList.add('hidden');
   managerView.classList.remove('hidden');
+}
+
+function getToday() {
+  return new Date();
+}
+
+function insertGuestName() {
+  const headingName = document.querySelector('.heading-name');
+  const spentName = document.querySelector('.spent-name');
+  const spentAmout = document.querySelector('.spent-amount');
+  let spent = getBookingsAndTotalSpent();
+  console.log('spent', spent)
+  // let totalSpentAmount = guest.calculateGuestTotalSpent();
+  // console.log('spent', totalSpentAmount);
+  headingName.innerText = guest.selectedGuest.name;
+  spentName.innerText = guest.selectedGuest.name;
+  spentAmout.innerText = spent;
+}
+
+function getBookingsAndTotalSpent() {
+  let date = getToday();
+  guest.getSelectedGuestBookings();
+  console.log('allguestbookings', guest.selectedGuestBookings)
+  guest.seperatePastFromUpcomingBookings(date);
+  console.log('pastbookings', guest.pastBookings)
+  return guest.calculateGuestTotalSpent();
 }
 
 /*
