@@ -40,7 +40,7 @@ const managerView = document.querySelector('.manager-view');
 const headingGuestName = document.querySelector('.heading-name');
 const loginAlert = document.querySelector('.login-alert');
 const guestViewPastBookings = document.querySelector('.cards-of-rooms');
-const currentRoomsAvailable = document.querySelector('.rooms-available-cards');
+const currentRoomsAvailable = document.querySelector('.list-rooms-available');
 // const headingName = document.querySelector('.heading-name');
 // const spentName = document.querySelector('.spent-name');
 // const spentAmout = document.querySelector('.spent-amount');
@@ -141,12 +141,12 @@ function enableManagerView() {
   displayTodaysDate();
   displayRevenueForDay();
   displayPercentBookedForDay();
+  displayVacantRoomsByDate();
 }
 
 function getToday() {
   let todaysDate = new Date();
   let today = moment(todaysDate).format("YYYY/MM/DD")
-  console.log('today', today)
   return today
 }
 
@@ -220,10 +220,27 @@ function displayPercentBookedForDay() {
 
 function displayVacantRoomsByDate() {
   //need to get today's bookings!!
-  guest.pastBookings.map(booking => {
-    guest.rooms.forEach(room => {
-      if (booking.roomNumber === room.number) {
-        currentRoomsAvailable.insertAdjacentHTML('afterbegin', `
+  let date = getToday();
+  let vacantRooms = manager.listVacantRoomsByDate(date);
+  console.log(vacantRooms)
+  vacantRooms.forEach(room => {
+    console.log(room)
+    currentRoomsAvailable.insertAdjacentHTML('afterbegin', `
+      <article class="room vacant-room">
+        <section class="rooms-available-cards room-details">
+          <h2 class="room-number-type">Room ${room.number}: ${room.roomType}</h2>
+          <article class="small-room-details">
+            <p class="num-beds small-details">Number of Beds: ${room.numBeds} </p>
+            <p class="bed-size small-details">Bed Size: ${room.bedSize}</p>
+            <p class="bidet small-details">Has Bidet: ${room.bidet}</p>
+            <p class="cost small-details">Price: $${room.costPerNight}</p>
+            <button class="book-room-for-guest submit">Book this room for currently selected guest</button>
+            only show this button if a guest is selected
+          </article>
+        </section>
+      </article>
+    `)          
+  })
 }
 
 /*
