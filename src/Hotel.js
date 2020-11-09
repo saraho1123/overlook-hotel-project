@@ -20,11 +20,31 @@ class Hotel {
     })
   }
 
+  listOccupiedRoomsByDate(date) {
+    const bookedRoomsOnDate = this.bookings.filter(booking => {
+      return booking.date === date;
+    })
+    return bookedRoomsOnDate.map(booked => {
+      return booked.roomNumber
+    })
+  }
+
+  listVacantRoomsByDate(date) {
+    const bookedRoomNumbers = this.listOccupiedRoomsByDate(date)
+    const availableRoomsOnDate = this.rooms.reduce((available, room) => {
+      !bookedRoomNumbers.includes(room.number) ? available.push(room) : null;
+      return available
+    }, [])
+    return availableRoomsOnDate;
+  }
+
   bookRoomForGuest(userID, date, roomNumber) { 
     let bookingData =  { userID: userID, date: date, roomNumber: roomNumber }
     // call fetchPOST here, I think
     return bookingData;
   }
+
+
 
      /*
   PERHAPS USE THIS ON A PARENT CLASS??
