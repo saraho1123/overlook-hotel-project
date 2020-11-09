@@ -29,12 +29,14 @@ const userPassword = document.querySelector('.user-password');
 
 // buttons
 const loginButton = document.querySelector('.submit-login');
+const makeBookingButton = document.querySelector('.make-booking');
 
 // page views
 const loginView = document.querySelector('.login-view');
 const navSection = document.querySelector('.nav-buttons-section');
 const guestHomeView = document.querySelector('.guest-home-view');
 const managerView = document.querySelector('.manager-view');
+const chooseDateView = document.querySelector('.guest-choose-date-view');
 
 // other elements
 const headingGuestName = document.querySelector('.heading-name');
@@ -48,7 +50,7 @@ const currentRoomsAvailable = document.querySelector('.list-rooms-available');
 // Event Listeners
 window.addEventListener('keyup', allowWrongLoginAlerts);
 loginButton.addEventListener('click', validateUserLogin);
-
+makeBookingButton.addEventListener('click', displayBookingView)
 // GLOBALS
 const apiRequests = new APIRequests();
 
@@ -102,8 +104,8 @@ function allowWrongLoginAlerts() {
 
 function validateUserLogin(event) {
   event.preventDefault()
-  // if (userLogin.value === 'customer17'  && userPassword.value === 'o') { // cheat login! ;) 
-  if (userLogin.value.slice(0, 8) === 'customer' && userLogin.value.slice(8) > 0 && userLogin.value.slice(8) <= 50 && userPassword.value === 'Overlook2020') {
+  // if (userLogin.value === 'customer17' && userPassword.value === 'o') { // cheat login! ;) 
+  if (userLogin.value.slice(0, 8) === 'customer' && userLogin.value.slice(8) > 0 && userLogin.value.slice(8) <= 50 && userPassword.value === 'o') {
     guest = new Guest(usersData, roomsData, bookingsData);
     getGuest();
     enableGuestHomeView();
@@ -165,6 +167,20 @@ function displayGuestNameDasboard() {
   headingName.innerText = guest.selectedGuest.name;
   spentName.innerText = guest.selectedGuest.name;
   spentAmout.innerText = spent;
+}
+
+function displayBookingView() {
+  makeBookingButton.style.visibility = "hidden";
+  enableChooseDateView();
+}
+
+function enableChooseDateView() {
+  guestHomeView.classList.add('hidden');
+  chooseDateView.classList.remove('hidden');
+}
+
+function guestChooseDate() {
+  
 }
 
 function displayGuestPastBookingsDasboard() {
@@ -243,32 +259,3 @@ function displayVacantRoomsByDate() {
   })
 }
 
-/*
-
-let manager = new Manager(userData, roomData, bookingData)
-let loggedInGuest = manager.selectGuest("id", 01) // id will need to come from login userName
-let guestBookings = manager.getSelectedGuestBookings()
-
-GUEST LOGIN
-let guest = new Guest(userData, roomData, bookingData);
-let currentGuest = guest.selectGuest("id", 01) // id will need to come from login userName
-// display name right away
-let currentGuestBookings = guest.getSelectedGuestBookings() // display right away
-
-MANAGER LOGIN
-let manager = new Manager(userData, roomData, bookingData)
-
-
-
-*/
-
-/*
-fetch all data on login?
-
-
-LOGIN
-if customerUserName && password match
-then fetch
-and
-instantiate either manager or guest
-*/

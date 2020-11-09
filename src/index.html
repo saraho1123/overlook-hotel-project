@@ -15,7 +15,7 @@
         <button label="past-bookings" class="past-bookings nav-button" type="button">Past Bookings</button>
       <!-- <button label="current-bookings" class="current-bookings nav-button" type="button">Current Bookings</button> -->
       <button label="upcoming-bookings" class="upcoming-bookings nav-button" type="button">Upcoming Bookings</button>
-      <button label="make-booking" class="make-booking nav-button" type="button" onClick = "this.style.visibility= ''">Book a room!</button>      
+      <button label="make-booking" class="make-booking nav-button" type="button" onClick="this.style.visibility=''">Book a room!</button>      
       <!-- Use this for booking button ... need more research first!: onClick = "this.style.visibility= ''" -->
       </section>
     </nav>
@@ -69,8 +69,13 @@
         <h1 class="heading">Please choose a date to see available rooms:</h1>
 
         <div>
-          <label for="check-in-date-input labels" class="login-label labels">Check-in Date: 
+          <!-- <label for="check-in-date-input labels" class="login-label labels">Check-in Date: 
             <input class="check-in-date-input input" type="text">
+            <section> -->
+          <label for="check-in-date-input labels" class="login-label labels">Check-in Date: 
+            <input class="calendar" type="date">
+            <button id="manager-available-button">Show Available</button>
+              <!-- </section> -->
           </label>
         </div>
 
