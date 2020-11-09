@@ -288,7 +288,7 @@ label {
 }
 
 .all-hotel-info {
-  width: 45vw;
+  width: 48vw;
 }
 
 .list-rooms-available {
@@ -297,11 +297,12 @@ label {
 }
 
 .center-bar {
-  width: 5vw;
+  border-right: $Overlook-Hotel-favorite-1-hsla 10px solid;
+  width: .5vw;
 }
 
 .specific-guest-info {
-  width: 45vw;
+  width: 48vw;
 }
 
 .disable-style {

@@ -45,23 +45,23 @@ class Guest extends Hotel {
   //   }, 0) 
   // }
 
-  listOccupiedRoomsByDate(date) {
-    const bookedRoomsOnDate = this.bookings.filter(booking => {
-      return booking.date === date;
-    })
-    return bookedRoomsOnDate.map(booked => {
-      return booked.roomNumber
-    })
-  }
+  // listOccupiedRoomsByDate(date) {
+  //   const bookedRoomsOnDate = this.bookings.filter(booking => {
+  //     return booking.date === date;
+  //   })
+  //   return bookedRoomsOnDate.map(booked => {
+  //     return booked.roomNumber
+  //   })
+  // }
 
-  listVacantRoomsByDate(date) {
-    const bookedRoomNumbers = this.listOccupiedRoomsByDate(date)
-    const availableRoomsOnDate = this.rooms.reduce((available, room) => {
-      !bookedRoomNumbers.includes(room.number) ? available.push(room) : null;
-      return available
-    }, [])
-    return availableRoomsOnDate;
-  }
+  // listVacantRoomsByDate(date) {
+  //   const bookedRoomNumbers = this.listOccupiedRoomsByDate(date)
+  //   const availableRoomsOnDate = this.rooms.reduce((available, room) => {
+  //     !bookedRoomNumbers.includes(room.number) ? available.push(room) : null;
+  //     return available
+  //   }, [])
+  //   return availableRoomsOnDate;
+  // }
 
   filterRoomsByTypeOnDate(type, date) {
     const currentRoomsAvailable = this.listVacantRoomsByDate(date)

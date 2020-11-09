@@ -16,6 +16,7 @@ import './images/san-juan-dawn.png'
 import './images/san-juan-day.png'
 import './images/san-juan-evening.png'
 import './images/snake-house-for-overlook.png'
+import moment from 'moment';;
 import Guest from './Guest';
 import Manager from './Manager';
 import APIRequests from './Fetch';
@@ -39,6 +40,7 @@ const managerView = document.querySelector('.manager-view');
 const headingGuestName = document.querySelector('.heading-name');
 const loginAlert = document.querySelector('.login-alert');
 const guestViewPastBookings = document.querySelector('.cards-of-rooms');
+const currentRoomsAvailable = document.querySelector('.list-rooms-available');
 // const headingName = document.querySelector('.heading-name');
 // const spentName = document.querySelector('.spent-name');
 // const spentAmout = document.querySelector('.spent-amount');
@@ -105,9 +107,8 @@ function validateUserLogin(event) {
     guest = new Guest(usersData, roomsData, bookingsData);
     getGuest();
     enableGuestHomeView();
-    displayGuestNameDasboard();
-    displayGuestPastBookingsDasboard();
-  } else if (userLogin.value === 'manager' && userPassword.value === 'Overlook2020') {
+  } else if (userLogin.value === 'm' && userPassword.value === 'o') {
+  // } else if (userLogin.value === 'manager' && userPassword.value === 'Overlook2020') {
     manager = new Manager(usersData, roomsData, bookingsData);
     enableManagerView();
   } else {
@@ -128,20 +129,29 @@ function enableGuestHomeView() {
   loginView.classList.add('hidden');
   navSection.classList.remove('hidden');
   guestHomeView.classList.remove('hidden');
-  headingGuestName.value = '${user.name}'
+  headingGuestName.value = '${user.name}';
+  displayGuestNameDasboard();
+  displayGuestPastBookingsDasboard();
 }
 
 function enableManagerView() {
   loginView.classList.add('hidden');
   managerView.classList.remove('hidden');
+  displayManagerDasboard();
+  displayTodaysDate();
+  displayRevenueForDay();
+  displayPercentBookedForDay();
+  displayVacantRoomsByDate();
 }
 
 function getToday() {
-  return new Date();
+  let todaysDate = new Date();
+  let today = moment(todaysDate).format("YYYY/MM/DD")
+  return today
 }
 
 function getBookingsAndTotalSpent() {
-  let date = getToday();
+  let date = new Date();
   guest.getSelectedGuestBookings();
   guest.seperatePastFromUpcomingBookings(date);
   return guest.calculateGuestTotalSpent();
@@ -178,6 +188,58 @@ function displayGuestPastBookingsDasboard() {
         `)
       }
     })
+  })
+}
+
+function displayManagerDasboard() {
+  const welcomeHeader = document.querySelector('.welcome');
+  welcomeHeader.innerText = `Welcome, Overlook Hotel Manager. We love our guests!`;
+}
+
+function displayTodaysDate() {
+  const dailyHotel = document.querySelector('.daily-hotel');
+  const dailyRoomsAvailable = document.querySelector('.daily-rooms-available');
+  let date = getToday();
+  dailyHotel.innerHTML = `Hotel overview for ${date}`;
+  dailyRoomsAvailable.innerHTML = `Rooms available for ${date}`;
+}
+
+function displayRevenueForDay() {
+  const daysRevenue = document.querySelector('.total-revenue');
+  let date = getToday();
+  let calculatedRevenue = manager.getTodaysTotalRevenue(date, manager.rooms, manager.bookings);
+  daysRevenue.innerHTML = `Revenue:  $${calculatedRevenue}`;
+}
+
+function displayPercentBookedForDay() {
+  const daysPercentage = document.querySelector('.total-percentage');
+  let date = getToday();
+  let calculatedPercentage = manager.calculatePercentOccupied(date);
+  daysPercentage.innerHTML = `Percentage of rooms booked:  ${calculatedPercentage}`
+}
+
+function displayVacantRoomsByDate() {
+  //need to get today's bookings!!
+  let date = getToday();
+  let vacantRooms = manager.listVacantRoomsByDate(date);
+  console.log(vacantRooms)
+  vacantRooms.forEach(room => {
+    console.log(room)
+    currentRoomsAvailable.insertAdjacentHTML('afterbegin', `
+      <article class="room vacant-room">
+        <section class="rooms-available-cards room-details">
+          <h2 class="room-number-type">Room ${room.number}: ${room.roomType}</h2>
+          <article class="small-room-details">
+            <p class="num-beds small-details">Number of Beds: ${room.numBeds} </p>
+            <p class="bed-size small-details">Bed Size: ${room.bedSize}</p>
+            <p class="bidet small-details">Has Bidet: ${room.bidet}</p>
+            <p class="cost small-details">Price: $${room.costPerNight}</p>
+            <button class="book-room-for-guest submit">Book this room for currently selected guest</button>
+            only show this button if a guest is selected
+          </article>
+        </section>
+      </article>
+    `)          
   })
 }
 

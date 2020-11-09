@@ -69,32 +69,7 @@
                 </article>
               </section>
             </article> -->
-            <!-- <article class="room booked-room">
-              <img class="room-image" src="./images/hotel-room.jpg" alt="room-image">
-              <section class="room-details">
-                <h2 class="room-number-type">Room 1: Residential Suite</h2>
-                <article class="small-room-details">
-                  <p class="num-beds small-details">Number of Beds: <span>1</span> </p>
-                  <p class="bed-size small-details">Bed Size: <span>Queen</span></p>
-                  <p class="bidet small-details">Has Bidet: <span>Yes</span></p>
-                  <p class="cost small-details">Paid: $<span>400.00</span></p>
-                  <p class="stayed small-details">Date Stayed: <span>yyyy/mm/dd</span></p>
-                </article>
-              </section>
-            </article>
-            <article class="room booked-room">
-              <img class="room-image" src="./images/hotel-room.jpg" alt="room-image">
-              <section class="room-details">
-                <h2 class="room-number-type">Room 1: Residential Suite</h2>
-                <article class="small-room-details">
-                  <p class="num-beds small-details">Number of Beds: <span>1</span> </p>
-                  <p class="bed-size small-details">Bed Size: <span>Queen</span></p>
-                  <p class="bidet small-details">Has Bidet: <span>Yes</span></p>
-                  <p class="cost small-details">Paid: $<span>400.00</span></p>
-                  <p class="stayed small-details">Date Stayed: <span>yyyy/mm/dd</span></p>
-                </article>
-              </section>
-            </article> -->
+           
         </section>
       </section>
 
@@ -208,11 +183,13 @@
       <section class="all-hotel-info">
         <h1 class="heading">Hotel Details</h1>
         <article class="daily-totals">
+          <!-- consider putting this in a section and putting a border -->
+          <h2 class="daily-hotel heading2">Hotel overview for <span>yyyy/mm/dd</span>:</h2>
           <h2 class="total-revenue heading2">
             Hotel total revenue for <span>yyyy/mm/dd</span>: <br>$<span>40,000</span>
           </h2>
           <!-- Consider taking this out and inserting in JS with interpolation -->
-          <h2 class="total-revenue heading2">
+          <h2 class="total-percentage heading2">
             Percent rooms booked for <span>yyyy/mm/dd</span>: <br> <span>90</span>%
           </h2>
         </article>
@@ -220,21 +197,21 @@
           <label for="search-available-by-date label">Find by date:</label>
           <button class="search-available-by-date submit">date calendar thingy</button>        
         </article>
+        <h2 class="daily-rooms-available heading2">Rooms available for <span>yyyy/mm/dd</span>:</h1>
         <section class="list-rooms-available cards-of-rooms">
-              <h2 class="heading2">Rooms available for <span>yyyy/mm/dd</span>:</h1>
-              <article class="room booked-room">
-                <article class="rooms-available-cards room-details">
+              <!-- <!-- <article class="room vacant-room">
+                <section class="rooms-available-cards room-details">
                   <h2 class="room-number-type">Room 1: Residential Suite</h2>
-                  <section class="small-room-details">
+                  <article class="small-room-details">
                     <p class="num-beds small-details">Number of Beds: <span>1</span> </p>
                     <p class="bed-size small-details">Bed Size: <span>Queen</span></p>
                     <p class="bidet small-details">Has Bidet: <span>Yes</span></p>
                     <p class="cost small-details">Price: $<span>400.00</span></p>
                     <button class="book-room-for-guest submit">Book this room for currently selected guest</button>
                     only show this button if a guest is selected
-                  </section>
-                </article>
-              </article>
+                  </article>
+                </section>
+              </article> -->
 
               <article class="room booked-room">
                 <article class="rooms-available-cards room-details">
@@ -260,7 +237,7 @@
                     <button class="book-room-for-guest hidden submit">Book this room for currently selected guest</button>
                   </section>
                 </article>
-              </article>
+              </article> -->
 
         </section>
       </section>
