@@ -62,7 +62,6 @@ leave add/remove hidden's in here
 */
 
 let guest;
-let loggedInGuest;
 let manager;
 let usersData;
 let bookingsData;
@@ -97,7 +96,6 @@ function allowWrongLoginAlerts() {
 }
 
 function validateUserLogin(event) {
-  console.log(usersData)
   event.preventDefault()
   if (userLogin.value.slice(0, 8) === 'customer' && userLogin.value.slice(8) > 0 && userLogin.value.slice(8) <= 50 && userPassword.value === 'Overlook2020') {
     guest = new Guest(usersData, roomsData, bookingsData);
@@ -111,17 +109,13 @@ function validateUserLogin(event) {
     userLogin.value = '';
     userPassword.value = '';
     loginAlert.innerHTML = '<p>Whoops! Your user login and/or password are incorrect.<br>Please try again or contact management.</p>'
-
-    // alert('Whoops! Your user login and password are incorrect. Please try again or contact management.')
-    // try to make a popup message in html to display here.
-    // possibly innerText to a p tag.
-    // could make it disappear when users starts to type again.
   }
 }
-f
+
 function getGuest() {
   let currentGuestID = Number(userLogin.value.slice(8));
-  loggedInGuest = guest.selectGuest("id", currentGuestID)
+  guest.selectGuest("id", currentGuestID)
+  console.log('loggedInGuest', guest.selectedGuest)
 }
 
 function enableGuestHomeView() {
