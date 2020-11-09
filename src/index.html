@@ -36,12 +36,14 @@
         </div>
         <div>
           <label for="user-password labels" class="login-label labels">Enter Password: 
-            <input class="user-password input" label="user-password" type="text">
+            <input class="user-password input" label="user-password" type="password">
           </label>
         </div> 
         <div>
           <button disabled class="submit-login submit disable-style">Submit</button>
         </div>
+        <div class="login-alert"></div>
+        <p></p>
       </article>
     </section>
 
@@ -209,6 +211,7 @@
           <h2 class="total-revenue heading2">
             Hotel total revenue for <span>yyyy/mm/dd</span>: <br>$<span>40,000</span>
           </h2>
+          <!-- Consider taking this out and inserting in JS with interpolation -->
           <h2 class="total-revenue heading2">
             Percent rooms booked for <span>yyyy/mm/dd</span>: <br> <span>90</span>%
           </h2>
