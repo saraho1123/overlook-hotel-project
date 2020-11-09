@@ -18,13 +18,8 @@ import './images/san-juan-evening.png'
 import './images/snake-house-for-overlook.png'
 import Guest from './Guest';
 import Manager from './Manager';
+import APIRequests from './Fetch';
 
-// GLOBALS
-let guest;
-let manager;
-let userData;
-let bookingData;
-let roomData;
 
 // Query Selectors
 
@@ -39,13 +34,46 @@ const loginButton = document.querySelector('.submit-login');
 const loginView = document.querySelector('.login-view');
 const navSection = document.querySelector('.nav-buttons-section');
 const guestHomeView = document.querySelector('.guest-home-view');
+const managerView = document.querySelector('.manager-view');
 
 // other elements
 const headingGuestName = document.querySelector('.heading-name');
+const loginAlert = document.querySelector('.login-alert');
 
 // Event Listeners
-window.addEventListener('keyup', validateUserLogin);
-loginButton.addEventListener('click', showHomeView);
+window.addEventListener('keyup', allowWrongLoginAlerts);
+loginButton.addEventListener('click', validateUserLogin);
+
+// GLOBALS
+const apiRequests = new APIRequests();
+
+const retrievedUserData = apiRequests.fetchData('users/users', 'users');
+const retrievedBookingData = apiRequests.fetchData('bookings/bookings', 'bookings');
+const retrievedRoomData = apiRequests.fetchData('rooms/rooms', 'rooms');
+/*
+leave off 2nd .then in POST and DELETE
+can put a .then when I call those methods in index.js
+*/
+
+/*
+query selectors stay here
+put innerHTML, etc in DOM updates file.
+leave add/remove hidden's in here
+*/
+
+let guest;
+let loggedInGuest;
+let manager;
+let usersData;
+let bookingsData;
+let roomsData;
+
+Promise.all([retrievedUserData, retrievedBookingData, retrievedRoomData])
+  .then(value => {
+    usersData = value[0];
+    bookingsData = value[1].bookings;
+    roomsData = value[2].rooms;
+  })
 
 console.log('Time to really rock this project!');
 
@@ -53,26 +81,48 @@ function enableSubmitButton() {
   loginButton.classList.remove('disable-style');
   loginButton.disabled = false;
 }
-function validateUserLogin() {
-  console.log('It works!');
-  if (userLogin.value === 'customer01' && userPassword.value === 'Overlook2020') {
-    enableSubmitButton();
-  } else if (userLogin.value === 'manager' && userPassword.value === 'Overlook2020') {
-    enableSubmitButton();
-  }
+
+function disableSubmitButton() {
+  loginButton.classList.add('disable-style');
+  loginButton.disabled = true;
 }
 
-function showHomeView() {
-  if (userLogin.value === 'manager') {
-    enableManagerView();
-    manager = new Manager(usersData, roomsData, bookingsData);
+function allowWrongLoginAlerts() {
+  if (userLogin.value !== ('') && userPassword.value !== ('')) {
+    enableSubmitButton();
+    loginAlert.innerHTML = '';
   } else {
-    guest = new Guest(usersData, roomsData, bookingsData);
-    enableGuestHomeView();
+    disableSubmitButton();
   }
 }
 
+function validateUserLogin(event) {
+  console.log(usersData)
+  event.preventDefault()
+  if (userLogin.value.slice(0, 8) === 'customer' && userLogin.value.slice(8) > 0 && userLogin.value.slice(8) <= 50 && userPassword.value === 'Overlook2020') {
+    guest = new Guest(usersData, roomsData, bookingsData);
+    getGuest();
+    enableGuestHomeView();
+  } else if (userLogin.value === 'manager' && userPassword.value === 'Overlook2020') {
+    manager = new Manager(usersData, roomsData, bookingsData);
+    enableManagerView();
+  } else {
+    disableSubmitButton();
+    userLogin.value = '';
+    userPassword.value = '';
+    loginAlert.innerHTML = '<p>Whoops! Your user login and/or password are incorrect.<br>Please try again or contact management.</p>'
 
+    // alert('Whoops! Your user login and password are incorrect. Please try again or contact management.')
+    // try to make a popup message in html to display here.
+    // possibly innerText to a p tag.
+    // could make it disappear when users starts to type again.
+  }
+}
+f
+function getGuest() {
+  let currentGuestID = Number(userLogin.value.slice(8));
+  loggedInGuest = guest.selectGuest("id", currentGuestID)
+}
 
 function enableGuestHomeView() {
   loginView.classList.add('hidden');
@@ -86,15 +136,7 @@ function enableManagerView() {
   managerView.classList.remove('hidden');
 }
 
-// validateUserPassword() {
-  // loginView.classList.add('hidden');
-  //   navSection.classList.remove('hidden');
-    // guestHomeView.classList.remove('hidden');
-
-// }
 /*
-
-l
 
 let manager = new Manager(userData, roomData, bookingData)
 let loggedInGuest = manager.selectGuest("id", 01) // id will need to come from login userName
