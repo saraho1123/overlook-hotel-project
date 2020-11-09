@@ -16,6 +16,7 @@ import './images/san-juan-dawn.png'
 import './images/san-juan-day.png'
 import './images/san-juan-evening.png'
 import './images/snake-house-for-overlook.png'
+import moment from 'moment';;
 import Guest from './Guest';
 import Manager from './Manager';
 import APIRequests from './Fetch';
@@ -105,9 +106,8 @@ function validateUserLogin(event) {
     guest = new Guest(usersData, roomsData, bookingsData);
     getGuest();
     enableGuestHomeView();
-    displayGuestNameDasboard();
-    displayGuestPastBookingsDasboard();
-  } else if (userLogin.value === 'manager' && userPassword.value === 'Overlook2020') {
+  } else if (userLogin.value === 'm' && userPassword.value === 'o') {
+  // } else if (userLogin.value === 'manager' && userPassword.value === 'Overlook2020') {
     manager = new Manager(usersData, roomsData, bookingsData);
     enableManagerView();
   } else {
@@ -128,20 +128,27 @@ function enableGuestHomeView() {
   loginView.classList.add('hidden');
   navSection.classList.remove('hidden');
   guestHomeView.classList.remove('hidden');
-  headingGuestName.value = '${user.name}'
+  headingGuestName.value = '${user.name}';
+  displayGuestNameDasboard();
+  displayGuestPastBookingsDasboard();
 }
 
 function enableManagerView() {
   loginView.classList.add('hidden');
   managerView.classList.remove('hidden');
+  displayManagerDasboard();
+  displayRevenueForDay();
 }
 
 function getToday() {
-  return new Date();
+  let todaysDate = new Date();
+  let today = moment(todaysDate).format("YYYY/MM/DD")
+  console.log('today', today)
+  return today
 }
 
 function getBookingsAndTotalSpent() {
-  let date = getToday();
+  let date = new Date();
   guest.getSelectedGuestBookings();
   guest.seperatePastFromUpcomingBookings(date);
   return guest.calculateGuestTotalSpent();
@@ -179,6 +186,18 @@ function displayGuestPastBookingsDasboard() {
       }
     })
   })
+}
+
+function displayManagerDasboard() {
+  const welcomeHeader = document.querySelector('.welcome');
+  welcomeHeader.innerText = `Welcome, Overlook Hotel Manager. We love our guests!`;
+}
+
+function displayRevenueForDay() {
+  const daysRevenue = document.querySelector('.total-revenue');
+  let date = getToday();
+  let calculatedRevenue = manager.getTodaysTotalRevenue(date, manager.rooms, manager.bookings);
+  daysRevenue.innerHTML = `Hotel total revenue for ${date}: <br>$${calculatedRevenue}`;
 }
 
 /*
