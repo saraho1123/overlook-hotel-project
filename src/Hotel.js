@@ -20,7 +20,7 @@ class Hotel {
     })
   }
 
-  listOccupiedRoomsByDate(date) {
+  listBookedRoomNumberByDate(date) {
     const bookedRoomsOnDate = this.bookings.filter(booking => {
       return booking.date === date;
     })
@@ -30,7 +30,7 @@ class Hotel {
   }
 
   listVacantRoomsByDate(date) {
-    const bookedRoomNumbers = this.listOccupiedRoomsByDate(date)
+    const bookedRoomNumbers = this.listBookedRoomNumberByDate(date)
     const availableRoomsOnDate = this.rooms.reduce((available, room) => {
       !bookedRoomNumbers.includes(room.number) ? available.push(room) : null;
       return available
