@@ -183,11 +183,13 @@
       <section class="all-hotel-info">
         <h1 class="heading">Hotel Details</h1>
         <article class="daily-totals">
+          <!-- consider putting this in a section and putting a border -->
+          <h2 class="daily-hotel heading2">Hotel overview for <span>yyyy/mm/dd</span>:</h2>
           <h2 class="total-revenue heading2">
             Hotel total revenue for <span>yyyy/mm/dd</span>: <br>$<span>40,000</span>
           </h2>
           <!-- Consider taking this out and inserting in JS with interpolation -->
-          <h2 class="total-revenue heading2">
+          <h2 class="total-percentage heading2">
             Percent rooms booked for <span>yyyy/mm/dd</span>: <br> <span>90</span>%
           </h2>
         </article>
@@ -196,7 +198,7 @@
           <button class="search-available-by-date submit">date calendar thingy</button>        
         </article>
         <section class="list-rooms-available cards-of-rooms">
-              <h2 class="heading2">Rooms available for <span>yyyy/mm/dd</span>:</h1>
+              <h2 class="daily-rooms-available heading2">Rooms available for <span>yyyy/mm/dd</span>:</h1>
               <article class="room booked-room">
                 <article class="rooms-available-cards room-details">
                   <h2 class="room-number-type">Room 1: Residential Suite</h2>

@@ -40,6 +40,7 @@ const managerView = document.querySelector('.manager-view');
 const headingGuestName = document.querySelector('.heading-name');
 const loginAlert = document.querySelector('.login-alert');
 const guestViewPastBookings = document.querySelector('.cards-of-rooms');
+const currentRoomsAvailable = document.querySelector('.rooms-available-cards');
 // const headingName = document.querySelector('.heading-name');
 // const spentName = document.querySelector('.spent-name');
 // const spentAmout = document.querySelector('.spent-amount');
@@ -137,7 +138,9 @@ function enableManagerView() {
   loginView.classList.add('hidden');
   managerView.classList.remove('hidden');
   displayManagerDasboard();
+  displayTodaysDate();
   displayRevenueForDay();
+  displayPercentBookedForDay();
 }
 
 function getToday() {
@@ -193,11 +196,34 @@ function displayManagerDasboard() {
   welcomeHeader.innerText = `Welcome, Overlook Hotel Manager. We love our guests!`;
 }
 
+function displayTodaysDate() {
+  const dailyHotel = document.querySelector('.daily-hotel');
+  const dailyRoomsAvailable = document.querySelector('.daily-rooms-available');
+  let date = getToday();
+  dailyHotel.innerHTML = `Hotel overview for ${date}`;
+  dailyRoomsAvailable.innerHTML = `Rooms available for ${date}`;
+}
+
 function displayRevenueForDay() {
   const daysRevenue = document.querySelector('.total-revenue');
   let date = getToday();
   let calculatedRevenue = manager.getTodaysTotalRevenue(date, manager.rooms, manager.bookings);
-  daysRevenue.innerHTML = `Hotel total revenue for ${date}: <br>$${calculatedRevenue}`;
+  daysRevenue.innerHTML = `Revenue:  $${calculatedRevenue}`;
+}
+
+function displayPercentBookedForDay() {
+  const daysPercentage = document.querySelector('.total-percentage');
+  let date = getToday();
+  let calculatedPercentage = manager.calculatePercentOccupied(date);
+  daysPercentage.innerHTML = `Percentage of rooms booked:  ${calculatedPercentage}`
+}
+
+function displayVacantRoomsByDate() {
+  //need to get today's bookings!!
+  guest.pastBookings.map(booking => {
+    guest.rooms.forEach(room => {
+      if (booking.roomNumber === room.number) {
+        currentRoomsAvailable.insertAdjacentHTML('afterbegin', `
 }
 
 /*
