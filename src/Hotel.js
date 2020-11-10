@@ -50,15 +50,14 @@ class Hotel {
       })
   }
 
-  updateBookingsData() { // this needs work!
+  updateBookingsData() {
     apiRequests.fetchData('bookings/bookings', 'bookings')
       .then(value => {
         console.log('value', value)
         this.bookings = value;
       })
   }
-
-     /*
+  /*
   PERHAPS USE THIS ON A PARENT CLASS??
   consolidateGuestData() {
     this.selectedGuestData = {
