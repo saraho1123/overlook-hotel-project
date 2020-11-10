@@ -1,3 +1,6 @@
+import APIRequests from './Fetch';
+const apiRequests = new APIRequests();
+
 class Hotel {
   constructor(usersData, roomsData, bookingsData) {
     this.users = usersData
@@ -38,15 +41,23 @@ class Hotel {
     return availableRoomsOnDate;
   }
 
-  bookRoomForGuest(userID, date, roomNumber) { 
-    let bookingData =  { userID: userID, date: date, roomNumber: roomNumber }
-    // call fetchPOST here, I think
-    return bookingData;
+  bookRoomForGuest(userID, date, roomNum) { 
+    let bookingData =  { "userID": userID, "date": date, "roomNumber": roomNum }
+    console.log('bookingData', typeof bookingData.userID)
+    apiRequests.postData('bookings/bookings', bookingData)
+      .then(() => {
+        this.updateBookingsData();
+      })
   }
 
-
-
-     /*
+  updateBookingsData() {
+    apiRequests.fetchData('bookings/bookings', 'bookings')
+      .then(value => {
+        console.log('value', value)
+        this.bookings = value;
+      })
+  }
+  /*
   PERHAPS USE THIS ON A PARENT CLASS??
   consolidateGuestData() {
     this.selectedGuestData = {

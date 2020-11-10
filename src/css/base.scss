@@ -154,6 +154,11 @@ p {
   text-align: center;
 }
 
+.calendar {
+  background: $Overlook-Hotel-favorite-1-hsla;
+  color: white;
+}
+
 
 // Book Room View
 
@@ -259,6 +264,12 @@ label {
 .cost {
   font-size: x-large;
   font-weight: bolder;
+}
+
+.sorry {
+  display: flex;
+  justify-content: center;
+  // text-align: center;
 }
 
 // Room Booked!
