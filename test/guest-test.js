@@ -81,7 +81,7 @@ describe('Guest', () => {
   });
 
   it('should apologize profusely and give suggestions to proceed if there are no available rooms', () => {
-    expect(guest.filterRoomsByTypeOnDate('single room', "2020/06/27")).to.equal(
+    expect(guest.filterRoomsByTypeOnDate('2020/06/27', 'single room')).to.equal(
       'There are no available rooms of this time for the date you have picked. We are so very sorry! We love all our guests and really hope to see you very soon! Please click the "Choose New Date" button, or choose a different style of room for this date. '
     )
   });
@@ -89,7 +89,7 @@ describe('Guest', () => {
   it('should be able to calculate total spent by selected guest on bookings', () => {
     guest.selectGuest("Isaac Osgood");
     guest.getSelectedGuestBookings();
-
+    console.log(guest.calculateGuestTotalSpent(guest.selectedGuestBookings))
     expect(guest.calculateGuestTotalSpent(guest.selectedGuestBookings)).to.deep.equal(4919.14)
   });
 
