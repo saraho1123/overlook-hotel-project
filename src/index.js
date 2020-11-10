@@ -5,18 +5,18 @@
 import './css/base.scss';
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
-import './images/desert-highway.png'
-import './images/desert-magic.png'
-import './images/desert-pool.png'
-import './images/desert-wisdom.png'
-import './images/great-people-great-place.png'
-import './images/hotel-room.jpg'
-import './images/san-juan-dawn.png'
-import './images/san-juan-day.png'
-import './images/san-juan-evening.png'
-import './images/snake-house-for-overlook.png'
-import moment from 'moment';;
+import './images/turing-logo.png';
+import './images/desert-highway.png';
+import './images/desert-magic.png';
+import './images/desert-pool.png';
+import './images/desert-wisdom.png';
+import './images/great-people-great-place.png';
+import './images/hotel-room.jpg';
+import './images/san-juan-dawn.png';
+import './images/san-juan-day.png';
+import './images/san-juan-evening.png';
+import './images/snake-house-for-overlook.png';
+import moment from 'moment';
 import Guest from './Guest';
 import Manager from './Manager';
 import APIRequests from './Fetch';
@@ -222,7 +222,6 @@ function displayUpcomingBookings() {
 }
 
 function displayBookingView() {
-  // makeBookingButton.style.visibility = "hidden";
   navSection.classList.add('hidden');
   enableChooseDateView();
 }
@@ -301,7 +300,6 @@ function displayVacantRoomsByDateGuest(filterMethod) {
 }
 
 function displayVacantRoomsbyTypeGuest() {
-  //need to get today's bookings!! also need to display by chosen date!!
   guestViewRoomCards.innerHTML = ``;
   let date = guestChooseDate();
   let type = filterRoomsByTypeGuest();
@@ -333,10 +331,9 @@ function displayRoomsByTypeGuest() {
   displayVacantRoomsbyTypeGuest();
 }
 
-function filterRoomsByTypeGuest() { // This need work, and corresponding method in Guest.js
-  let roomTypes = ['junior suite', 'single room', 'suite', 'residential suite']
-    return roomTypes.find(type => {
-      console.log('filterByType', filterByTypeDropdown.value)
+function filterRoomsByTypeGuest() { // This need work, need 'Choose Room Type' to dislay all rooms 
+  let roomTypes = ['junior suite', 'single room', 'suite', 'residential suite'];
+  return roomTypes.find(type => {
     if (filterByTypeDropdown.value === type) {
       return type
     }
@@ -360,33 +357,10 @@ function showBookedRoomMessage() {
 
 function returnGuestHomeView() {
   console.log('this.bookings', guest.bookings)
-
-  // makeBookingButton.style.visibility = 'visible';
   guestHomeView.classList.remove('hidden');
   roomIsBookedView.classList.add('hidden');
   navSection.classList.remove('hidden');
   displayGuestPastBookingsDasboard();
-  // guest.upcomingBookings.map(booking => {
-  //   guest.rooms.forEach(room => {
-  //     if (booking.roomNumber === room.number) {
-  //       guestViewBookings.insertAdjacentHTML('afterbegin', `
-  //         <article class="room booked-room">
-  //         <img class="room-image" src="./images/hotel-room.jpg" alt="room-image">
-  //         <section class="room-details">
-  //           <h2 class="room-number-type">Room ${room.number}: ${room.roomType.toUpperCase()}</h2>
-  //           <article class="small-room-details">
-  //             <p class="num-beds small-details">Number of Beds: ${room.numBeds} </p>
-  //             <p class="bed-size small-details">Bed Size: ${room.bedSize}</p>
-  //             <p class="bidet small-details">Has Bidet: ${room.bidet}</p>
-  //             <p class="cost small-details">Paid: $${room.costPerNight}</p>
-  //             <p class="stayed small-details">Date Stayed: ${booking.date}</p>
-  //           </article>
-  //         </section>
-  //       </article>
-  //       `)
-  //     }
-  //   })
-  // })
 }
 
 function displayManagerDasboard() {
