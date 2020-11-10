@@ -48,6 +48,14 @@ class Hotel {
     apiRequests.postData('bookings/bookings', bookingData)
   }
 
+  // updateBookingsData() {
+  //   apiRequests.fetchData('bookings/bookings', 'bookings')
+  //     .then(value => {
+  //       this.bookings = value;
+  //     })
+  //     console.log('this.bookings', this.bookings)
+  // }
+
 
 
      /*
