@@ -45,6 +45,17 @@ class Hotel {
     let bookingData =  { "userID": userID, "date": date, "roomNumber": roomNum }
     console.log('bookingData', typeof bookingData.userID)
     apiRequests.postData('bookings/bookings', bookingData)
+      .then(() => {
+        this.updateBookingsData();
+      })
+  }
+
+  updateBookingsData() { // this needs work!
+    apiRequests.fetchData('bookings/bookings', 'bookings')
+      .then(value => {
+        console.log('value', value)
+        this.bookings = value;
+      })
   }
 
      /*
