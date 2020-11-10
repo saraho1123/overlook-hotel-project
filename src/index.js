@@ -35,6 +35,7 @@ const showAvailableRoomsButton = document.querySelector('.see-available-rooms-bu
 const backToChooseDateButton = document.querySelector('.back-to-choose-date-button');
 const filterByType = document.querySelector('.choose-by-type');
 const seeUpcomingGuestHomeView = document.querySelector('.see-upcoming');
+// const bookRoomButton = document.querySelector('.book-room');
 
 // page views
 const loginView = document.querySelector('.login-view');
@@ -59,9 +60,10 @@ makeBookingButton.addEventListener('click', displayBookingView);
 showAvailableRoomsButton.addEventListener('click', displayAvailableRooms);
 backToChooseDateButton.addEventListener('click', displayBookingView);
 filterByType.addEventListener('change', displayRoomsByTypeGuest);
-// guestViewRoomCards.addEventListener('click', bookThisRoom);
+guestViewRoomCards.addEventListener('click', bookThisRoom);
 seeUpcomingGuestHomeView.addEventListener('click', returnGuestUpcomingHomeView);
-
+// bookRoomButton.addEventListener('click', bookThisRoom);
+// 
 // GLOBALS
 const apiRequests = new APIRequests();
 
@@ -233,23 +235,23 @@ function displayVacantRoomsByDateGuest(filterMethod) {
   console.log(vacantRooms)
   vacantRooms.forEach(room => {
     guestViewRoomCards.insertAdjacentHTML('afterbegin', `
-      <article class="room">
-        <img class="room-image" src="./images/hotel-room.jpg" alt="room-image">
-        <section class="room-details">
-          <h2 class="room-number-type">Room ${room.number}: ${room.roomType}</h2>
-          <article class="small-room-details">
-            <p class="num-beds small-details">Number of Beds: ${room.numBeds} </p>
-            <p class="bed-size small-details">Bed Size: ${room.bedSize}</p>
-            <p class="bidet small-details">Has Bidet: ${room.bidet}</p>
-            <p class="cost small-details">Price: $${room.costPerNight}</p>
-            <button id="${room.number}" class="book-room button" label="book-this-room" type="button">Book This Room</button>
+      <article id="${room.number}" class="room">
+        <img id="${room.number}" class="room-image" src="./images/hotel-room.jpg" alt="room-image">
+        <section id="${room.number}" class="room-details">
+          <h2 id="${room.number}" class="room-number-type">Room ${room.number}: ${room.roomType}</h2>
+          <article id="${room.number}" class="small-room-details">
+            <p id="${room.number}" class="num-beds small-details">Number of Beds: ${room.numBeds} </p>
+            <p id="${room.number}" class="bed-size small-details">Bed Size: ${room.bedSize}</p>
+            <p id="${room.number}" class="bidet small-details">Has Bidet: ${room.bidet}</p>
+            <p id="${room.number}" class="cost small-details">Price: $${room.costPerNight}</p>
+            <button id="${room.number}" class="book-room submit" label="book-this-room" type="button">Book This Room</button>
           </article>
         </section>
       </article>
     `)          
   })
-  const bookRoomButton = document.querySelector('.book-room');
-  bookRoomButton.addEventListener('click', returnGuestUpcomingHomeView);
+    // const bookRoomButton = document.querySelector('.book-room');
+    // bookRoomButton.addEventListener('click', bookThisRoom);
 }
 
 function displayVacantRoomsbyTypeGuest() {
@@ -276,8 +278,8 @@ function displayVacantRoomsbyTypeGuest() {
       </article>
     `)          
   })
-  const bookRoomButton = document.querySelector('.book-room');
-  bookRoomButton.addEventListener('click', returnGuestUpcomingHomeView);
+  // const bookRoomButton = document.querySelector('.book-room');
+  // bookRoomButton.addEventListener('click', bookThisRoom);
 }
 
 function displayRoomsByTypeGuest() {
@@ -302,7 +304,6 @@ function bookThisRoom(event) {
   const roomNumber = event.target.id
   guest.bookRoomForGuest(+userID, date, +roomNumber);
   showBookedRoomMessage();
-  updateBookingsData();
 }
 
 function showBookedRoomMessage() {
@@ -310,15 +311,9 @@ function showBookedRoomMessage() {
   roomIsBookedView.classList.remove('hidden');
 }
 
-function updateBookingsData() { // this needs work!
-  apiRequests.fetchData('bookings/bookings', 'bookings')
-    .then(value => {
-      guest.bookings = value;
-      console.log('this.bookings', guest.bookings)
-    })
-}
-
 function returnGuestUpcomingHomeView() {
+  console.log('this.bookings', guest.bookings)
+
   makeBookingButton.classList.remove('hidden');
   guestHomeView.classList.remove('hidden');
   roomIsBookedView.classList.add('hidden');
