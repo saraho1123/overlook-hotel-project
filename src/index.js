@@ -60,6 +60,8 @@ makeBookingButton.addEventListener('click', displayBookingView);
 showAvailableRoomsButton.addEventListener('click', displayAvailableRooms);
 backToChooseDateButton.addEventListener('click', displayBookingView);
 filterByType.addEventListener('change', displayRoomsByTypeGuest);
+guestViewRoomCards.addEventListener('click', bookThisRoom);
+
 
 // GLOBALS
 const apiRequests = new APIRequests();
@@ -134,7 +136,7 @@ function validateUserLogin(event) {
 
 function getGuest() {
   let currentGuestID = Number(userLogin.value.slice(8));
-  guest.selectGuest("id", currentGuestID)
+  return guest.selectGuest("id", currentGuestID)
 }
 
 function enableGuestHomeView() {
@@ -229,6 +231,7 @@ function displayVacantRoomsByDateGuest(filterMethod) {
   //need to get today's bookings!! also need to display by chosen date!!
   let date = guestChooseDate();
   let vacantRooms = guest[filterMethod](date);
+  console.log(vacantRooms)
   vacantRooms.forEach(room => {
     guestViewRoomCards.insertAdjacentHTML('afterbegin', `
       <article class="room">
@@ -240,11 +243,14 @@ function displayVacantRoomsByDateGuest(filterMethod) {
             <p class="bed-size small-details">Bed Size: ${room.bedSize}</p>
             <p class="bidet small-details">Has Bidet: ${room.bidet}</p>
             <p class="cost small-details">Price: $${room.costPerNight}</p>
+            <button id="${room.number}" class="book-room button" label="book-this-room" type="button">Book This Room</button>
           </article>
         </section>
       </article>
     `)          
   })
+  const bookRoomButton = document.querySelector('.book-room');
+  bookRoomButton.addEventListener('click', bookThisRoom);
 }
 
 function displayVacantRoomsbyTypeGuest() {
@@ -265,11 +271,14 @@ function displayVacantRoomsbyTypeGuest() {
             <p class="bed-size small-details">Bed Size: ${room.bedSize}</p>
             <p class="bidet small-details">Has Bidet: ${room.bidet}</p>
             <p class="cost small-details">Price: $${room.costPerNight}</p>
+            <button id="${room.number}" class="book-room submit" label="book-this-room" type="button">Book This Room</button>
           </article>
         </section>
       </article>
     `)          
   })
+  const bookRoomButton = document.querySelector('.book-room');
+  bookRoomButton.addEventListener('click', bookThisRoom);
 }
 
 function displayRoomsByTypeGuest() {
@@ -284,6 +293,16 @@ function filterRoomsByTypeGuest() {
       return type
     }
   })
+}
+
+function bookThisRoom(event) {
+  console.log(+event.target.id)
+  const userID = guest.selectedGuest.id
+  const chosenDate = guestChooseDate();
+  const date = getToday(chosenDate);
+  const roomNumber = event.target.id
+  guest.bookRoomForGuest(+userID, date, +roomNumber);
+  // apiRequests.postData('bookings/bookings', userID, date, +roomNumber);
 }
 
 /*
