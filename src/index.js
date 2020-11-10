@@ -439,20 +439,9 @@ function searchGuestsByName() {
   }
 
 function displayAllGuestBookings(guestBookings) {
-  // const managerViewGuestRooms = document.querySelector('.list-guest-rooms');
-  // managerViewGuestRooms.innerHTML = '';
-  // let searchedGuest = manager.users.find(user => {
-  //   return user.name === guestName;
-  // })
-  
-  // console.log('searchedName', searchedGuest)
-  // if (searchedGuest !== undefined) {
-  //   manager.selectGuest('name', searchedGuest.name)
-  //   manager.getSelectedGuestBookings();
-  //   console.log(manager.selectedGuestBookings)
       manager.selectedGuestBookings.map(booking => {
         manager.rooms.forEach(room => {
-          if (booking.roomNumber === room.number) {
+          if (booking.roomNumber === room.number  && booking.date >= getToday(todaysDate)) {
             managerViewGuestRooms.insertAdjacentHTML('afterbegin', `
               <article class="room booked-room">
                 <article class="rooms-available-cards room-details">
@@ -467,6 +456,18 @@ function displayAllGuestBookings(guestBookings) {
                 </article>
               </article>
             `)
+          } else if (booking.roomNumber === room.number  && booking.date < getToday(todaysDate)) {
+            managerViewGuestRooms.insertAdjacentHTML('afterbegin', `
+            <article class="room booked-room">
+              <article class="rooms-available-cards room-details">
+                <h2 class="room-number-type">Room ${room.number}: ${room.roomType.toUpperCase()}</h2>
+                <section class="small-room-details">
+                  <p class="date-booked small-details">Date Booked: ${booking.date}</p>
+                  <p class="cost small-details">Paid: $ $${room.costPerNight}</p>
+                </section>
+              </article>
+            </article>
+          `)
           }
         })
       })
