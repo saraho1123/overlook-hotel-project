@@ -30,15 +30,13 @@ and then fetch the updated data so I can update this.bookings.
 ALSO DO THIS WITH DELETE.
   */
 
-  deleteData(urlPath, inputID) {
+  deleteData(urlPath, bookingToCancel) {
     return fetch(`${this.urlRoot}${urlPath}`, {
       method: 'DELETE',
       headers: {
        'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        id: inputID,
-      })
+      body: JSON.stringify(bookingToCancel)
     })
     .then(response => response.json())
     .then(data => console.log(data)) // I am not sure that is what I want to do here??

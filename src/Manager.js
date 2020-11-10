@@ -1,4 +1,6 @@
 import Hotel from '../src/Hotel';
+import APIRequests from './Fetch';
+const apiRequests = new APIRequests();
 
 class Manager extends Hotel {
   constructor(userData, roomData, bookingsData) {
@@ -6,9 +8,13 @@ class Manager extends Hotel {
   }
 
   deleteBookingForGuest(bookingID) {
-    let bookingToCancel = {id: bookingID}
-    // call fetchDELETE here, I think
-    return bookingToCancel;
+    let bookingToCancel = {'id': Number(bookingID) }
+    console.log('data', typeof bookingToCancel)
+    console.log('bookingID', typeof bookingID)
+    apiRequests.deleteData('bookings/bookings', bookingToCancel)
+      .then(() => {
+        this.updateBookingsData();
+      })
   }
 
   getTodaysTotalRevenue(date, rooms, bookings) {
