@@ -1,4 +1,3 @@
-
 class APIRequests {
   constructor() {
     this.urlRoot = 'https://fe-apps.herokuapp.com/api/v1/overlook/1904/'
@@ -23,12 +22,6 @@ class APIRequests {
     .then(data => console.log(data))
     .catch(error => console.log(error))
   }
-  /*
-Need to update this.bookings.
-POST
-and then fetch the updated data so I can update this.bookings.
-ALSO DO THIS WITH DELETE.
-  */
 
   deleteData(urlPath, bookingToCancel) {
     return fetch(`${this.urlRoot}${urlPath}`, {
@@ -39,7 +32,7 @@ ALSO DO THIS WITH DELETE.
       body: JSON.stringify(bookingToCancel)
     })
     .then(response => response.json())
-    .then(data => console.log(data)) // I am not sure that is what I want to do here??
+    .then(data => console.log(data))
     .catch(error => console.log(error)) 
   }
 }
