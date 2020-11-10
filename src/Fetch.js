@@ -11,17 +11,13 @@ class APIRequests {
       .catch(error => console.log(error))
   }
 
-  postData(urlPath, inputUserID, inputDate, inputRoomNumber) {
+  postData(urlPath, bookingData) {
     return fetch(`${this.urlRoot}${urlPath}`, {
       method: 'POST',
       headers: {
        'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        'userID': inputUserID,
-        'data': inputDate,
-        'roomNumber': inputRoomNumber,
-      })
+      body: JSON.stringify(bookingData),
     })
     .then(response => response.json())
     .then(data => console.log(data))
