@@ -13,21 +13,15 @@
     <nav>
       <section class="nav-buttons-section hidden">
         <button label="past-bookings" class="past-bookings nav-button hidden" type="button">Past Bookings</button>
-      <!-- <button label="current-bookings" class="current-bookings nav-button" type="button">Current Bookings</button> -->
       <button label="upcoming-bookings" class="upcoming-bookings nav-button" type="button">Upcoming Bookings</button>
-      <button label="make-booking" class="make-booking nav-button" type="button" onClick="this.style.visibility='visible'">Book a room!</button>      
-      <!-- Use this for booking button ... need more research first!: onClick = "this.style.visibility= ''" -->
+      <button label="make-booking" class="make-booking nav-button" type="button">Book a room!</button>      
       </section>
     </nav>
     <img class="snake-house-image" src="./images/snake-house-for-overlook.png" alt="Overlook logo" height="1em" width="100%">
   </header>
-
   <body>
-
     <section class="login-view "> 
-      <!-- hide nav buttons! -->
       <h1 class="heading">Login to set up your adventure headquarters <br> at Canyon Overlook Hotel!</h1>
-
       <article class="login">
         <div>
           <label for="user-login" class="login-label labels">Enter User Login Name: 
@@ -46,7 +40,6 @@
         <p></p>
       </article>
     </section>
-
     <section class="guest-home-view hidden">
       <h1 class="guest-view-heading heading">
         <span class="spent-name">Sarah</span>, You have spent $<span class="spent-amount">4000.00</span> on your unforgetable adventures so far!
@@ -58,27 +51,17 @@
         <section class="cards-of-rooms booked">     
         </section>
       </section>
-
-      <img src="./images/san-juan-evening.png" alt="Overlook logo" height="300px" width="400px">
-
+      <!-- <img src="./images/san-juan-evening.png" alt="Overlook logo" height="300px" width="400px"> -->
     </section>
-
     <section class="guest-choose-date-view hidden">
-      <!-- hide Booking Button in Navs! -->
       <article>
         <h1 class="heading">Please choose a date to see available rooms:</h1>
-
         <div>
-          <!-- <label for="check-in-date-input labels" class="login-label labels">Check-in Date: 
-            <input class="check-in-date-input input" type="text"> -->
           <label for="calendar labels" class="login-label labels">Check-in Date: 
             <input class="calendar" type="date">
-            <!-- <button id="manager-available-button">Show Available</button> -->
           </label>
           <button class="see-available-rooms-button submit">See available rooms</button>
-
         </div>
-
 <!-- USE THESE IF YOU GET TO IT IN THE PROJECT ... -->
         <!-- <div>
           <label for="duration-input labels" class="login-label labels">Stay Duration: 
@@ -90,16 +73,9 @@
             <input class="number-of-guests-input input" type="text">
           </label>
         </div> -->
-
-        <!-- <button class="see-available-rooms-button submit">See available rooms</button> -->
       </article>
-      User choose date view
     </section>
-
     <section class="guest-book-room-view hidden">
-      <!-- HIDE BOOKING BUTTON IN NAVS! -->
-      <!-- <article class="return-button"> -->
-      <!-- </article> -->
       <article class="booking">
         <div class="booking-header">
           <button class="back-to-choose-date-button button" id="back-to-choose-date-button" type="button">Choose New Date</button>
@@ -117,48 +93,10 @@
         </section>        
       </article>
       <section class="cards-of-rooms guest-rooms-available-by-date">
-        <!-- <article class="room">
-          <img class="room-image" src="./images/hotel-room.jpg" alt="room-image">
-          <section class="room-details">
-            <h2 class="room-number-type">Room 1: Residential Suite</h2>
-            <article class="small-room-details">
-              <p class="num-beds small-details">Number of Beds: <span>1</span> </p>
-              <p class="bed-size small-details">Bed Size: <span>Queen</span></p>
-              <p class="bidet small-details">Has Bidet: <span>Yes</span></p>
-              <p class="cost small-details">Price: $<span>400.00</span></p>
-            </article>
-          </section>
-        </article> -->
-        <article class="room">
-          <img class="room-image" src="./images/hotel-room.jpg" alt="room-image">
-          <section class="room-details">
-            <h2 class="room-number-type">Room 1: Residential Suite</h2>
-            <article class="small-room-details">
-              <p class="num-beds small-details">Number of Beds: <span>1</span> </p>
-              <p class="bed-size small-details">Bed Size: <span>Queen</span></p>
-              <p class="bidet small-details">Has Bidet: <span>Yes</span></p>
-              <p class="cost small-details">Price: $<span>400.00</span></p>
-              <button label="book-this-room" type="button" class="book-room">Book This Room</button>
-            </article>
-          </section>
-        </article>
-        <!-- <article class="room">
-          <img class="room-image" src="./images/hotel-room.jpg" alt="room-image">
-          <section class="room-details">
-            <h2 class="room-number-type">Room 1: Residential Suite</h2>
-            <article class="small-room-details">
-              <p class="num-beds small-details">Number of Beds: <span>1</span> </p>
-              <p class="bed-size small-details">Bed Size: <span>Queen</span></p>
-              <p class="bidet small-details">Has Bidet: <span>Yes</span></p>
-              <p class="cost small-details">Price: $<span>400.00</span></p>
-            </article>
-          </section>
-        </article> -->
       </section>
       <!-- Book Room View
           <img src="./images/san-juan-day.png" alt="Overlook logo" height="300px" width="400px"> -->
     </section>
-
     <section class="room-booked-view hidden">
       <h1 class="room-is-booked heading">
         <span>Sarah</span>, <br> Room <span>25</span> is booked <br> for your adventure headquarters on <br> <span>yyyy/mm/dd</span>!
