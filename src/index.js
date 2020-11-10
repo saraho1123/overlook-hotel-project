@@ -33,8 +33,10 @@ const loginButton = document.querySelector('.submit-login');
 const makeBookingButton = document.querySelector('.make-booking');
 const showAvailableRoomsButton = document.querySelector('.see-available-rooms-button');
 const backToChooseDateButton = document.querySelector('.back-to-choose-date-button');
-const filterByType = document.querySelector('.choose-by-type');
+const filterByTypeDropdown = document.querySelector('.choose-by-type');
 const returnGuestHomeViewButton = document.querySelector('.return-homeview');
+const seePastBookingsButton = document.querySelector('.past-bookings');
+const seeUpcomingBookingsButton = document.querySelector('.upcoming-bookings');
 
 // page views
 const loginView = document.querySelector('.login-view');
@@ -58,9 +60,11 @@ loginButton.addEventListener('click', validateUserLogin);
 makeBookingButton.addEventListener('click', displayBookingView);
 showAvailableRoomsButton.addEventListener('click', displayAvailableRooms);
 backToChooseDateButton.addEventListener('click', displayBookingView);
-filterByType.addEventListener('change', displayRoomsByTypeGuest);
+filterByTypeDropdown.addEventListener('change', displayRoomsByTypeGuest);
 guestViewRoomCards.addEventListener('click', bookThisRoom);
 returnGuestHomeViewButton.addEventListener('click', returnGuestHomeView);
+seePastBookingsButton.addEventListener('click', displayPastBookings);
+seeUpcomingBookingsButton.addEventListener('click', displayUpcomingBookings);
 
 // GLOBALS
 const apiRequests = new APIRequests();
@@ -169,13 +173,47 @@ function getBookingsAndTotalSpent() {
 }
 
 function displayGuestNameDasboard() {
+  const guestHeading = document.querySelector('.guest-view-heading');
   const headingName = document.querySelector('.heading-name');
-  const spentName = document.querySelector('.spent-name');
-  const spentAmout = document.querySelector('.spent-amount');
   let spent = getBookingsAndTotalSpent();
   headingName.innerText = guest.selectedGuest.name;
-  spentName.innerText = guest.selectedGuest.name;
-  spentAmout.innerText = spent;
+  guestHeading.innerHTML = `${guest.selectedGuest.name}, You have spent $${spent} on your unforgetable adventures so far!`;
+}
+
+function displayPastBookings() {
+  displayGuestPastBookingsDasboard();
+  displayGuestNameDasboard();
+  seePastBookingsButton.classList.add('hidden');
+  seeUpcomingBookingsButton.classList.remove('hidden');
+}
+
+function displayUpcomingBookings() {
+  const guestHeading = document.querySelector('.guest-view-heading');
+  seeUpcomingBookingsButton.classList.add('hidden');
+  seePastBookingsButton.classList.remove('hidden');
+  guestHeading.innerText = `Here are your upcoming adventures!`
+  guest.upcomingBookings.map(booking => {
+    guest.rooms.forEach(room => {
+      if (booking.roomNumber === room.number) {
+        guestViewBookings.insertAdjacentHTML('afterbegin', `
+          <article class="room booked-room">
+          <img class="room-image" src="./images/hotel-room.jpg" alt="room-image">
+          <section class="room-details">
+            <h2 class="room-number-type">Room ${room.number}: ${room.roomType.toUpperCase()}</h2>
+            <article class="small-room-details">
+              <p class="num-beds small-details">Number of Beds: ${room.numBeds} </p>
+              <p class="bed-size small-details">Bed Size: ${room.bedSize}</p>
+              <p class="bidet small-details">Has Bidet: ${room.bidet}</p>
+              <p class="cost small-details">Paid: $${room.costPerNight}</p>
+              <p class="stayed small-details">Date Booked: ${booking.date}</p>
+            </article>
+          </section>
+        </article>
+        `)
+      }
+    })
+  })
+
 }
 
 function displayBookingView() {
@@ -287,8 +325,8 @@ function displayRoomsByTypeGuest() {
 function filterRoomsByTypeGuest() { // This need work, and corresponding method in Guest.js
   let roomTypes = ['junior suite', 'single room', 'suite', 'residential suite']
     return roomTypes.find(type => {
-      console.log('filterByType', filterByType.value)
-    if (filterByType.value = type) {
+      console.log('filterByType', filterByTypeDropdown.value)
+    if (filterByTypeDropdown.value = type) {
       return type
     }
   })
