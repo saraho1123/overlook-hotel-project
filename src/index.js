@@ -26,10 +26,14 @@ import APIRequests from './Fetch';
 // inputs
 const userLogin = document.querySelector('.user-login');
 const userPassword = document.querySelector('.user-password');
+const dropdownCalendar = document.querySelector('.calendar');
 
 // buttons
 const loginButton = document.querySelector('.submit-login');
 const makeBookingButton = document.querySelector('.make-booking');
+const showAvailableRoomsButton = document.querySelector('.see-available-rooms-button');
+const backToChooseDateButton = document.querySelector('.back-to-choose-date-button');
+const filterByType = document.querySelector('.choose-by-type');
 
 // page views
 const loginView = document.querySelector('.login-view');
@@ -37,12 +41,14 @@ const navSection = document.querySelector('.nav-buttons-section');
 const guestHomeView = document.querySelector('.guest-home-view');
 const managerView = document.querySelector('.manager-view');
 const chooseDateView = document.querySelector('.guest-choose-date-view');
+const guestBookRoomView = document.querySelector('.guest-book-room-view');
 
 // other elements
 const headingGuestName = document.querySelector('.heading-name');
 const loginAlert = document.querySelector('.login-alert');
-const guestViewPastBookings = document.querySelector('.cards-of-rooms');
+const guestViewPastBookings = document.querySelector('.cards-of-rooms'); // maybe change var name!
 const currentRoomsAvailable = document.querySelector('.list-rooms-available');
+const guestViewRoomCards = document.querySelector('.guest-rooms-available-by-date');
 // const headingName = document.querySelector('.heading-name');
 // const spentName = document.querySelector('.spent-name');
 // const spentAmout = document.querySelector('.spent-amount');
@@ -50,7 +56,11 @@ const currentRoomsAvailable = document.querySelector('.list-rooms-available');
 // Event Listeners
 window.addEventListener('keyup', allowWrongLoginAlerts);
 loginButton.addEventListener('click', validateUserLogin);
-makeBookingButton.addEventListener('click', displayBookingView)
+makeBookingButton.addEventListener('click', displayBookingView);
+showAvailableRoomsButton.addEventListener('click', displayAvailableRooms);
+backToChooseDateButton.addEventListener('click', displayBookingView);
+filterByType.addEventListener('change', displayRoomsByTypeGuest);
+
 // GLOBALS
 const apiRequests = new APIRequests();
 
@@ -68,6 +78,7 @@ put innerHTML, etc in DOM updates file.
 leave add/remove hidden's in here
 */
 
+let todaysDate = new Date();
 let guest;
 let manager;
 let usersData;
@@ -126,7 +137,6 @@ function getGuest() {
   guest.selectGuest("id", currentGuestID)
 }
 
-
 function enableGuestHomeView() {
   loginView.classList.add('hidden');
   navSection.classList.remove('hidden');
@@ -143,13 +153,11 @@ function enableManagerView() {
   displayTodaysDate();
   displayRevenueForDay();
   displayPercentBookedForDay();
-  displayVacantRoomsByDate();
+  displayVacantRoomsByDateManager(currentRoomsAvailable);
 }
 
-function getToday() {
-  let todaysDate = new Date();
-  let today = moment(todaysDate).format("YYYY/MM/DD")
-  return today
+function getToday(date) {
+  return moment(date).format("YYYY/MM/DD")
 }
 
 function getBookingsAndTotalSpent() {
@@ -177,10 +185,13 @@ function displayBookingView() {
 function enableChooseDateView() {
   guestHomeView.classList.add('hidden');
   chooseDateView.classList.remove('hidden');
+  guestBookRoomView.classList.add('hidden');
 }
 
 function guestChooseDate() {
-  
+  let date = dropdownCalendar.value
+  let returnDate = moment(date).format("YYYY/MM/DD")
+  return returnDate;
 }
 
 function displayGuestPastBookingsDasboard() {
@@ -207,6 +218,84 @@ function displayGuestPastBookingsDasboard() {
   })
 }
 
+function displayAvailableRooms() {
+  chooseDateView.classList.add('hidden');
+  guestBookRoomView.classList.remove('hidden');
+  guestChooseDate();
+  displayVacantRoomsByDateGuest('listVacantRoomsByDate');
+}
+
+function displayVacantRoomsByDateGuest(filterMethod) {
+  //need to get today's bookings!! also need to display by chosen date!!
+  let date = guestChooseDate();
+  let vacantRooms = guest[filterMethod](date);
+  vacantRooms.forEach(room => {
+    guestViewRoomCards.insertAdjacentHTML('afterbegin', `
+      <article class="room">
+        <img class="room-image" src="./images/hotel-room.jpg" alt="room-image">
+        <section class="room-details">
+          <h2 class="room-number-type">Room ${room.number}: ${room.roomType}</h2>
+          <article class="small-room-details">
+            <p class="num-beds small-details">Number of Beds: ${room.numBeds} </p>
+            <p class="bed-size small-details">Bed Size: ${room.bedSize}</p>
+            <p class="bidet small-details">Has Bidet: ${room.bidet}</p>
+            <p class="cost small-details">Price: $${room.costPerNight}</p>
+          </article>
+        </section>
+      </article>
+    `)          
+  })
+}
+
+function displayVacantRoomsbyTypeGuest() {
+  //need to get today's bookings!! also need to display by chosen date!!
+  guestViewRoomCards.innerHTML = ``
+  let date = guestChooseDate();
+  let type = filterRoomsByTypeGuest();
+  let vacantRooms = guest.filterRoomsByTypeOnDate(date, type);
+  console.log(vacantRooms)
+  vacantRooms.forEach(room => {
+    guestViewRoomCards.insertAdjacentHTML('afterbegin', `
+      <article class="room">
+        <img class="room-image" src="./images/hotel-room.jpg" alt="room-image">
+        <section class="room-details">
+          <h2 class="room-number-type">Room ${room.number}: ${room.roomType}</h2>
+          <article class="small-room-details">
+            <p class="num-beds small-details">Number of Beds: ${room.numBeds} </p>
+            <p class="bed-size small-details">Bed Size: ${room.bedSize}</p>
+            <p class="bidet small-details">Has Bidet: ${room.bidet}</p>
+            <p class="cost small-details">Price: $${room.costPerNight}</p>
+          </article>
+        </section>
+      </article>
+    `)          
+  })
+}
+
+function displayRoomsByTypeGuest() {
+  displayVacantRoomsbyTypeGuest();
+}
+
+function filterRoomsByTypeGuest() {
+  let roomTypes = ['junior suite', 'single room', 'suite', 'residential suite']
+    return roomTypes.find(type => {
+      console.log('filterByType', filterByType.value)
+    if (filterByType.value = type) {
+      return type
+    }
+  })
+}
+
+/*
+unction filterAvailableRoomsType() {  
+  let filteredRooms = [];  
+  if (this.value === 'residential suite') {    
+    filteredRooms = hotelOverlook.getInformationByValue('residential suite', availableRooms, 'roomType');    
+    displayAvailbeRooms(filteredRooms)    
+    return this.value;  
+  } else if (this.value === 'suite')
+*/
+
 function displayManagerDasboard() {
   const welcomeHeader = document.querySelector('.welcome');
   welcomeHeader.innerText = `Welcome, Overlook Hotel Manager. We love our guests!`;
@@ -215,7 +304,7 @@ function displayManagerDasboard() {
 function displayTodaysDate() {
   const dailyHotel = document.querySelector('.daily-hotel');
   const dailyRoomsAvailable = document.querySelector('.daily-rooms-available');
-  let date = getToday();
+  let date = getToday(todaysDate);
   dailyHotel.innerHTML = `Hotel overview for ${date}`;
   dailyRoomsAvailable.innerHTML = `Rooms available for ${date}`;
 }
@@ -234,14 +323,12 @@ function displayPercentBookedForDay() {
   daysPercentage.innerHTML = `Percentage of rooms booked:  ${calculatedPercentage}`
 }
 
-function displayVacantRoomsByDate() {
-  //need to get today's bookings!!
-  let date = getToday();
+function displayVacantRoomsByDateManager(htmlElement) {
+  //need to get today's bookings!! also need to display by chosen date!!
+  let date = getToday(todaysDate);
   let vacantRooms = manager.listVacantRoomsByDate(date);
-  console.log(vacantRooms)
   vacantRooms.forEach(room => {
-    console.log(room)
-    currentRoomsAvailable.insertAdjacentHTML('afterbegin', `
+    htmlElement.insertAdjacentHTML('afterbegin', `
       <article class="room vacant-room">
         <section class="rooms-available-cards room-details">
           <h2 class="room-number-type">Room ${room.number}: ${room.roomType}</h2>
