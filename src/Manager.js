@@ -8,13 +8,17 @@ class Manager extends Hotel {
   }
 
   deleteBookingForGuest(bookingID) {
+    console.log('beforeDELETEGuestBookings', this.selectedGuestBookings)
     let bookingToCancel = {'id': Number(bookingID) }
     console.log('data', typeof bookingToCancel)
     console.log('bookingID', typeof bookingID)
     apiRequests.deleteData('bookings/bookings', bookingToCancel)
       .then(() => {
-        this.updateBookingsData();
-      })
+        this.updateBookingsData()
+       }) // need to put then on it's own line
+      .then(() => {
+        console.log('refetchedGuestBookings', this.selectedGuestBookings)
+      })   
   }
 
   getTodaysTotalRevenue(date, rooms, bookings) {

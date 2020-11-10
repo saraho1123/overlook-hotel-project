@@ -51,10 +51,13 @@ class Hotel {
   }
 
   updateBookingsData() {
+    console.log('beforeBookedguestBookings', this.selectedGuestBookings)
     apiRequests.fetchData('bookings/bookings', 'bookings')
       .then(value => {
         console.log('value', value)
         this.bookings = value;
+        this.getSelectedGuestBookings();
+        console.log('refetchedGuestBookings', this.selectedGuestBookings)
       })
   }
   /*
