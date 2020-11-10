@@ -272,11 +272,12 @@ function displayAvailableRooms() {
 
 function displayVacantRoomsByDateGuest(filterMethod) {
   //need to get today's bookings!! also need to display by chosen date!!
-  guestViewRoomCards.innerText = '';
+  guestViewRoomCards.innerHTML = '';
   let date = guestChooseDate();
   let vacantRooms = guest[filterMethod](date);
+  console.log(vacantRooms)
   if (vacantRooms.length === 0) {
-    guestViewRoomCards.insertAdjacentHTML('afterbegin', `<h2 class="heading2>${guest.verySorryMessage}</h2>`);
+    guestViewRoomCards.insertAdjacentHTML('afterbegin', guest.verySorryMessage);
     console.log(guest.verySorryMessage)
   } else {
     vacantRooms.forEach(room => {
@@ -306,7 +307,7 @@ function displayVacantRoomsbyTypeGuest() {
   let type = filterRoomsByTypeGuest();
   let vacantRooms = guest.filterRoomsByTypeOnDate(date, type);
   if (vacantRooms.length === 0) {
-    guestViewRoomCards.innerText =`${guest.verySorryMessage}`;
+    guestViewRoomCards.insertAdjacentHTML('afterbegin', `<h2 class="heading2">${guest.verySorryMessage}</h2>`);
   } else {
     vacantRooms.forEach(room => {
       guestViewRoomCards.insertAdjacentHTML('afterbegin', `
