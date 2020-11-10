@@ -5,7 +5,7 @@ class Guest extends Hotel {
     super(usersData, roomsData, bookingsData)
     this.pastBookings = [];
     this.upcomingBookings = [];
-    this.verySorryMessage = 'There are no available rooms of this time for the date you have picked. We are so very sorry! We love all our guests and really hope to see you very soon! Please click the "Choose New Date" button, or choose a different style of room for this date. '
+    this.verySorryMessage = `There are no available rooms of this time for the date you have picked. We are so very sorry! We love all our guests and really hope to see you very soon! Please click the "Choose New Date" button, or choose a different style of room for this date.`
   }
 
   convertDateToUsableFormat(date) {
@@ -32,6 +32,11 @@ class Guest extends Hotel {
       return totalSpent 
     }, 0) 
     return total / 100
+
+    //this is notes for chai spies!
+    // let finalTotal = total / 100
+    // dom-updates.showTotalSpent(finalTotal)
+    // return finalTotal
   }
 
   filterRoomsByTypeOnDate(date, type) {
