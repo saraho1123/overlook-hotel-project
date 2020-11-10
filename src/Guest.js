@@ -32,7 +32,6 @@ class Guest extends Hotel {
       return totalSpent 
     }, 0) 
     return total / 100
-
     //this is notes for chai spies!
     // let finalTotal = total / 100
     // dom-updates.showTotalSpent(finalTotal)
@@ -52,12 +51,6 @@ class Guest extends Hotel {
       })
       return typesAvailable
     }, [])
-    // console.log(roomsByType)
-    // if (roomsByType.length === 0) {
-    //   return this.verySorryMessage;
-    // } else {
-    //   return roomsByType;
-    // }
     return roomsByType
   }
 }
