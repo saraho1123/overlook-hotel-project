@@ -34,6 +34,7 @@ const makeBookingButton = document.querySelector('.make-booking');
 const showAvailableRoomsButton = document.querySelector('.see-available-rooms-button');
 const backToChooseDateButton = document.querySelector('.back-to-choose-date-button');
 const filterByType = document.querySelector('.choose-by-type');
+const seeUpcomingGuestHomeView = document.querySelector('.see-upcoming');
 
 // page views
 const loginView = document.querySelector('.login-view');
@@ -42,11 +43,12 @@ const guestHomeView = document.querySelector('.guest-home-view');
 const managerView = document.querySelector('.manager-view');
 const chooseDateView = document.querySelector('.guest-choose-date-view');
 const guestBookRoomView = document.querySelector('.guest-book-room-view');
+const roomIsBookedView = document.querySelector('.room-booked-view');
 
 // other elements
 const headingGuestName = document.querySelector('.heading-name');
 const loginAlert = document.querySelector('.login-alert');
-const guestViewPastBookings = document.querySelector('.cards-of-rooms'); // maybe change var name!
+const guestViewBookings = document.querySelector('.cards-of-rooms'); // maybe change var name!
 const currentRoomsAvailable = document.querySelector('.list-rooms-available');
 const guestViewRoomCards = document.querySelector('.guest-rooms-available-by-date');
 // const headingName = document.querySelector('.heading-name');
@@ -61,7 +63,7 @@ showAvailableRoomsButton.addEventListener('click', displayAvailableRooms);
 backToChooseDateButton.addEventListener('click', displayBookingView);
 filterByType.addEventListener('change', displayRoomsByTypeGuest);
 guestViewRoomCards.addEventListener('click', bookThisRoom);
-
+seeUpcomingGuestHomeView.addEventListener('click', returnGuestUpcomingHomeView);
 
 // GLOBALS
 const apiRequests = new APIRequests();
@@ -196,11 +198,11 @@ function guestChooseDate() {
   return returnDate;
 }
 
-function displayGuestPastBookingsDasboard() {
+function displayGuestPastBookingsDasboard() {  
   guest.pastBookings.map(booking => {
     guest.rooms.forEach(room => {
       if (booking.roomNumber === room.number) {
-        guestViewPastBookings.insertAdjacentHTML('afterbegin', `
+        guestViewBookings.insertAdjacentHTML('afterbegin', `
           <article class="room booked-room">
           <img class="room-image" src="./images/hotel-room.jpg" alt="room-image">
           <section class="room-details">
@@ -302,7 +304,48 @@ function bookThisRoom(event) {
   const date = getToday(chosenDate);
   const roomNumber = event.target.id
   guest.bookRoomForGuest(+userID, date, +roomNumber);
-  // apiRequests.postData('bookings/bookings', userID, date, +roomNumber);
+  showBookedRoomMessage();
+  updateBookingsData();
+}
+
+function showBookedRoomMessage() {
+  guestBookRoomView.classList.add('hidden');
+  roomIsBookedView.classList.remove('hidden');
+}
+
+function updateBookingsData(className) {
+  apiRequests.fetchData('bookings/bookings', 'bookings')
+    .then(value => {
+      className[bookings] = value;
+    })
+    console.log('this.bookings', className[bookings])
+}
+
+function returnGuestUpcomingHomeView() {
+  makeBookingButton.classList.remove('hidden');
+  guestHomeView.classList.remove('hidden');
+  roomIsBookedView.classList.add('hidden');
+  guest.upcomingBookings.map(booking => {
+    guest.rooms.forEach(room => {
+      if (booking.roomNumber === room.number) {
+        guestViewBookings.insertAdjacentHTML('afterbegin', `
+          <article class="room booked-room">
+          <img class="room-image" src="./images/hotel-room.jpg" alt="room-image">
+          <section class="room-details">
+            <h2 class="room-number-type">Room ${room.number}: ${room.roomType.toUpperCase()}</h2>
+            <article class="small-room-details">
+              <p class="num-beds small-details">Number of Beds: ${room.numBeds} </p>
+              <p class="bed-size small-details">Bed Size: ${room.bedSize}</p>
+              <p class="bidet small-details">Has Bidet: ${room.bidet}</p>
+              <p class="cost small-details">Paid: $${room.costPerNight}</p>
+              <p class="stayed small-details">Date Stayed: ${booking.date}</p>
+            </article>
+          </section>
+        </article>
+        `)
+      }
+    })
+  })
 }
 
 /*
