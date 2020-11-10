@@ -266,6 +266,12 @@ label {
   font-weight: bolder;
 }
 
+.sorry {
+  display: flex;
+  justify-content: center;
+  // text-align: center;
+}
+
 // Room Booked!
 
 .room-booked-view {
