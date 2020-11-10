@@ -51,9 +51,6 @@ const loginAlert = document.querySelector('.login-alert');
 const guestViewBookings = document.querySelector('.cards-of-rooms'); // maybe change var name!
 const currentRoomsAvailable = document.querySelector('.list-rooms-available');
 const guestViewRoomCards = document.querySelector('.guest-rooms-available-by-date');
-// const headingName = document.querySelector('.heading-name');
-// const spentName = document.querySelector('.spent-name');
-// const spentAmout = document.querySelector('.spent-amount');
 
 // Event Listeners
 window.addEventListener('keyup', allowWrongLoginAlerts);
@@ -62,7 +59,7 @@ makeBookingButton.addEventListener('click', displayBookingView);
 showAvailableRoomsButton.addEventListener('click', displayAvailableRooms);
 backToChooseDateButton.addEventListener('click', displayBookingView);
 filterByType.addEventListener('change', displayRoomsByTypeGuest);
-guestViewRoomCards.addEventListener('click', bookThisRoom);
+// guestViewRoomCards.addEventListener('click', bookThisRoom);
 seeUpcomingGuestHomeView.addEventListener('click', returnGuestUpcomingHomeView);
 
 // GLOBALS
@@ -252,7 +249,7 @@ function displayVacantRoomsByDateGuest(filterMethod) {
     `)          
   })
   const bookRoomButton = document.querySelector('.book-room');
-  bookRoomButton.addEventListener('click', bookThisRoom);
+  bookRoomButton.addEventListener('click', returnGuestUpcomingHomeView);
 }
 
 function displayVacantRoomsbyTypeGuest() {
@@ -280,14 +277,14 @@ function displayVacantRoomsbyTypeGuest() {
     `)          
   })
   const bookRoomButton = document.querySelector('.book-room');
-  bookRoomButton.addEventListener('click', bookThisRoom);
+  bookRoomButton.addEventListener('click', returnGuestUpcomingHomeView);
 }
 
 function displayRoomsByTypeGuest() {
   displayVacantRoomsbyTypeGuest();
 }
 
-function filterRoomsByTypeGuest() {
+function filterRoomsByTypeGuest() { // This need work, and corresponding method in Guest.js
   let roomTypes = ['junior suite', 'single room', 'suite', 'residential suite']
     return roomTypes.find(type => {
       console.log('filterByType', filterByType.value)
@@ -313,12 +310,12 @@ function showBookedRoomMessage() {
   roomIsBookedView.classList.remove('hidden');
 }
 
-function updateBookingsData(className) {
+function updateBookingsData() { // this needs work!
   apiRequests.fetchData('bookings/bookings', 'bookings')
     .then(value => {
-      className[bookings] = value;
+      guest.bookings = value;
+      console.log('this.bookings', guest.bookings)
     })
-    console.log('this.bookings', className[bookings])
 }
 
 function returnGuestUpcomingHomeView() {
@@ -347,16 +344,6 @@ function returnGuestUpcomingHomeView() {
     })
   })
 }
-
-/*
-unction filterAvailableRoomsType() {  
-  let filteredRooms = [];  
-  if (this.value === 'residential suite') {    
-    filteredRooms = hotelOverlook.getInformationByValue('residential suite', availableRooms, 'roomType');    
-    displayAvailbeRooms(filteredRooms)    
-    return this.value;  
-  } else if (this.value === 'suite')
-*/
 
 function displayManagerDasboard() {
   const welcomeHeader = document.querySelector('.welcome');

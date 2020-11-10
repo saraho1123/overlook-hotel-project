@@ -1,7 +1,6 @@
 import APIRequests from './Fetch';
 const apiRequests = new APIRequests();
 
-
 class Hotel {
   constructor(usersData, roomsData, bookingsData) {
     this.users = usersData
@@ -47,16 +46,6 @@ class Hotel {
     console.log('bookingData', typeof bookingData.userID)
     apiRequests.postData('bookings/bookings', bookingData)
   }
-
-  // updateBookingsData() {
-  //   apiRequests.fetchData('bookings/bookings', 'bookings')
-  //     .then(value => {
-  //       this.bookings = value;
-  //     })
-  //     console.log('this.bookings', this.bookings)
-  // }
-
-
 
      /*
   PERHAPS USE THIS ON A PARENT CLASS??

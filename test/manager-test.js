@@ -57,7 +57,7 @@ describe('Manager', () => {
     ])
   });
 
-  it('should be able to book a room for selected user', () => {
+  it.skip('should be able to book a room for selected user', () => {
     expect(manager.bookRoomForGuest(1, '2020/11/14', 4)).to.deep.equal(
       {
         "userID": 1,

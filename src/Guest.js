@@ -9,9 +9,6 @@ class Guest extends Hotel {
   }
 
   convertDateToUsableFormat(date) {
-    // let todaysDate = new Date(date);
-    // let today = moment(todaysDate).format("YYYY/MM/DD")
-    // return today
     let todaysDate = new Date(date);
     return todaysDate.toLocaleDateString();
   }
