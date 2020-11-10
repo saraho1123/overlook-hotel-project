@@ -175,9 +175,12 @@ function getBookingsAndTotalSpent() {
 function displayGuestNameDasboard() {
   const guestHeading = document.querySelector('.guest-view-heading');
   const headingName = document.querySelector('.heading-name');
+  const guestBookingsHeading = document.querySelector('.your-bookings');
   let spent = getBookingsAndTotalSpent();
   headingName.innerText = guest.selectedGuest.name;
   guestHeading.innerHTML = `${guest.selectedGuest.name}, You have spent $${spent} on your unforgetable adventures so far!`;
+  guestBookingsHeading.innerHTML = `Your previous Adventure Headquarter Bookings:`;
+
 }
 
 function displayPastBookings() {
@@ -189,9 +192,11 @@ function displayPastBookings() {
 
 function displayUpcomingBookings() {
   const guestHeading = document.querySelector('.guest-view-heading');
+  const guestBookingsHeading = document.querySelector('.your-bookings');
   seeUpcomingBookingsButton.classList.add('hidden');
   seePastBookingsButton.classList.remove('hidden');
-  guestHeading.innerText = `Here are your upcoming adventures!`
+  guestHeading.innerText = `Here are your upcoming adventures!`;
+  guestBookingsHeading.innerText = ``;
   guest.upcomingBookings.map(booking => {
     guest.rooms.forEach(room => {
       if (booking.roomNumber === room.number) {
@@ -217,7 +222,8 @@ function displayUpcomingBookings() {
 }
 
 function displayBookingView() {
-  makeBookingButton.style.visibility = "hidden";
+  // makeBookingButton.style.visibility = "hidden";
+  navSection.classList.add('hidden');
   enableChooseDateView();
 }
 
@@ -266,56 +272,60 @@ function displayAvailableRooms() {
 
 function displayVacantRoomsByDateGuest(filterMethod) {
   //need to get today's bookings!! also need to display by chosen date!!
+  guestViewRoomCards.innerText = '';
   let date = guestChooseDate();
   let vacantRooms = guest[filterMethod](date);
-  console.log(vacantRooms)
-  vacantRooms.forEach(room => {
-    guestViewRoomCards.insertAdjacentHTML('afterbegin', `
-      <article id="${room.number}" class="room">
-        <img id="${room.number}" class="room-image" src="./images/hotel-room.jpg" alt="room-image">
-        <section id="${room.number}" class="room-details">
-          <h2 id="${room.number}" class="room-number-type">Room ${room.number}: ${room.roomType}</h2>
-          <article id="${room.number}" class="small-room-details">
-            <p id="${room.number}" class="num-beds small-details">Number of Beds: ${room.numBeds} </p>
-            <p id="${room.number}" class="bed-size small-details">Bed Size: ${room.bedSize}</p>
-            <p id="${room.number}" class="bidet small-details">Has Bidet: ${room.bidet}</p>
-            <p id="${room.number}" class="cost small-details">Price: $${room.costPerNight}</p>
-            <button id="${room.number}" class="book-room submit" label="book-this-room" type="button">Book This Room</button>
-          </article>
-        </section>
-      </article>
-    `)          
-  })
-    // const bookRoomButton = document.querySelector('.book-room');
-    // bookRoomButton.addEventListener('click', bookThisRoom);
+  if (vacantRooms.length === 0) {
+    guestViewRoomCards.insertAdjacentHTML('afterbegin', `<h2 class="heading2>${guest.verySorryMessage}</h2>`);
+    console.log(guest.verySorryMessage)
+  } else {
+    vacantRooms.forEach(room => {
+      guestViewRoomCards.insertAdjacentHTML('afterbegin', `
+        <article id="${room.number}" class="room">
+          <img id="${room.number}" class="room-image" src="./images/hotel-room.jpg" alt="room-image">
+          <section id="${room.number}" class="room-details">
+            <h2 id="${room.number}" class="room-number-type">Room ${room.number}: ${room.roomType}</h2>
+            <article id="${room.number}" class="small-room-details">
+              <p id="${room.number}" class="num-beds small-details">Number of Beds: ${room.numBeds} </p>
+              <p id="${room.number}" class="bed-size small-details">Bed Size: ${room.bedSize}</p>
+              <p id="${room.number}" class="bidet small-details">Has Bidet: ${room.bidet}</p>
+              <p id="${room.number}" class="cost small-details">Price: $${room.costPerNight}</p>
+              <button id="${room.number}" class="book-room submit" label="book-this-room" type="button">Book This Room</button>
+            </article>
+          </section>
+        </article>
+      `)          
+    })
+  }
 }
 
 function displayVacantRoomsbyTypeGuest() {
   //need to get today's bookings!! also need to display by chosen date!!
-  guestViewRoomCards.innerHTML = ``
+  guestViewRoomCards.innerHTML = ``;
   let date = guestChooseDate();
   let type = filterRoomsByTypeGuest();
   let vacantRooms = guest.filterRoomsByTypeOnDate(date, type);
-  console.log(vacantRooms)
-  vacantRooms.forEach(room => {
-    guestViewRoomCards.insertAdjacentHTML('afterbegin', `
-      <article class="room">
-        <img class="room-image" src="./images/hotel-room.jpg" alt="room-image">
-        <section class="room-details">
-          <h2 class="room-number-type">Room ${room.number}: ${room.roomType}</h2>
-          <article class="small-room-details">
-            <p class="num-beds small-details">Number of Beds: ${room.numBeds} </p>
-            <p class="bed-size small-details">Bed Size: ${room.bedSize}</p>
-            <p class="bidet small-details">Has Bidet: ${room.bidet}</p>
-            <p class="cost small-details">Price: $${room.costPerNight}</p>
-            <button id="${room.number}" class="book-room submit" label="book-this-room" type="button">Book This Room</button>
-          </article>
-        </section>
-      </article>
-    `)          
-  })
-  // const bookRoomButton = document.querySelector('.book-room');
-  // bookRoomButton.addEventListener('click', bookThisRoom);
+  if (vacantRooms.length === 0) {
+    guestViewRoomCards.innerText =`${guest.verySorryMessage}`;
+  } else {
+    vacantRooms.forEach(room => {
+      guestViewRoomCards.insertAdjacentHTML('afterbegin', `
+        <article class="room">
+          <img class="room-image" src="./images/hotel-room.jpg" alt="room-image">
+          <section class="room-details">
+            <h2 class="room-number-type">Room ${room.number}: ${room.roomType}</h2>
+            <article class="small-room-details">
+              <p class="num-beds small-details">Number of Beds: ${room.numBeds} </p>
+              <p class="bed-size small-details">Bed Size: ${room.bedSize}</p>
+              <p class="bidet small-details">Has Bidet: ${room.bidet}</p>
+              <p class="cost small-details">Price: $${room.costPerNight}</p>
+              <button id="${room.number}" class="book-room submit" label="book-this-room" type="button">Book This Room</button>
+            </article>
+          </section>
+        </article>
+      `)          
+    })
+  }
 }
 
 function displayRoomsByTypeGuest() {
@@ -326,7 +336,7 @@ function filterRoomsByTypeGuest() { // This need work, and corresponding method 
   let roomTypes = ['junior suite', 'single room', 'suite', 'residential suite']
     return roomTypes.find(type => {
       console.log('filterByType', filterByTypeDropdown.value)
-    if (filterByTypeDropdown.value = type) {
+    if (filterByTypeDropdown.value === type) {
       return type
     }
   })
@@ -350,30 +360,32 @@ function showBookedRoomMessage() {
 function returnGuestHomeView() {
   console.log('this.bookings', guest.bookings)
 
-  makeBookingButton.classList.remove('hidden');
+  // makeBookingButton.style.visibility = 'visible';
   guestHomeView.classList.remove('hidden');
   roomIsBookedView.classList.add('hidden');
-  guest.upcomingBookings.map(booking => {
-    guest.rooms.forEach(room => {
-      if (booking.roomNumber === room.number) {
-        guestViewBookings.insertAdjacentHTML('afterbegin', `
-          <article class="room booked-room">
-          <img class="room-image" src="./images/hotel-room.jpg" alt="room-image">
-          <section class="room-details">
-            <h2 class="room-number-type">Room ${room.number}: ${room.roomType.toUpperCase()}</h2>
-            <article class="small-room-details">
-              <p class="num-beds small-details">Number of Beds: ${room.numBeds} </p>
-              <p class="bed-size small-details">Bed Size: ${room.bedSize}</p>
-              <p class="bidet small-details">Has Bidet: ${room.bidet}</p>
-              <p class="cost small-details">Paid: $${room.costPerNight}</p>
-              <p class="stayed small-details">Date Stayed: ${booking.date}</p>
-            </article>
-          </section>
-        </article>
-        `)
-      }
-    })
-  })
+  navSection.classList.remove('hidden');
+  displayGuestPastBookingsDasboard();
+  // guest.upcomingBookings.map(booking => {
+  //   guest.rooms.forEach(room => {
+  //     if (booking.roomNumber === room.number) {
+  //       guestViewBookings.insertAdjacentHTML('afterbegin', `
+  //         <article class="room booked-room">
+  //         <img class="room-image" src="./images/hotel-room.jpg" alt="room-image">
+  //         <section class="room-details">
+  //           <h2 class="room-number-type">Room ${room.number}: ${room.roomType.toUpperCase()}</h2>
+  //           <article class="small-room-details">
+  //             <p class="num-beds small-details">Number of Beds: ${room.numBeds} </p>
+  //             <p class="bed-size small-details">Bed Size: ${room.bedSize}</p>
+  //             <p class="bidet small-details">Has Bidet: ${room.bidet}</p>
+  //             <p class="cost small-details">Paid: $${room.costPerNight}</p>
+  //             <p class="stayed small-details">Date Stayed: ${booking.date}</p>
+  //           </article>
+  //         </section>
+  //       </article>
+  //       `)
+  //     }
+  //   })
+  // })
 }
 
 function displayManagerDasboard() {
