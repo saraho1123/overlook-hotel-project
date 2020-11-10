@@ -27,6 +27,7 @@ import APIRequests from './Fetch';
 const userLogin = document.querySelector('.user-login');
 const userPassword = document.querySelector('.user-password');
 const dropdownCalendar = document.querySelector('.calendar');
+const searchGuestInput = document.querySelector('.find-guest-input');
 
 // buttons
 const loginButton = document.querySelector('.submit-login');
@@ -53,6 +54,7 @@ const loginAlert = document.querySelector('.login-alert');
 const guestViewBookings = document.querySelector('.cards-of-rooms'); // maybe change var name!
 const currentRoomsAvailable = document.querySelector('.list-rooms-available');
 const guestViewRoomCards = document.querySelector('.guest-rooms-available-by-date');
+// const managerViewGuestRooms = document.querySelector('.list-guest-rooms');
 
 // Event Listeners
 window.addEventListener('keyup', allowWrongLoginAlerts);
@@ -65,6 +67,14 @@ guestViewRoomCards.addEventListener('click', bookThisRoom);
 returnGuestHomeViewButton.addEventListener('click', returnGuestHomeView);
 seePastBookingsButton.addEventListener('click', displayPastBookings);
 seeUpcomingBookingsButton.addEventListener('click', displayUpcomingBookings);
+// searchGuestInput.addEventListener('keyup', searchGuestsByName);
+
+searchGuestInput.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+   event.preventDefault();
+   searchGuestsByName();
+  }
+});
 
 // GLOBALS
 const apiRequests = new APIRequests();
@@ -284,7 +294,7 @@ function displayVacantRoomsByDateGuest(filterMethod) {
         <article id="${room.number}" class="room">
           <img id="${room.number}" class="room-image" src="./images/hotel-room.jpg" alt="room-image">
           <section id="${room.number}" class="room-details">
-            <h2 id="${room.number}" class="room-number-type">Room ${room.number}: ${room.roomType}</h2>
+            <h2 id="${room.number}" class="room-number-type">Room ${room.number}: ${room.roomType.toUpperCase()}</h2>
             <article id="${room.number}" class="small-room-details">
               <p id="${room.number}" class="num-beds small-details">Number of Beds: ${room.numBeds} </p>
               <p id="${room.number}" class="bed-size small-details">Bed Size: ${room.bedSize}</p>
@@ -312,7 +322,7 @@ function displayVacantRoomsbyTypeGuest() {
         <article class="room">
           <img class="room-image" src="./images/hotel-room.jpg" alt="room-image">
           <section class="room-details">
-            <h2 class="room-number-type">Room ${room.number}: ${room.roomType}</h2>
+            <h2 class="room-number-type">Room ${room.number}: ${room.roomType.toUpperCase()}</h2>
             <article class="small-room-details">
               <p class="num-beds small-details">Number of Beds: ${room.numBeds} </p>
               <p class="bed-size small-details">Bed Size: ${room.bedSize}</p>
@@ -398,7 +408,7 @@ function displayVacantRoomsByDateManager(htmlElement) {
     htmlElement.insertAdjacentHTML('afterbegin', `
       <article class="room vacant-room">
         <section class="rooms-available-cards room-details">
-          <h2 class="room-number-type">Room ${room.number}: ${room.roomType}</h2>
+          <h2 class="room-number-type">Room ${room.number}: ${room.roomType.toUpperCase()}</h2>
           <article class="small-room-details">
             <p class="num-beds small-details">Number of Beds: ${room.numBeds} </p>
             <p class="bed-size small-details">Bed Size: ${room.bedSize}</p>
@@ -412,4 +422,55 @@ function displayVacantRoomsByDateManager(htmlElement) {
     `)          
   })
 }
+
+function searchGuestsByName() {
+  const managerViewGuestRooms = document.querySelector('.list-guest-rooms');
+  managerViewGuestRooms.innerHTML = '';
+  let searchedName = searchGuestInput.value;
+  let searchedGuest = manager.users.find(user => {
+    return user.name === searchedName;
+  })
+  
+  console.log('searchedName', searchedGuest)
+  if (searchedGuest !== undefined) {
+    manager.selectGuest('name', searchedGuest.name)
+    manager.getSelectedGuestBookings();
+    displayAllGuestBookings(manager.selectedGuestBookings)
+  }
+
+function displayAllGuestBookings(guestBookings) {
+  // const managerViewGuestRooms = document.querySelector('.list-guest-rooms');
+  // managerViewGuestRooms.innerHTML = '';
+  // let searchedGuest = manager.users.find(user => {
+  //   return user.name === guestName;
+  // })
+  
+  // console.log('searchedName', searchedGuest)
+  // if (searchedGuest !== undefined) {
+  //   manager.selectGuest('name', searchedGuest.name)
+  //   manager.getSelectedGuestBookings();
+  //   console.log(manager.selectedGuestBookings)
+      manager.selectedGuestBookings.map(booking => {
+        manager.rooms.forEach(room => {
+          if (booking.roomNumber === room.number) {
+            managerViewGuestRooms.insertAdjacentHTML('afterbegin', `
+              <article class="room booked-room">
+                <article class="rooms-available-cards room-details">
+                  <h2 class="room-number-type">Room ${room.number}: ${room.roomType.toUpperCase()}</h2>
+                  <section class="small-room-details">
+                    <p class="date-booked small-details">Date Booked: ${booking.date}</p>
+                    <p class="cost small-details">Paid: $ $${room.costPerNight}</p>
+                    <div class="delete-button">
+                      <button class="delete-booking-for-guest submit">Delete this upcoming booking</button>
+                    </div>
+                  </section>
+                </article>
+              </article>
+            `)
+          }
+        })
+      })
+    }
+}
+
 
