@@ -5,7 +5,7 @@ class Guest extends Hotel {
     super(usersData, roomsData, bookingsData)
     this.pastBookings = [];
     this.upcomingBookings = [];
-    this.verySorryMessage = `There are no available rooms of this time for the date you have picked. We are so very sorry! We love all our guests and really hope to see you very soon! Please click the "Choose New Date" button, or choose a different style of room for this date.`
+    this.verySorryMessage = `<div class="sorry"><h2 class="heading2">There are no available rooms at this time for the date you have picked.<br>We are so very sorry!<br>We love all our guests and really hope to see you very soon!<br>Please click the "Choose New Date" button, or choose a different style of room for this date.</h2></div>`
   }
 
   convertDateToUsableFormat(date) {
