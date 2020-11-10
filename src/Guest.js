@@ -9,6 +9,9 @@ class Guest extends Hotel {
   }
 
   convertDateToUsableFormat(date) {
+    // let todaysDate = new Date(date);
+    // let today = moment(todaysDate).format("YYYY/MM/DD")
+    // return today
     let todaysDate = new Date(date);
     return todaysDate.toLocaleDateString();
   }
@@ -34,55 +37,27 @@ class Guest extends Hotel {
     return total / 100
   }
 
-  // getGuestTotalSpent() {
-  //   return this.rooms.reduce((totalSpent, room) => {
-  //     this.bookings.forEach(booking => {
-  //       if (booking.roomNumber === room.number) {
-  //         totalSpent += (room.costPerNight * 100)
-  //       }
-  //     })
-  //     return totalSpent / 100
-  //   }, 0) 
-  // }
-
-  // listOccupiedRoomsByDate(date) {
-  //   const bookedRoomsOnDate = this.bookings.filter(booking => {
-  //     return booking.date === date;
-  //   })
-  //   return bookedRoomsOnDate.map(booked => {
-  //     return booked.roomNumber
-  //   })
-  // }
-
-  // listVacantRoomsByDate(date) {
-  //   const bookedRoomNumbers = this.listOccupiedRoomsByDate(date)
-  //   const availableRoomsOnDate = this.rooms.reduce((available, room) => {
-  //     !bookedRoomNumbers.includes(room.number) ? available.push(room) : null;
-  //     return available
-  //   }, [])
-  //   return availableRoomsOnDate;
-  // }
-
-  filterRoomsByTypeOnDate(type, date) {
+  filterRoomsByTypeOnDate(date, type) {
     const currentRoomsAvailable = this.listVacantRoomsByDate(date)
-    const roomType = this.rooms.filter(room => {
+    const roomTypes = this.rooms.filter(room => {
       return room.roomType === type;
     })
-    return roomType.reduce((typesAvailable, room) => {
+    let roomsByType = roomTypes.reduce((typesAvailable, room) => {
       currentRoomsAvailable.forEach(available => {
         if (available === room) {
           typesAvailable.push(room);
         } 
       })
-      if (typesAvailable.length === 0) {
-        return `${this.verySorryMessage}`;
-      } else {
-        return typesAvailable;
-      }
+      return typesAvailable
     }, [])
+    // console.log(roomsByType)
+    // if (roomsByType.length === 0) {
+    //   return this.verySorryMessage;
+    // } else {
+    //   return roomsByType;
+    // }
+    return roomsByType
   }
-
-  
 }
 
 export default Guest;
