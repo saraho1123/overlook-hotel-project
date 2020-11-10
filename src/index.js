@@ -437,11 +437,11 @@ function searchGuestsByName() {
   if (searchedGuest !== undefined) {
     manager.selectGuest('name', searchedGuest.name)
     manager.getSelectedGuestBookings();
-    displayAllGuestBookings(manager.selectedGuestBookings)
+    displayAllGuestBookings()
   }
 }
 
-function displayAllGuestBookings(guestBookings) {
+function displayAllGuestBookings() { // add a sort to put bookings in order by date
       manager.selectedGuestBookings.map(booking => {
         manager.rooms.forEach(room => {
           if (booking.roomNumber === room.number  && booking.date >= getToday(todaysDate)) {
@@ -476,11 +476,19 @@ function displayAllGuestBookings(guestBookings) {
       })
     }
 
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+
 
 function deleteGuestBooking(event) {
+  alert('Are you sure you would like to delete this booking for your Guest?')
   let bookingId = event.target.id
   console.log('eventID', bookingId)
   manager.deleteBookingForGuest(bookingId);
+  displayAllGuestBookings();
+  topFunction();
 }
 
 // function bookThisRoom(event) {
