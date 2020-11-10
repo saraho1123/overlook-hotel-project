@@ -34,8 +34,7 @@ const makeBookingButton = document.querySelector('.make-booking');
 const showAvailableRoomsButton = document.querySelector('.see-available-rooms-button');
 const backToChooseDateButton = document.querySelector('.back-to-choose-date-button');
 const filterByType = document.querySelector('.choose-by-type');
-const seeUpcomingGuestHomeView = document.querySelector('.see-upcoming');
-// const bookRoomButton = document.querySelector('.book-room');
+const returnGuestHomeViewButton = document.querySelector('.return-homeview');
 
 // page views
 const loginView = document.querySelector('.login-view');
@@ -61,9 +60,8 @@ showAvailableRoomsButton.addEventListener('click', displayAvailableRooms);
 backToChooseDateButton.addEventListener('click', displayBookingView);
 filterByType.addEventListener('change', displayRoomsByTypeGuest);
 guestViewRoomCards.addEventListener('click', bookThisRoom);
-seeUpcomingGuestHomeView.addEventListener('click', returnGuestUpcomingHomeView);
-// bookRoomButton.addEventListener('click', bookThisRoom);
-// 
+returnGuestHomeViewButton.addEventListener('click', returnGuestHomeView);
+
 // GLOBALS
 const apiRequests = new APIRequests();
 
@@ -311,7 +309,7 @@ function showBookedRoomMessage() {
   roomIsBookedView.classList.remove('hidden');
 }
 
-function returnGuestUpcomingHomeView() {
+function returnGuestHomeView() {
   console.log('this.bookings', guest.bookings)
 
   makeBookingButton.classList.remove('hidden');
