@@ -24,141 +24,71 @@
 
 ## Project Overview
 
-For this project we created a recipe tracking/meal planning application. 
+For this project we were asked to create a hotel management tool for a manager and guests to log in and use the site to book rooms, delete bookings (manager only), and see totals spent/revenue. 
 
-Our app's functionality included a user being able to: 
+As a guest, my app's functionality includes me being able to: 
 
-* choose and view their favorite recipes
-* choose and view recipes to cook
-* filter recipes by type, ingredients, 'favorites' or 'recipes to cook'
-* plan what items the user would need to purchase in order to cook their chosen recipe (based on what ingredients the recipe calls for and what the user 'has' in their pantry)
+* View room bookings I have made (past or present/upcoming)
+* View total amount I have spent on rooms
+* Select a date for which I’d like to book a room for myself
+* Upon selecting a date, I should be shown a list of room details for only rooms that are available on that date
+* Be able to filter the list of available rooms by their roomType property
+* Be able to select a room for booking
+* In the event that no rooms are available for the date/roomType selected, I should see a message displayed, fiercely apologizing to the me and asking me to adjust their room search.
+
+As a manager, my app's functionality includes me being able to: 
+* View total Rooms Available for today’s date
+* View total revenue for today’s date
+* View percentage of rooms occupied for today’s date
+* Search for a guest
+* View their name, a list of all of their bookings, and the total amount they’ve spent
+* Add a room booking for that user
+* Delete any upcoming room bookings for that user (they cannot delete a booking from the past)
 
 ## Goals
 
-Our personal goals were to get better at sad path TDD, get a lot more comfortable with the array prototypes, and integrate what we’ve learned about JS so far. This was one of our first projects using TDD and ES6 JavaScript. 
-
-We also wanted to work together in such a way that we would be willing to work together again!
+* to successfully GET, POST and DELETE using fetch 
+* to use webpack 
+* to acheive 100% accessibility on lighthouse
+* use class inheritance
+* to have time to refactor
 
 ## Technologies And Tools
 
 * JavaScript (ES6)
 * HTML
 * CSS
-* Adobe XD
-* Google Jam Board
+* excalidraw
+* webpack
+* SASS
+* fetch API
 
 ## Challenges
 
-Our first big challenge was deciding how many Classes to include. We started with three, increased to six and ended up with five. After getting into our project, we realized that having a way to 'clean up' and organize our data would have been helpful. Although we didn't get to it for this project, it was a big learning opportunity for the future! Another thing we wish we had more time for was more TDD. Although we included it, we did not test for edge cases or for 'breaking' our code.
+* I struggled a bit with POSTing and DELETEing, mainly because I called those in my classes. I learned that it would have been better to call them in my index.js file.
+* I also did not have time to refactor. A big piece of that would have been reducing the number of query selectors. But more importantly, I had planned to move all my dom manipulation into my dom-updates folder. I am disappointed I did not have time to do that. It is still an issue on my project board though!
+* Testing with chai spies.
 
 ## Wins
 
-We overcame some personal things while tackling this project. Although it definitely slowed us down, we are proud of the work we were able to accomplish in such a short time, including being able to complete nearly all the required funcionality for this project.
-
-We did make our app responsive, which was a fun win!
+* Coming into this project off of an incredibly difficult winning was a challenge. But I am counting as a win because I was able to meet the MVP for this project, something that I doubted several times that I would be able to do!
+* I successfully used fetch APIs! 
+* I successsfully used class inheritance! 
 
 ## ScreenShots and Demos
 
 ---
 
-### Home view of recipes
+### Login View
 
 ---
 
-![scrolling through all recipes](https://media.giphy.com/media/cMgU4VT0iXQytTRrFf/giphy.gif)
 
-<details>
-  <summary>**Under the Hood**</summary>
-
-All recipes are genereted on load event. To display all recipes from the recipes.js data file we used `forEach` method to loop through the each recipe and create an html element:
-
-```javaScript
-
-    <section class = "recipe-card">
-          <div class="icon-box">
-            <label>
-              <input type="checkbox" name="recipe-buttons" id="chef-${recipe.id}" class="chef-radio-button">
-              <img id="chef-icon-disabled" class="chef-icon" src="../images/chef.png" alt="chef icon unchosen">
-              <img id="chef-icon-enabled" class="chef-icon hidden" src="../images/chef-solid.png" alt="chef icon chosen">
-            </label>
-            <label>
-              <input type="checkbox" name="recipe-buttons" id="heart-${recipe.id}" class="heart-radio-button">
-              <img id="heart-icon-enabled" class="heart-icon hidden" src="../images/favorite.svg" alt="heart icon chosen">
-              <img id="heart-icon-disabled" class="heart-icon" src="../images/favorite_border.svg" alt="heart icon unchosen">              </label>
-          </div>
-          <img class="recipe-card-img" src="${recipe.image}" alt="recipe image">
-          <h2 id=${recipe.id}>${recipe.name}</h2>
-        </section>
-```
-
-</details>
+<img width="1439" alt="Screen Shot 2020-11-10 at 10 25 45 PM" src="https://user-images.githubusercontent.com/62810592/98765683-4d189f00-23a4-11eb-9740-5943dad21a1a.png">
 
 ---
 
-### Single recipe view
 
----
-
-![screenshot-single-recipe-view-1](https://media.giphy.com/media/CczV0CEcxPfdvJoqyQ/giphy.gif)
-
-<details>
-  <summary>**Under the Hood**</summary>
-
-A single recipe view dipslays the individual recipe with the following information:
-
-* Image
-* Total cost of all ingredients
-* Ingredients names and the amount
-* Directions
-
-All information is easlily pulled by accessing the Recipe instance. Each recipe has the following structure:
-
-```javaScript
-
-class Recipe {
-  constructor(id, image, ingredients, instructions, name, tags) {
-    this.id = id,
-    this.image = image,
-    this.ingredients = ingredients,
-    this.instructions = instructions,
-    this.name = name,
-    this.tags = tags
-  };
-
-```
-
-When you choose a recipe, the total cost of cooking that recipe can be easily calculated using methods inside the recipe class `calculateTotalCost(basket)` where 'basket' is the array of all the ingredients.
-
-</details>
-
----
-
-### Pantry view of the user's available ingredients for cooking:
-
----
-
-![screenshot-pantry-view](https://user-images.githubusercontent.com/62810592/96782337-dabf2b00-13b2-11eb-96ba-6b40197e03ef.png)
-
-
-<details>
-  <summary>**Under the Hood**</summary>
-
-When user clicks on a pantry button, the website takes the user to the pantry where all user's ingredients are displayed showing the names and the available amount.
-
-```javaScript
-
-class Pantry {
-  constructor(userId, userPantry) {
-    this.id = userId;
-    this.pantry = userPantry;
-    this.neededIngredients = [];
-  }
-
-```
-
-Pantry has several methods that allow the user to determine the amount of ingredients left after cooking the recipes, however, these methods are not currently available. In the future we are planning to add this feature to our website so the users can see how many ingredients they have left and how many they need to buy in order to cook the chosen recipes.
-
-</details>
 
 ---
 
