@@ -8,6 +8,8 @@ class Hotel {
     this.bookings = bookingsData;
     this.selectedGuest = null;
     this.selectedGuestBookings = null;
+    // this.pastBookings = [];
+    // this.selectedGuestTotalSpent = this.calculateGuestTotalSpent();
   }
 
   selectGuest(userKey, userIdentifier) {
@@ -41,25 +43,41 @@ class Hotel {
     return availableRoomsOnDate;
   }
 
+  calculateGuestTotalSpent() {
+    const total = this.pastBookings.reduce((totalSpent, booking) => {
+      this.rooms.forEach(room => {
+        if (booking.roomNumber === room.number) {
+          totalSpent += (room.costPerNight * 100)
+        }
+      })
+      return totalSpent 
+    }, 0) 
+    return total / 100
+    //this is notes for chai spies!
+    // let finalTotal = total / 100
+    // dom-updates.showTotalSpent(finalTotal)
+    // return finalTotal
+  }
+
   bookRoomForGuest(userID, date, roomNum) { 
     let bookingData =  { "userID": userID, "date": date, "roomNumber": roomNum }
     console.log('bookingData', typeof bookingData.userID)
-    apiRequests.postData('bookings/bookings', bookingData)
-      .then(() => {
-        this.updateBookingsData();
+    return apiRequests.postData('bookings/bookings', bookingData)
+      .then(value => {
+        return value;
       })
   }
 
-  updateBookingsData() {
-    console.log('beforeBookedguestBookings', this.selectedGuestBookings)
-    apiRequests.fetchData('bookings/bookings', 'bookings')
-      .then(value => {
-        console.log('value', value)
-        this.bookings = value;
-        this.getSelectedGuestBookings();
-        console.log('refetchedGuestBookings', this.selectedGuestBookings)
-      })
-  }
+  // updateBookingsData() {
+  //   console.log('beforeBookedguestBookings', this.selectedGuestBookings)
+  //   apiRequests.fetchData('bookings/bookings', 'bookings')
+  //     .then(value => {
+  //       console.log('value', value)
+  //       this.bookings = value;
+  //       this.getSelectedGuestBookings();
+  //       console.log('refetchedGuestBookings', this.selectedGuestBookings)
+  //     })
+  // }
   /*
   PERHAPS USE THIS ON A PARENT CLASS??
   consolidateGuestData() {
