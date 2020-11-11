@@ -1,0 +1,20 @@
+// Guest Home View
+
+@mixin use-flex() {
+  display: flex;
+}
+
+.user-home-view {
+  text-align: center;
+  @include use-flex();
+  flex-direction: column;
+}
+
+.user-total-spent {
+  color: $Overlook-Hotel-favorite-4-hsla;
+}
+
+.your-previous-bookings {
+  font-size: large;
+  color: $Overlook-Hotel-favorite-4-hsla;
+}

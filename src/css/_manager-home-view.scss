@@ -1,0 +1,47 @@
+// Manager Home View
+@mixin rounded-corners($radius) {
+  border-radius: $radius;
+}
+
+@mixin use-flex() {
+  display: flex;
+}
+
+.manager-view {
+  @include use-flex();
+  flex-direction: row;
+  text-align: center;
+}
+
+.heading2 {
+  font-size: large;
+  color: $Overlook-Hotel-favorite-1-hsla;;
+}
+
+.all-hotel-info {
+  width: 48vw;
+}
+
+.daily-totals {
+  border: $Overlook-Hotel-favorite-1-hsla 5px solid;
+  @include rounded-corners(0.5em);
+}
+
+.list-rooms-available {
+  @include use-flex();
+  flex-direction: column;
+}
+
+.center-bar {
+  border-right: $Overlook-Hotel-favorite-1-hsla 10px solid;
+  width: .5vw;
+}
+
+.specific-guest-info {
+  width: 48vw;
+}
+
+.disable-style {
+  background: $Overlook-Hotel-favorite-5-hsla;
+  color: $Overlook-Hotel-favorite-2-hsla;
+}

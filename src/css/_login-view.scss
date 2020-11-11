@@ -1,0 +1,47 @@
+// Login View
+
+@mixin rounded-corners($radius) {
+  border-radius: $radius;
+}
+
+@mixin use-flex() {
+  display: flex;
+}
+
+.login-view {
+  @include use-flex();
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.login {
+  margin: 5em;
+}
+
+.labels {
+  color: $Overlook-Hotel-favorite-2-hsla;
+}
+
+.input {
+  margin-bottom: 2em;  
+  height: 1.5em;
+  background: $Overlook-Hotel-2-5-hsla; // probably need to adjust this color for accessibility
+  color: $Overlook-Hotel-favorite-3-hsla;
+  @include rounded-corners(0.5em);
+}
+
+
+.submit {
+  margin: 2em;
+  background:$Overlook-Hotel-favorite-4a-hsla;
+  color: $Overlook-Hotel-favorite-3-hsla;
+  margin: 0 0.8em 0.5em 1em;
+  width: 15em;
+  height: 3em;
+  @include rounded-corners(0.5em);
+}
+
+p {
+  color: $Overlook-Hotel-favorite-2-hsla;
+}
