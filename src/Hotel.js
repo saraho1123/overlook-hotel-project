@@ -8,8 +8,6 @@ class Hotel {
     this.bookings = bookingsData;
     this.selectedGuest = null;
     this.selectedGuestBookings = null;
-    // this.pastBookings = [];
-    // this.selectedGuestTotalSpent = this.calculateGuestTotalSpent();
   }
 
   selectGuest(userKey, userIdentifier) {
@@ -20,8 +18,6 @@ class Hotel {
 
   getSelectedGuestBookings() {
     this.selectedGuestBookings = this.bookings.filter(booking => {
-      console.log('selectedID', this.selectedGuest.id)
-      console.log('bookingID', booking.userID)
       let guestBookings = booking.userID == this.selectedGuest.id;
       return guestBookings;
     })
