@@ -70,7 +70,7 @@ As a manager, my app's functionality includes me being able to:
 
 ## Wins
 
-* Coming into this project off of an incredibly difficult winning was a challenge. But I am counting as a win because I was able to meet the MVP for this project, something that I doubted several times that I would be able to do!
+* Coming into this project off of an incredibly difficult inning was a challenge. But I am counting as a win because I was able to meet the MVP for this project, something that I doubted several times that I would be able to do!
 * I successfully used fetch APIs! 
 * I successsfully used class inheritance! 
 
