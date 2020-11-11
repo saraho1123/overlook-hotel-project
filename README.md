@@ -81,30 +81,44 @@ As a manager, my app's functionality includes me being able to:
 
 ### Login View
 
----
-
-
 <img width="1439" alt="Screen Shot 2020-11-10 at 10 25 45 PM" src="https://user-images.githubusercontent.com/62810592/98765683-4d189f00-23a4-11eb-9740-5943dad21a1a.png">
 
 ---
 
+### Guest Home View
 
+<img width="1425" alt="Screen Shot 2020-11-10 at 10 26 47 PM" src="https://user-images.githubusercontent.com/62810592/98765709-5dc91500-23a4-11eb-9c70-37051c292bce.png">
+
+---
+
+### Guest Choose Date View
+
+<img width="1423" alt="Screen Shot 2020-11-10 at 10 27 32 PM" src="https://user-images.githubusercontent.com/62810592/98765772-79342000-23a4-11eb-9513-96e22facbc02.png">
+
+---
+
+### Guest Book Room View
+
+<img width="1424" alt="Screen Shot 2020-11-10 at 10 28 29 PM" src="https://user-images.githubusercontent.com/62810592/98765955-8ea94a00-23a4-11eb-8806-b052d403347c.png">
+
+---
+### Manager Home and Interaction View
+
+<img width="1428" alt="Screen Shot 2020-11-10 at 10 29 24 PM" src="https://user-images.githubusercontent.com/62810592/98766197-9ff25680-23a4-11eb-8099-7a3a5b43b49b.png">
 
 ---
 
 ## Roadmap
 
-* Add a feature to see how many ingredients are left after cooking a recipe
-* Ability to have a wallet that shows the amount users have available to spend on purchasing ingredients
-* Have an opportunity to create a personal account to store all 'favorite' and 'ready to cook' recipes
+* Clean up a bit of the styling
+* Make use of the dom-updates file
+* Add pictures to rooms based on the room type (perhaps eventually adding a different picture for each room).
+* Allow customers to filter available rooms by cost (min/max), bed size, and/or number of beds
+* Allow customers and managers to add a room service charge to a booking
 
 ## Credits
 
-<img src="https://avatars0.githubusercontent.com/u/66269306?s=400&u=b59f8ccc1002269319d952aa028ee270629b2ead&v=4" alt="Olga Morgan"
- width="150" height="auto" />\
 
-**Olga Morgan**
-[GitHub Profile](https://github.com/scripka)
 
 <img src="https://avatars0.githubusercontent.com/u/62810592?s=400&u=a28506c68a6b2869116ba071955e03f2f86a9f54&v=4" alt="Sarah Osgood"
  width="150" height="auto" />\
@@ -112,6 +126,16 @@ As a manager, my app's functionality includes me being able to:
 **Sarah Osgood**
 [GitHub Profile](https://github.com/saraho1123)
 
+## With Lots of Help and Guidance from:
+**Taras Tarlov**
+[GitHub Profile](https://github.com/ttarlov)
+
+Thanks for all your encouragement and advice. I can't say how much I appreciate it!
+
+**Nathaniel Millard**
+[GitHub Profile](https://github.com/nathanielmillard)
+
+Thank you for helping me navigate my way through a very tough inning!
 
 ## Deploying to GitHub Pages
 
