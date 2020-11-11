@@ -134,13 +134,11 @@ function allowWrongLoginAlerts() {
 
 function validateUserLogin(event) {
   event.preventDefault()
-  if (userLogin.value === 'customer17' && userPassword.value === 'o') { // cheat login! ;) 
-  // if (userLogin.value.slice(0, 8) === 'customer' && userLogin.value.slice(8) > 0 && userLogin.value.slice(8) <= 50 && userPassword.value === 'o') {
+  if (userLogin.value.slice(0, 8) === 'customer' && userLogin.value.slice(8) > 0 && userLogin.value.slice(8) <= 50 && userPassword.value === 'o') {
     guest = new Guest(usersData, roomsData, bookingsData);
     getGuest();
     getBookingsAndTotalSpent();
     enableGuestHomeView();
-  // } else if (userLogin.value === 'm' && userPassword.value === 'o') { // cheat login! ;)
   } else if (userLogin.value === 'manager' && userPassword.value === 'Overlook2020') {
     manager = new Manager(usersData, roomsData, bookingsData);
     guest = new Guest(usersData, roomsData, bookingsData);
