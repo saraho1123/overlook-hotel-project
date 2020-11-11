@@ -134,7 +134,7 @@ function allowWrongLoginAlerts() {
 
 function validateUserLogin(event) {
   event.preventDefault()
-  if (userLogin.value.slice(0, 8) === 'customer' && userLogin.value.slice(8) > 0 && userLogin.value.slice(8) <= 50 && userPassword.value === 'o') {
+  if (userLogin.value.slice(0, 8) === 'customer' && userLogin.value.slice(8) > 0 && userLogin.value.slice(8) <= 50 && userPassword.value === 'Overlook2020') {
     guest = new Guest(usersData, roomsData, bookingsData);
     getGuest();
     getBookingsAndTotalSpent();
