@@ -1,0 +1,115 @@
+// Book Room View
+
+@mixin rounded-corners($radius) {
+  border-radius: $radius;
+}
+
+@mixin use-flex() {
+  display: flex;
+}
+
+.user-book-room-view {
+  text-align: center;
+  @include use-flex();
+  flex-direction: column;
+}
+
+.booking {
+  @include use-flex();
+  flex-direction: column;
+  align-items: center;
+  margin: 0 2em 2em 2em;
+}
+
+.booking-header {
+  @include use-flex();
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+}
+
+.back-to-choose-date-button {
+  position: absolute;
+  justify-self: flex-start;
+  background: $Overlook-Hotel-favorite-4a-hsla;
+  height: 3em;
+  width: 9em;
+  margin: 2em 2em 2em 40vw
+}
+
+.filter-section {
+  width: 100%;
+  @include use-flex();
+  justify-content: center;
+
+}
+
+.button {
+  color: $Overlook-Hotel-favorite-3-hsla;
+  @include rounded-corners(0.5em);
+}
+
+.return-homeview {
+  margin: 1vw;
+}
+
+label {
+  color: $Overlook-Hotel-favorite-1-hsla;
+}
+
+.choose-by-type {
+  background: $Overlook-Hotel-favorite-1-hsla;
+  width: fit-content;
+  height: 1.7em;
+  margin: 0 0 0 1em;
+}
+
+.cards-of-rooms {
+  @include use-flex();
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+
+.room {
+  border: $Overlook-Hotel-favorite-4-hsla solid .6em;
+  font-weight: bold;
+  margin: 2vw;
+  min-width: 25vw;
+  @include rounded-corners(1em);
+}
+
+.room-image {
+  height: 16em;
+  width: auto;
+  margin-top: 0em;
+  min-width: 25vw;
+  @include rounded-corners(0.6em);
+}
+
+.room-details {
+  color: $Overlook-Hotel-2-4-hsla;
+}
+
+.small-room-details {
+  @include use-flex();
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: .1em;
+}
+
+.small-details {
+  margin: .1em;
+}
+
+.cost {
+  font-size: x-large;
+  font-weight: bolder;
+}
+
+.sorry {
+  @include use-flex();
+  justify-content: center;
+}
