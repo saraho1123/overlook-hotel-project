@@ -140,7 +140,7 @@ function validateUserLogin(event) {
     getGuest();
     getBookingsAndTotalSpent();
     enableGuestHomeView();
-  // } else if (userLogin.value === 'm' && userPassword.value === 'o') {
+  } else if (userLogin.value === 'm' && userPassword.value === 'o') {
   // } else if (userLogin.value === 'manager' && userPassword.value === 'Overlook2020') {
     manager = new Manager(usersData, roomsData, bookingsData);
     guest = new Guest(usersData, roomsData, bookingsData);
@@ -375,6 +375,8 @@ function returnGuestHomeView() {
   guestHomeView.classList.remove('hidden');
   roomIsBookedView.classList.add('hidden');
   navSection.classList.remove('hidden');
+  getBookingsAndTotalSpent();
+  displayGuestNameDasboard();
   displayGuestPastBookingsDasboard();
 }
 
@@ -555,7 +557,6 @@ function updateBookingsData(className) {
     .then(value => {
       className.bookings = value;
       className.getSelectedGuestBookings();
-      className.getBookingsAndTotalSpent();
       return value;
     })
 }
