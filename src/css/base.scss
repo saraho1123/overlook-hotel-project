@@ -306,6 +306,11 @@ label {
   width: 48vw;
 }
 
+.daily-totals {
+  border: $Overlook-Hotel-favorite-1-hsla 5px solid;
+  border-radius: 0.5em;
+}
+
 .list-rooms-available {
   display: flex;
   flex-direction: column;
@@ -323,6 +328,13 @@ label {
 .disable-style {
   background: $Overlook-Hotel-favorite-5-hsla;
   color: $Overlook-Hotel-2-1-hsla;
+}
+
+.image {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
 }
 
 .hidden {

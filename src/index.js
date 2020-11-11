@@ -141,7 +141,7 @@ function validateUserLogin(event) {
     getBookingsAndTotalSpent();
     enableGuestHomeView();
   // } else if (userLogin.value === 'm' && userPassword.value === 'o') {
-  } else if (userLogin.value === 'manager' && userPassword.value === 'Overlook2020') {
+  // } else if (userLogin.value === 'manager' && userPassword.value === 'Overlook2020') {
     manager = new Manager(usersData, roomsData, bookingsData);
     guest = new Guest(usersData, roomsData, bookingsData);
     enableManagerView();
