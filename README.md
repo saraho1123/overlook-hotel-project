@@ -7,9 +7,8 @@
 ### [Link To Project Description](https://frontend.turing.io/projects/overlook.html)
 
 ---
----
 
-  <img width="1439" alt="Screen Shot 2020-11-10 at 10 25 45 PM" src="https://user-images.githubusercontent.com/62810592/98765683-4d189f00-23a4-11eb-9740-5943dad21a1a.png">
+<img width="1426" alt="Screen Shot 2020-11-10 at 11 08 37 PM" src="https://user-images.githubusercontent.com/62810592/98771298-b9e26800-23a9-11eb-9b2f-33858a6f7b81.png">
 
 ## Table of Contents
 
@@ -115,10 +114,9 @@ As a manager, my app's functionality includes me being able to:
 * Add pictures to rooms based on the room type (perhaps eventually adding a different picture for each room).
 * Allow customers to filter available rooms by cost (min/max), bed size, and/or number of beds
 * Allow customers and managers to add a room service charge to a booking
+* Deploy to GitHub Pages
 
 ## Credits
-
-
 
 <img src="https://avatars0.githubusercontent.com/u/62810592?s=400&u=a28506c68a6b2869116ba071955e03f2f86a9f54&v=4" alt="Sarah Osgood"
  width="150" height="auto" />\
@@ -130,14 +128,16 @@ As a manager, my app's functionality includes me being able to:
 **Taras Tarlov**
 [GitHub Profile](https://github.com/ttarlov)
 
-Thanks for all your encouragement and advice. I can't say how much I appreciate it!
+* *Thanks for all your encouragement and advice. I can't say how much I appreciate it!*
 
 **Nathaniel Millard**
 [GitHub Profile](https://github.com/nathanielmillard)
 
-Thank you for helping me navigate my way through a very tough inning!
+* *Thank you for helping me navigate my way through a very tough inning!*
 
 ## Deploying to GitHub Pages
+
+* I am leaving this here because I would like to clean up a few things before I deploy.
 
 _If you are finished with the functionality and testing of your project_, then you can consider deploying your project to the web! This way anyone can play it without cloning down your repo.
 
