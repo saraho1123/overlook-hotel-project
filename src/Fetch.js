@@ -32,7 +32,6 @@ class APIRequests {
       body: JSON.stringify(bookingToCancel)
     })
     .then(response => response.json())
-    .then(data => console.log(data))
     .catch(error => console.log(error)) 
   }
 }
