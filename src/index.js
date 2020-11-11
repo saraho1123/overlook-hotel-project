@@ -79,8 +79,8 @@ managerSeeRoomsByDateButton.addEventListener('click', displayRoomsByDate);
 
 searchGuestInput.addEventListener("keyup", function(event) {
   if (event.keyCode === 13) {
-   event.preventDefault();
-   searchGuestsByName();
+    event.preventDefault();
+    searchGuestsByName();
   }
 });
 
@@ -245,11 +245,8 @@ function enableChooseDateView() {
 }
 
 function guestChooseDate(calendar) {
-  console.log('calendar', calendar)
   let calenderDate = calendar.value
-  console.log('calendarValue', calendar.value)
   let returnDate = moment(calenderDate).format("YYYY/MM/DD")
-  console.log('returnDate', returnDate)
   return returnDate;
 }
 
@@ -290,9 +287,7 @@ function displayVacantRoomsByDateGuest(filterMethod) {
   
   guestViewRoomCards.innerHTML = '';
   let chosenDate = guestChooseDate(dropdownCalendar);
-  console.log('date', chosenDate)
   let vacantRooms = guest[filterMethod](chosenDate);
-  console.log('vacancies', vacantRooms)
   if (vacantRooms.length === 0) {
     guestViewRoomCards.insertAdjacentHTML('afterbegin', guest.verySorryMessage);
   } else {
@@ -468,39 +463,39 @@ function searchGuestsByName() {
 }
 
 function displayAllGuestBookings() { // add a sort to put bookings in order by date
-      manager.selectedGuestBookings.map(booking => {
-        manager.rooms.forEach(room => {
-          if (booking.roomNumber === room.number  && booking.date >= getToday(todaysDate)) {
-            managerViewGuestRooms.insertAdjacentHTML('afterbegin', `
-              <article id="${booking.id}" class="room booked-room">
-                <article id="${booking.id}" class="rooms-available-cards room-details">
-                  <h2 id="${booking.id}" class="room-number-type">Room ${room.number}: ${room.roomType.toUpperCase()}</h2>
-                  <section id="${booking.id}" class="small-room-details">
-                    <p id="${booking.id}" class="date-booked small-details">Date Booked: ${booking.date}</p>
-                    <p id="${booking.id}" class="cost small-details">Paid: $ $${room.costPerNight}</p>
-                    <div id="${booking.id}" class="delete-button">
-                      <button id="${booking.id}" class="delete-booking-for-guest submit">Delete this upcoming booking</button>
-                    </div>
-                  </section>
-                </article>
-              </article>
-            `)
-          } else if (booking.roomNumber === room.number  && booking.date < getToday(todaysDate)) {
-            managerViewGuestRooms.insertAdjacentHTML('afterbegin', `
-            <article class="room booked-room">
-              <article class="rooms-available-cards room-details">
-                <h2 class="room-number-type">Room ${room.number}: ${room.roomType.toUpperCase()}</h2>
-                <section class="small-room-details">
-                  <p class="date-booked small-details">Date Booked: ${booking.date}</p>
-                  <p class="cost small-details">Paid: $ $${room.costPerNight}</p>
-                </section>
-              </article>
+  manager.selectedGuestBookings.map(booking => {
+    manager.rooms.forEach(room => {
+      if (booking.roomNumber === room.number  && booking.date >= getToday(todaysDate)) {
+        managerViewGuestRooms.insertAdjacentHTML('afterbegin', `
+          <article id="${booking.id}" class="room booked-room">
+            <article id="${booking.id}" class="rooms-available-cards room-details">
+              <h2 id="${booking.id}" class="room-number-type">Room ${room.number}: ${room.roomType.toUpperCase()}</h2>
+              <section id="${booking.id}" class="small-room-details">
+                <p id="${booking.id}" class="date-booked small-details">Date Booked: ${booking.date}</p>
+                <p id="${booking.id}" class="cost small-details">Paid: $ $${room.costPerNight}</p>
+                <div id="${booking.id}" class="delete-button">
+                  <button id="${booking.id}" class="delete-booking-for-guest submit">Delete this upcoming booking</button>
+                </div>
+              </section>
             </article>
-          `)
-          }
-        })
-      })
-    }
+          </article>
+        `)
+      } else if (booking.roomNumber === room.number  && booking.date < getToday(todaysDate)) {
+        managerViewGuestRooms.insertAdjacentHTML('afterbegin', `
+        <article class="room booked-room">
+          <article class="rooms-available-cards room-details">
+            <h2 class="room-number-type">Room ${room.number}: ${room.roomType.toUpperCase()}</h2>
+            <section class="small-room-details">
+              <p class="date-booked small-details">Date Booked: ${booking.date}</p>
+              <p class="cost small-details">Paid: $ $${room.costPerNight}</p>
+            </section>
+          </article>
+        </article>
+      `)
+      }
+    })
+  })
+}
 
 function topFunction() {
   document.body.scrollTop = 0;
@@ -542,7 +537,7 @@ function showBookedMessage(roomNumber) {
   clickOnRoomMessage.innerHTML = `<h2 class="heading"> You have booked room ${roomNumber} for:<br>${manager.selectedGuest.name}</h2>`
 }
 
-function deleteGuestBooking(event) { // the guest display of rooms is not updating 
+function deleteGuestBooking(event) { 
   alert('Are you sure you would like to delete this booking for your Guest?')
   let bookingId = event.target.id
   manager.deleteBookingForGuest(bookingId)
