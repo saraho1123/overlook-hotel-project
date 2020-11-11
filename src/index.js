@@ -26,8 +26,9 @@ import APIRequests from './Fetch';
 // inputs
 const userLogin = document.querySelector('.user-login');
 const userPassword = document.querySelector('.user-password');
-const dropdownCalendar = document.querySelector('.calendar');
+const dropdownCalendar = document.querySelector('.guest-calendar');
 const searchGuestInput = document.querySelector('.find-guest-input');
+const managerDropdownCalender = document.querySelector('.manager-calander-dropdown')
 
 // buttons
 const loginButton = document.querySelector('.submit-login');
@@ -38,6 +39,7 @@ const filterByTypeDropdown = document.querySelector('.choose-by-type');
 const returnGuestHomeViewButton = document.querySelector('.return-homeview');
 const seePastBookingsButton = document.querySelector('.past-bookings');
 const seeUpcomingBookingsButton = document.querySelector('.upcoming-bookings');
+const managerSeeRoomsByDateButton = document.querySelector('.see-available-manager-button');
 
 // page views
 const loginView = document.querySelector('.login-view');
@@ -55,6 +57,8 @@ const guestViewBookings = document.querySelector('.cards-of-rooms'); // maybe ch
 const currentRoomsAvailable = document.querySelector('.list-rooms-available');
 const guestViewRoomCards = document.querySelector('.guest-rooms-available-by-date');
 const managerViewGuestRooms = document.querySelector('.list-guest-rooms');
+const guestDetails = document.querySelector('.guest-details'); 
+
 
 // const managerViewGuestRooms = document.querySelector('.list-guest-rooms');
 
@@ -70,6 +74,9 @@ returnGuestHomeViewButton.addEventListener('click', returnGuestHomeView);
 seePastBookingsButton.addEventListener('click', displayPastBookings);
 seeUpcomingBookingsButton.addEventListener('click', displayUpcomingBookings);
 managerViewGuestRooms.addEventListener('click', deleteGuestBooking);
+guestDetails.addEventListener('click', displayBookingView);
+currentRoomsAvailable.addEventListener('click', managerBookRoom);
+managerSeeRoomsByDateButton.addEventListener('click', displayRoomsByDate);
 // searchGuestInput.addEventListener('keyup', searchGuestsByName);
 
 searchGuestInput.addEventListener("keyup", function(event) {
@@ -141,6 +148,7 @@ function validateUserLogin(event) {
   } else if (userLogin.value === 'm' && userPassword.value === 'o') {
   // } else if (userLogin.value === 'manager' && userPassword.value === 'Overlook2020') {
     manager = new Manager(usersData, roomsData, bookingsData);
+    guest = new Guest(usersData, roomsData, bookingsData);
     enableManagerView();
   } else {
     disableSubmitButton();
@@ -171,7 +179,7 @@ function enableManagerView() {
   displayTodaysDate();
   displayRevenueForDay();
   displayPercentBookedForDay();
-  displayVacantRoomsByDateManager(currentRoomsAvailable);
+  // displayVacantRoomsByDateManager(currentRoomsAvailable);
 }
 
 function getToday(date) {
@@ -235,6 +243,7 @@ function displayUpcomingBookings() {
 }
 
 function displayBookingView() {
+  // guest.selectGuest('name', userIdentifier);
   navSection.classList.add('hidden');
   enableChooseDateView();
 }
@@ -245,9 +254,9 @@ function enableChooseDateView() {
   guestBookRoomView.classList.add('hidden');
 }
 
-function guestChooseDate() {
-  let date = dropdownCalendar.value
-  let returnDate = moment(date).format("YYYY/MM/DD")
+function guestChooseDate(calendar) {
+  let calenderdate = managerDropdownCalender.value
+  let returnDate = moment(calenderdate).format("YYYY/MM/DD")
   return returnDate;
 }
 
@@ -278,14 +287,15 @@ function displayGuestPastBookingsDasboard() {
 function displayAvailableRooms() {
   chooseDateView.classList.add('hidden');
   guestBookRoomView.classList.remove('hidden');
-  guestChooseDate();
+  guestChooseDate('dropdownCalendar');
   displayVacantRoomsByDateGuest('listVacantRoomsByDate');
 }
 
 function displayVacantRoomsByDateGuest(filterMethod) {
+  console.log('selectedGuest', guest.selectedGuest)
   //need to get today's bookings!! also need to display by chosen date!!
   guestViewRoomCards.innerHTML = '';
-  let date = guestChooseDate();
+  let date = guestChooseDate('dropdownCalendar');
   let vacantRooms = guest[filterMethod](date);
   console.log(vacantRooms)
   if (vacantRooms.length === 0) {
@@ -314,7 +324,7 @@ function displayVacantRoomsByDateGuest(filterMethod) {
 
 function displayVacantRoomsbyTypeGuest() {
   guestViewRoomCards.innerHTML = ``;
-  let date = guestChooseDate();
+  let date = guestChooseDate('dropdownCalendar');
   let type = filterRoomsByTypeGuest();
   let vacantRooms = guest.filterRoomsByTypeOnDate(date, type);
   if (vacantRooms.length === 0) {
@@ -354,12 +364,17 @@ function filterRoomsByTypeGuest() { // This need work, need 'Choose Room Type' t
 }
 
 function bookThisRoom(event) {
+  console.log('booking?')
+  console.log('selectedGuest', guest.selectedGuest)
   console.log(+event.target.id)
   const userID = guest.selectedGuest.id
-  const chosenDate = guestChooseDate();
+  const chosenDate = guestChooseDate('dropdownCalendar');
   const date = getToday(chosenDate);
   const roomNumber = event.target.id
-  guest.bookRoomForGuest(+userID, date, +roomNumber);
+  guest.bookRoomForGuest(+userID, date, +roomNumber)
+    .then(value => {
+      updateBookingsData(guest);
+    })
   showBookedRoomMessage();
 }
 
@@ -403,27 +418,52 @@ function displayPercentBookedForDay() {
   daysPercentage.innerHTML = `Percentage of rooms booked:  ${calculatedPercentage}`
 }
 
-function displayVacantRoomsByDateManager(htmlElement) {
+function displayRoomsByDate() {
+  let chosenDate = guestChooseDate('managerDropdownCalender')
+  displayVacantRoomsByDateManager(chosenDate, currentRoomsAvailable);
+}
+
+function displayVacantRoomsByDateManager(thisDate, htmlElement) {
   //need to get today's bookings!! also need to display by chosen date!!
-  let date = getToday(todaysDate);
-  let vacantRooms = manager.listVacantRoomsByDate(date);
-  vacantRooms.forEach(room => {
-    htmlElement.insertAdjacentHTML('afterbegin', `
-      <article class="room vacant-room">
-        <section class="rooms-available-cards room-details">
-          <h2 class="room-number-type">Room ${room.number}: ${room.roomType.toUpperCase()}</h2>
-          <article class="small-room-details">
-            <p class="num-beds small-details">Number of Beds: ${room.numBeds} </p>
-            <p class="bed-size small-details">Bed Size: ${room.bedSize}</p>
-            <p class="bidet small-details">Has Bidet: ${room.bidet}</p>
-            <p class="cost small-details">Price: $${room.costPerNight}</p>
-            <button class="book-room-for-guest submit">Book this room for currently selected guest</button>
-            only show this button if a guest is selected
-          </article>
-        </section>
-      </article>
-    `)          
-  })
+  htmlElement.innerHTML = ``;
+  // let chosenDate = guestChooseDate('managerDropdownCalender')
+  // let date = getToday(chosenDate);
+  console.log(thisDate)
+  let vacantRooms = manager.listVacantRoomsByDate(thisDate);
+  console.log(vacantRooms);
+  if (manager.selectedGuest !== undefined) {
+    vacantRooms.forEach(room => {
+      htmlElement.insertAdjacentHTML('afterbegin', `
+        <article id="${room.number}" class="room vacant-room">
+          <section id="${room.number}" class="rooms-available-cards room-details">
+            <h2 id="${room.number}" class="room-number-type">Room ${room.number}: ${room.roomType.toUpperCase()}</h2>
+            <article id="${room.number}" class="small-room-details">
+              <p id="${room.number}" class="num-beds small-details">Number of Beds: ${room.numBeds} </p>
+              <p id="${room.number}" class="bed-size small-details">Bed Size: ${room.bedSize}</p>
+              <p id="${room.number}" class="bidet small-details">Has Bidet: ${room.bidet}</p>
+              <p id="${room.number}" class="cost small-details">Price: $${room.costPerNight}</p>
+            </article>
+          </section>
+        </article>
+      `)          
+    })
+  } else {
+    vacantRooms.forEach(room => {
+      htmlElement.insertAdjacentHTML('afterbegin', `
+        <article class="room vacant-room">
+          <section class="rooms-available-cards room-details">
+            <h2 class="room-number-type">Room ${room.number}: ${room.roomType.toUpperCase()}</h2>
+            <article class="small-room-details">
+              <p class="num-beds small-details">Number of Beds: ${room.numBeds} </p>
+              <p class="bed-size small-details">Bed Size: ${room.bedSize}</p>
+              <p class="bidet small-details">Has Bidet: ${room.bidet}</p>
+              <p class="cost small-details">Price: $${room.costPerNight}</p>
+            </article>
+          </section>
+        </article>
+      `)          
+    })
+  }
 }
 
 function searchGuestsByName() {
@@ -435,8 +475,9 @@ function searchGuestsByName() {
   
   console.log('searchedName', searchedGuest)
   if (searchedGuest !== undefined) {
-    manager.selectGuest('name', searchedGuest.name)
+    manager.selectGuest('name', searchedGuest.name);
     manager.getSelectedGuestBookings();
+    displayGuestDetails(searchedGuest);
     displayAllGuestBookings()
   }
 }
@@ -481,22 +522,64 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 
+function displayGuestDetails(searchedGuest) {
+    guest.selectGuest('name', searchedGuest);
+    guestDetails.innerHTML = ``;
+    guestDetails.innerHTML = `
+    <button label="make-booking" class="make-booking-for-guest nav-button" type="button">Book a room for ${manager.selectedGuest.name}!</button>      
+    <h2 class="heading2">Total spent by ${manager.selectedGuest.name}: ${guest.calculateGuestTotalSpent()} </h2>
+    <h2 class="heading2"> ${manager.selectedGuest.name}'s booked rooms:</h1>
+    `;
+    enableClickOnRoomBooking();
+}
 
-function deleteGuestBooking(event) {
+function enableClickOnRoomBooking() {
+  const clickOnRoomMessage = document.querySelector('.display-click-to-book-message');
+  clickOnRoomMessage.innerHTML = `<h2 class="heading"> Click below to book a room for:<br>${manager.selectedGuest.name}</h2>`
+}
+
+function managerBookRoom(event) {
+  console.log(manager.selectedGuest.name)
+  console.log(event.target.id)
+  const userID = manager.selectedGuest.id
+  const chosenDate = guestChooseDate('managerDropdownCalender');
+  const date = getToday(chosenDate);
+  const roomNumber = event.target.id
+  manager.bookRoomForGuest(+userID, date, +roomNumber)
+    .then(value => {
+      updateBookingsData(manager);
+    })
+  showBookedMessage();
+}
+
+function showBookedMessage(roomNumber) {
+  const clickOnRoomMessage = document.querySelector('.display-click-to-book-message');
+  clickOnRoomMessage.innerHTML = `<h2 class="heading"> You have booked room ${roomNumber} for:<br>${manager.selectedGuest.name}</h2>`
+}
+function deleteGuestBooking(event) { // the guest display of rooms is not updating 
   alert('Are you sure you would like to delete this booking for your Guest?')
   let bookingId = event.target.id
   console.log('eventID', bookingId)
-  manager.deleteBookingForGuest(bookingId);
-  displayAllGuestBookings();
+  manager.deleteBookingForGuest(bookingId)
+    .then(value => {
+      updateBookingsData(manager)
+        .then(value => {
+          console.log(value)
+          console.log(manager.selectedGuestBookings);
+          displayAllGuestBookings();
+        })   
+    })
   topFunction();
 }
 
-// function bookThisRoom(event) {
-//   console.log(+event.target.id)
-//   const userID = guest.selectedGuest.id
-//   const chosenDate = guestChooseDate();
-//   const date = getToday(chosenDate);
-//   const roomNumber = event.target.id
-//   guest.bookRoomForGuest(+userID, date, +roomNumber);
-//   showBookedRoomMessage();
-// }
+function updateBookingsData(className) {
+  console.log('beforeBookedguestBookings', className.selectedGuestBookings)
+  return apiRequests.fetchData('bookings/bookings', 'bookings')
+    .then(value => {
+      console.log('value', value)
+      className.bookings = value;
+      className.getSelectedGuestBookings();
+      console.log('refetchedGuestBookings', className.selectedGuestBookings);
+      return value;
+    })
+}

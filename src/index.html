@@ -57,7 +57,7 @@
       <article>
         <h1 class="heading">Please choose a date to see available rooms:</h1>
         <div>
-          <label for="calendar labels" class="login-label labels">Check-in Date: 
+          <label for="guest-calendar labels" class="login-label labels">Check-in Date: 
             <input class="calendar" type="date">
           </label>
           <button class="see-available-rooms-button submit">See available rooms</button>
@@ -122,9 +122,15 @@
           </h2>
         </article>
         <article class="rooms-available-for-date">
-          <label for="search-available-by-date label">Find by date:</label>
-          <button class="search-available-by-date submit">date calendar thingy</button>        
+          <div class="manager-calander">
+            <label for="calendar labels" class="login-label labels">Guest Check-in Date: 
+              <input class="manager-calander-dropdown calendar" type="date">
+            </label>
+            <button class="see-available-manager-button submit">See available rooms</button>
+          </div>
         </article>
+        <div class="display-click-to-book-message">
+        </div>
         <h2 class="daily-rooms-available heading2">Rooms available for <span>yyyy/mm/dd</span>:</h1>
         <section class="list-rooms-available cards-of-rooms">
         </section>
@@ -138,8 +144,12 @@
           <input class="find-guest-input input"> 
         </label>
         <!-- input guest's full name or check out input fields from idea box -->
-        <h2 class="heading2">Total spent by <span>Guest Name</span>: <span>$4000.00</span> </h2>
-        <h2 class="heading2"> <span>Guest</span>'s booked rooms:</h1>
+        <div class="guest-details">
+          <!-- <button label="make-booking" class="make-booking nav-button" type="button">Book a room!</button>      
+
+          <h2 class="heading2">Total spent by <span>Guest Name</span>: <span>$4000.00</span> </h2>
+          <h2 class="heading2"> <span>Guest</span>'s booked rooms:</h1> -->
+        </div>
         <section class="list-guest-rooms cards-of-rooms">
           <!-- <article class="room booked-room">
             <article class="rooms-available-cards room-details">
