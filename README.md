@@ -1,6 +1,6 @@
 # Overlook - Turing Mod 2 Final Solo Project
 
-### [Canyon Overlook Hotel Pages](https://saraho1123.github.io/whats-cookin/src/index.html)
+### [Canyon Overlook Hotel Pages]()
 
 ### [Link To My Repo](https://github.com/saraho1123/overlook-sosgood)
 
