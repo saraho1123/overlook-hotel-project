@@ -1,100 +1,187 @@
-# Webpack Starter Kit
+# Overlook - Turing Mod 2 Final Solo Project
 
-## Clone This Repo
+### [Canyon Overlook Hotel Pages](https://saraho1123.github.io/whats-cookin/src/index.html)
 
-That's right, _clone_ not fork. You will use this repo multiple times, but you can only fork a repository once. So here is what you need to do to clone the repo and still be able to push changes to your repo:
+### [Link To My Repo](https://github.com/saraho1123/overlook-sosgood)
 
-1. Clone down this repo. Since you don't want to name your project "webpack-starter-kit", you can use an optional argument when you run `git clone` (you replace the `[...]` with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
-1. Remove the default remote: `git remote rm origin` (notice that `git remote -v` not gives you back nothing)
-1. Create a new repo on GitHub with the name of `[what you want to name the repo]` to be consistent with naming
-1. Copy the address that you would use to clone down this repo - something like `git@github.com:...`
-1. Add this remote to your cloned down repo: `git remote add origin [address you copied in the previous step]` - do not include the brackets
+### [Link To Project Description](https://frontend.turing.io/projects/overlook.html)
 
-Now try to commit something and push it up to your new repo. If everything is setup correctly, you should see the changes on GitHub.
+---
+---
 
-## Setup
+  <img width="1439" alt="Screen Shot 2020-11-10 at 10 25 45 PM" src="https://user-images.githubusercontent.com/62810592/98765683-4d189f00-23a4-11eb-9740-5943dad21a1a.png">
 
-After one person has gone through the steps of cloning down this repo and editing the remote, everyone should clone down the repo. 
+## Table of Contents
 
-Then install the library dependencies. Run:
+* [Project Overview](#project-overview)
+* [Goals](#goals)
+* [Technologies And Tools](#technologies-and-tools)
+* [Challenges](#challenges)
+* [Wins](#wins)
+* [ScreenShots and Demos](#screenshots-and-demos)
+* [Roadmap](#roadmap)
+* [Credits](#credits)
 
-```bash
-npm install
-```
+## Project Overview
 
-To verify that it is setup correctly, run `npm start` in your terminal. Go to `http://localhost:8080/` and you should see a page with some `h1` text, Turing logo image and a beautiful gradient background. If that's the case, you're good to go. Enter `control + c` in your terminal to stop the server at any time.
+For this project we created a recipe tracking/meal planning application. 
 
-## Where to Add Your Code
+Our app's functionality included a user being able to: 
 
-### JavaScript
+* choose and view their favorite recipes
+* choose and view recipes to cook
+* filter recipes by type, ingredients, 'favorites' or 'recipes to cook'
+* plan what items the user would need to purchase in order to cook their chosen recipe (based on what ingredients the recipe calls for and what the user 'has' in their pantry)
 
-You have to be very intentional with where you add your feature code. This repo uses a tool called [webpack](https://webpack.js.org/) to combine many JavaScript files into one big file. Webpack enables you to have many, separate JavaScript files to keep your code organized and readable. Webpack expects all of your code files to be in a specific place, or else it doesn't know how to combine them all behind the scenes.
+## Goals
 
-**Create all of your feature code files in the `src` directory.**
+Our personal goals were to get better at sad path TDD, get a lot more comfortable with the array prototypes, and integrate what we’ve learned about JS so far. This was one of our first projects using TDD and ES6 JavaScript. 
 
-Since code is separated into multiple files, you need to use the `import` and `export` syntax to share code across file.
+We also wanted to work together in such a way that we would be willing to work together again!
 
-Here is a video that walks through some information about [import and export](https://www.youtube.com/watch?v=_3oSWwapPKQ). There are a lot of resources out there about `import` and `export`, and resources will sometimes call them `ES6 modules`. It's something you will see in React and beyond.
+## Technologies And Tools
 
-### HTML
+* JavaScript (ES6)
+* HTML
+* CSS
+* Adobe XD
+* Google Jam Board
 
-Add the HTML you need in the `index.html` file in the `./src` directory. There is some boilerplate HTML that exists from the start that you can modify.
+## Challenges
 
-### CSS (SCSS/SASS)
+Our first big challenge was deciding how many Classes to include. We started with three, increased to six and ended up with five. After getting into our project, we realized that having a way to 'clean up' and organize our data would have been helpful. Although we didn't get to it for this project, it was a big learning opportunity for the future! Another thing we wish we had more time for was more TDD. Although we included it, we did not test for edge cases or for 'breaking' our code.
 
-This project is setup to use SCSS/SASS files by default instead of your regular CSS files. Add your SCSS files in the `src/css` directory. There is a `base.scss` file already there, but you can change this file and add multiple SCSS files in this directory.
+## Wins
 
-This might sound weird, but you need to `import` your SCSS files in the JavaScript entry file (`index.js`) for the styles to be applied to your HTML. The example `base.scss` file has already been imported in the JavaScript entry file as an example.
+We overcame some personal things while tackling this project. Although it definitely slowed us down, we are proud of the work we were able to accomplish in such a short time, including being able to complete nearly all the required funcionality for this project.
 
-### Images
+We did make our app responsive, which was a fun win!
 
-Add your image files in the `src/images` directory. Similar to CSS files, you need to `import` image files in the JavaScript entry file (`index.js`). Then go into the HTML and add an `img` element with the `src` attribute pointing to the `images` directory. There is an example in the `index.html` file for you to see.
-
-## How to View Your Code in Action
-
-In the terminal, run:
-
-```bash
-npm start
-```
-
-You will see a bunch of lines output to your terminal. One of those lines will be something like:
-
-```bash
-Project is running at http://localhost:8080/
-```
-
-Go to `http://localhost:8080/` in your browser to view your code running in the browser.
+## ScreenShots and Demos
 
 ---
 
-## Test Files Organization
-
-Similar to feature code, your test code needs to be put in a specific place for it to run successfully.
-
-**Put all of your test files in the `test` directory.** As a convention, all test filenames should end with `-test.js`. For instance: `box-test.js`.
-
-## Running Your Tests
-
-Run your test suite using the command:
-
-```bash
-npm test
-```
-
-The test results will output to the terminal.
+### Home view of recipes
 
 ---
 
-## Linting Your Code
+![scrolling through all recipes](https://media.giphy.com/media/cMgU4VT0iXQytTRrFf/giphy.gif)
 
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit - the linter is still running successfully.
+<details>
+  <summary>**Under the Hood**</summary>
 
-Your linter will look at the JavaScript files you have within the `src` directory and the `test` directory. 
+All recipes are genereted on load event. To display all recipes from the recipes.js data file we used `forEach` method to loop through the each recipe and create an html element:
 
-## Webpack?
+```javaScript
 
-If you look in the `package.json` file, you'll see one of the library dependencies called `webpack`. If you're interested in learning more about what Webpack is and how it works behind the scenes, take a look through the [Webpack configuration documentation](https://webpack.js.org/concepts/).
+    <section class = "recipe-card">
+          <div class="icon-box">
+            <label>
+              <input type="checkbox" name="recipe-buttons" id="chef-${recipe.id}" class="chef-radio-button">
+              <img id="chef-icon-disabled" class="chef-icon" src="../images/chef.png" alt="chef icon unchosen">
+              <img id="chef-icon-enabled" class="chef-icon hidden" src="../images/chef-solid.png" alt="chef icon chosen">
+            </label>
+            <label>
+              <input type="checkbox" name="recipe-buttons" id="heart-${recipe.id}" class="heart-radio-button">
+              <img id="heart-icon-enabled" class="heart-icon hidden" src="../images/favorite.svg" alt="heart icon chosen">
+              <img id="heart-icon-disabled" class="heart-icon" src="../images/favorite_border.svg" alt="heart icon unchosen">              </label>
+          </div>
+          <img class="recipe-card-img" src="${recipe.image}" alt="recipe image">
+          <h2 id=${recipe.id}>${recipe.name}</h2>
+        </section>
+```
+
+</details>
+
+---
+
+### Single recipe view
+
+---
+
+![screenshot-single-recipe-view-1](https://media.giphy.com/media/CczV0CEcxPfdvJoqyQ/giphy.gif)
+
+<details>
+  <summary>**Under the Hood**</summary>
+
+A single recipe view dipslays the individual recipe with the following information:
+
+* Image
+* Total cost of all ingredients
+* Ingredients names and the amount
+* Directions
+
+All information is easlily pulled by accessing the Recipe instance. Each recipe has the following structure:
+
+```javaScript
+
+class Recipe {
+  constructor(id, image, ingredients, instructions, name, tags) {
+    this.id = id,
+    this.image = image,
+    this.ingredients = ingredients,
+    this.instructions = instructions,
+    this.name = name,
+    this.tags = tags
+  };
+
+```
+
+When you choose a recipe, the total cost of cooking that recipe can be easily calculated using methods inside the recipe class `calculateTotalCost(basket)` where 'basket' is the array of all the ingredients.
+
+</details>
+
+---
+
+### Pantry view of the user's available ingredients for cooking:
+
+---
+
+![screenshot-pantry-view](https://user-images.githubusercontent.com/62810592/96782337-dabf2b00-13b2-11eb-96ba-6b40197e03ef.png)
+
+
+<details>
+  <summary>**Under the Hood**</summary>
+
+When user clicks on a pantry button, the website takes the user to the pantry where all user's ingredients are displayed showing the names and the available amount.
+
+```javaScript
+
+class Pantry {
+  constructor(userId, userPantry) {
+    this.id = userId;
+    this.pantry = userPantry;
+    this.neededIngredients = [];
+  }
+
+```
+
+Pantry has several methods that allow the user to determine the amount of ingredients left after cooking the recipes, however, these methods are not currently available. In the future we are planning to add this feature to our website so the users can see how many ingredients they have left and how many they need to buy in order to cook the chosen recipes.
+
+</details>
+
+---
+
+## Roadmap
+
+* Add a feature to see how many ingredients are left after cooking a recipe
+* Ability to have a wallet that shows the amount users have available to spend on purchasing ingredients
+* Have an opportunity to create a personal account to store all 'favorite' and 'ready to cook' recipes
+
+## Credits
+
+<img src="https://avatars0.githubusercontent.com/u/66269306?s=400&u=b59f8ccc1002269319d952aa028ee270629b2ead&v=4" alt="Olga Morgan"
+ width="150" height="auto" />\
+
+**Olga Morgan**
+[GitHub Profile](https://github.com/scripka)
+
+<img src="https://avatars0.githubusercontent.com/u/62810592?s=400&u=a28506c68a6b2869116ba071955e03f2f86a9f54&v=4" alt="Sarah Osgood"
+ width="150" height="auto" />\
+
+**Sarah Osgood**
+[GitHub Profile](https://github.com/saraho1123)
+
 
 ## Deploying to GitHub Pages
 
