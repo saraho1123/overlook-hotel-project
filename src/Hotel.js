@@ -18,7 +18,7 @@ class Hotel {
 
   getSelectedGuestBookings() {
     this.selectedGuestBookings = this.bookings.filter(booking => {
-      let guestBookings = booking.userID === this.selectedGuest.id;
+      let guestBookings = booking.userID == this.selectedGuest.id;
       return guestBookings;
     })
   }
@@ -41,33 +41,30 @@ class Hotel {
     return availableRoomsOnDate;
   }
 
+  calculateGuestTotalSpent() {
+    const total = this.selectedGuestBookings.reduce((totalSpent, booking) => {
+      this.rooms.forEach(room => {
+        if (booking.roomNumber === room.number) {
+          totalSpent += (room.costPerNight * 100)
+        }
+      })
+      return totalSpent 
+    }, 0) 
+    return total / 100
+    //this is notes for chai spies!
+    // let finalTotal = total / 100
+    // dom-updates.showTotalSpent(finalTotal)
+    // return finalTotal
+  }
+
   bookRoomForGuest(userID, date, roomNum) { 
     let bookingData =  { "userID": userID, "date": date, "roomNumber": roomNum }
     console.log('bookingData', typeof bookingData.userID)
-    apiRequests.postData('bookings/bookings', bookingData)
-      .then(() => {
-        this.updateBookingsData();
-      })
-  }
-
-  updateBookingsData() {
-    apiRequests.fetchData('bookings/bookings', 'bookings')
+    return apiRequests.postData('bookings/bookings', bookingData)
       .then(value => {
-        console.log('value', value)
-        this.bookings = value;
+        return value;
       })
   }
-  /*
-  PERHAPS USE THIS ON A PARENT CLASS??
-  consolidateGuestData() {
-    this.selectedGuestData = {
-      // id: this.selectguest.id,
-      // name: this.selectguest.name,
-      bookings: this.getSelectedGuestBookings(),
-      totalSpent: this.getGuestTotalSpent(),
-    }  
-  }
-  */
 }
 
 export default Hotel;

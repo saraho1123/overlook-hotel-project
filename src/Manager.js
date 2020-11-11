@@ -1,4 +1,6 @@
 import Hotel from '../src/Hotel';
+import APIRequests from './Fetch';
+const apiRequests = new APIRequests();
 
 class Manager extends Hotel {
   constructor(userData, roomData, bookingsData) {
@@ -6,9 +8,11 @@ class Manager extends Hotel {
   }
 
   deleteBookingForGuest(bookingID) {
-    let bookingToCancel = {id: bookingID}
-    // call fetchDELETE here, I think
-    return bookingToCancel;
+    let bookingToCancel = {'id': Number(bookingID) }
+    return apiRequests.deleteData('bookings/bookings', bookingToCancel)
+      .then(value => {
+        return value
+       }) 
   }
 
   getTodaysTotalRevenue(date, rooms, bookings) {
@@ -20,7 +24,7 @@ class Manager extends Hotel {
           }
         })  
       } 
-      return total;
+      return Math.round(total);
     }, 0)
   } 
 

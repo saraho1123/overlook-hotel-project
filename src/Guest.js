@@ -5,6 +5,7 @@ class Guest extends Hotel {
     super(usersData, roomsData, bookingsData)
     this.pastBookings = [];
     this.upcomingBookings = [];
+    this.selectedGuestTotalSpent = null;
     this.verySorryMessage = `<div class="sorry"><h2 class="heading2">There are no available rooms at this time for the date you have picked.<br>We are so very sorry!<br>We love all our guests and really hope to see you very soon!<br>Please click the "Choose New Date" button, or choose a different style of room for this date.</h2></div>`
   }
 
@@ -23,7 +24,7 @@ class Guest extends Hotel {
   }
 
   calculateGuestTotalSpent() {
-    const total = this.pastBookings.reduce((totalSpent, booking) => {
+    const total = this.selectedGuestBookings.reduce((totalSpent, booking) => {
       this.rooms.forEach(room => {
         if (booking.roomNumber === room.number) {
           totalSpent += (room.costPerNight * 100)
@@ -31,11 +32,8 @@ class Guest extends Hotel {
       })
       return totalSpent 
     }, 0) 
+    this.selectedGuestTotalSpent = total / 100;
     return total / 100
-    //this is notes for chai spies!
-    // let finalTotal = total / 100
-    // dom-updates.showTotalSpent(finalTotal)
-    // return finalTotal
   }
 
   filterRoomsByTypeOnDate(date, type) {

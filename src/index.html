@@ -8,7 +8,7 @@
       <h1 class="header-and-welcome">
         Canyon Overlook Hotel
       </h1>
-      <h2 class="welcome">Welcome to your Adventure Headquarters, <span class="heading-name">customer17</span>!</h2>
+      <h2 class="welcome">Welcome to your Adventure Headquarters<span class="heading-name"></span>!</h2>
     </section>
     <nav>
       <section class="nav-buttons-section hidden">
@@ -57,8 +57,8 @@
       <article>
         <h1 class="heading">Please choose a date to see available rooms:</h1>
         <div>
-          <label for="calendar labels" class="login-label labels">Check-in Date: 
-            <input class="calendar" type="date">
+          <label for="guest-calendar labels" class="login-label labels">Check-in Date: 
+            <input class="guest-calendar calendar" type="date">
           </label>
           <button class="see-available-rooms-button submit">See available rooms</button>
         </div>
@@ -79,7 +79,7 @@
       <article class="booking">
         <div class="booking-header">
           <button class="back-to-choose-date-button button" id="back-to-choose-date-button" type="button">Choose New Date</button>
-          <h1 class="available-on-date heading">Canyon Overlook Rooms available for <span class="date">2020/12/19</span>:</h1>
+          <h1 class="available-on-date heading">Canyon Overlook Rooms available for <span class="date-available-rooms">2020/12/19</span>:</h1>
         </div>  
         <section class="filter-section">
           <label for="filter-by-room-type">Filter by room type:</label>
@@ -90,18 +90,19 @@
             <option value="suite">Suite</option>
             <option value="residential suite">Residential Suite</option>
           </select>
-        </section>        
+        </section>  
+        <button class="return-homeview submit">
+          Back to Guest Home Page
+        </button>      
       </article>
       <section class="cards-of-rooms guest-rooms-available-by-date">
       </section>
-      <!-- Book Room View
-          <img src="./images/san-juan-day.png" alt="Overlook logo" height="300px" width="400px"> -->
     </section>
     <section class="room-booked-view hidden">
       <h1 class="room-is-booked heading">
         <span>Sarah</span>, <br> Room <span>25</span> is booked <br> for your adventure headquarters on <br> <span>yyyy/mm/dd</span>!
       </h1>
-      <button class="return-homeview submit">
+      <button class="return-homeview-after-booking submit">
         Back to Guest Home Page
       </button>
       <img src="./images/desert-pool.png" alt="Overlook logo" height="300px" width="400px">
@@ -111,21 +112,25 @@
       <section class="all-hotel-info">
         <h1 class="heading">Hotel Details</h1>
         <article class="daily-totals">
-          <!-- consider putting this in a section and putting a border -->
           <h2 class="daily-hotel heading2">Hotel overview for <span>yyyy/mm/dd</span>:</h2>
           <h2 class="total-revenue heading2">
             Hotel total revenue for <span>yyyy/mm/dd</span>: <br>$<span>40,000</span>
           </h2>
-          <!-- Consider taking this out and inserting in JS with interpolation -->
           <h2 class="total-percentage heading2">
             Percent rooms booked for <span>yyyy/mm/dd</span>: <br> <span>90</span>%
           </h2>
         </article>
         <article class="rooms-available-for-date">
-          <label for="search-available-by-date label">Find by date:</label>
-          <button class="search-available-by-date submit">date calendar thingy</button>        
+          <div class="manager-calander">
+            <label for="calendar labels" class="login-label labels">Guest Check-in Date: 
+              <input class="manager-calander-dropdown calendar" type="date">
+            </label>
+            <button class="see-available-manager-button submit">See available rooms</button>
+          </div>
         </article>
-        <h2 class="daily-rooms-available heading2">Rooms available for <span>yyyy/mm/dd</span>:</h1>
+        <div class="display-click-to-book-message">
+        </div>
+        <h2 class="daily-rooms-available heading2">Rooms available for <span>(choose date above)</span>:</h1>
         <section class="list-rooms-available cards-of-rooms">
         </section>
       </section>
@@ -137,48 +142,23 @@
         <label for="find-guest-input labels" class="login-label labels">Find bookings and total spent for individual guest: 
           <input class="find-guest-input input"> 
         </label>
-        <!-- input guest's full name or check out input fields from idea box -->
-        <h2 class="heading2">Total spent by <span>Guest Name</span>: <span>$4000.00</span> </h2>
-        <section class="list-rooms-available cards-of-rooms">
-          <h2 class="heading2"> <span>Guest</span>'s booked rooms:</h1>
-          <article class="room booked-room">
-            <article class="rooms-available-cards room-details">
-              <h2 class="room-number-type">Room 1: Residential Suite</h2>
-              <section class="small-room-details">
-                <p class="date-booked small-details">Date Booked: <span>yyyy/mm/dd</span></p>
-                <p class="cost small-details">Paid: $<span>400.00</span></p>
-                <button class="delete-booking-for-guest submit">Delete this upcoming booking</button>
-                only show this button if the date is in the future! (set up a conditional)
-              </section>
-            </article>
-          </article>
+        <div class="guest-details">
 
-          <article class="room booked-room">
-            <article class="rooms-available-cards room-details">
-              <h2 class="room-number-type">Room 1: Residential Suite</h2>
-              <section class="small-room-details">
-                <p class="date-booked small-details">Date Booked: <span>yyyy/mm/dd</span></p>
-                <p class="cost small-details">Paid: $<span>400.00</span></p>
-                <button class="delete-booking-for-guest hidden submit">Delete this upcoming booking</button>
-              </section>
-            </article>
-          </article>
-
-          <article class="room booked-room">
-            <article class="rooms-available-cards room-details">
-              <h2 class="room-number-type">Room 1: Residential Suite</h2>
-              <section class="small-room-details">
-                <p class="date-booked small-details">Date Booked: <span>yyyy/mm/dd</span></p>
-                <p class="cost small-details">Paid: $<span>400.00</span></p>
-                <button class="delete-booking-for-guest hidden submit">Delete this upcoming booking</button>
-              </section>
-            </article>
-          </article>
+        </div>
+        <section class="list-guest-rooms cards-of-rooms">
         </section>
       </section>
 
     </section>
-    <!-- <img src="./images/san-juan-evening.png" alt="Overlook logo" height="300px" width="400px"> -->
+    <div class="image">
+      <img src="./images/san-juan-evening.png" alt="san-juan-evening" height="300px" width="400px">
+      <img src="./images/desert-magic.png" alt="desert-magic" height="300px" width="400px">
+      <img src="./images/great-people-great-place.png" alt="great-people-great-place logo" height="300px" width="400px">
+      <img src="./images/desert-highway.png" alt="desert-highway" height="300px" width="400px">
+      <img src="./images/desert-wisdom.png" alt="desert-wisdom" height="600px" width="400px">
+      <img src="/images/san-juan-dawn.png" alt="san-juan-dawn" height="300px" width="400px">
+    </div>
+    
 
     <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
   </body>
