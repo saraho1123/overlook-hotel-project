@@ -20,7 +20,9 @@ class Hotel {
 
   getSelectedGuestBookings() {
     this.selectedGuestBookings = this.bookings.filter(booking => {
-      let guestBookings = booking.userID === this.selectedGuest.id;
+      console.log('selectedID', this.selectedGuest.id)
+      console.log('bookingID', booking.userID)
+      let guestBookings = booking.userID == this.selectedGuest.id;
       return guestBookings;
     })
   }
@@ -44,7 +46,7 @@ class Hotel {
   }
 
   calculateGuestTotalSpent() {
-    const total = this.pastBookings.reduce((totalSpent, booking) => {
+    const total = this.selectedGuestBookings.reduce((totalSpent, booking) => {
       this.rooms.forEach(room => {
         if (booking.roomNumber === room.number) {
           totalSpent += (room.costPerNight * 100)

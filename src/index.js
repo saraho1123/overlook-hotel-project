@@ -398,10 +398,10 @@ function displayManagerDasboard() {
 
 function displayTodaysDate() {
   const dailyHotel = document.querySelector('.daily-hotel');
-  const dailyRoomsAvailable = document.querySelector('.daily-rooms-available');
+  // const dailyRoomsAvailable = document.querySelector('.daily-rooms-available');
   let date = getToday(todaysDate);
   dailyHotel.innerHTML = `Hotel overview for ${date}`;
-  dailyRoomsAvailable.innerHTML = `Rooms available for ${date}`;
+  // dailyRoomsAvailable.innerHTML = `Rooms available for ${date}`;
 }
 
 function displayRevenueForDay() {
@@ -419,7 +419,9 @@ function displayPercentBookedForDay() {
 }
 
 function displayRoomsByDate() {
-  let chosenDate = guestChooseDate('managerDropdownCalender')
+  const dailyRoomsAvailable = document.querySelector('.daily-rooms-available');
+  let chosenDate = guestChooseDate('managerDropdownCalender');
+  dailyRoomsAvailable.innerHTML = `Rooms available for ${chosenDate}`;
   displayVacantRoomsByDateManager(chosenDate, currentRoomsAvailable);
 }
 
@@ -523,12 +525,10 @@ function topFunction() {
 }
 
 function displayGuestDetails(searchedGuest) {
-    guest.selectGuest('name', searchedGuest);
     guestDetails.innerHTML = ``;
     guestDetails.innerHTML = `
-    <button label="make-booking" class="make-booking-for-guest nav-button" type="button">Book a room for ${manager.selectedGuest.name}!</button>      
-    <h2 class="heading2">Total spent by ${manager.selectedGuest.name}: ${guest.calculateGuestTotalSpent()} </h2>
-    <h2 class="heading2"> ${manager.selectedGuest.name}'s booked rooms:</h1>
+    <h2 class="heading2">Total spent by ${searchedGuest.name}: ${manager.calculateGuestTotalSpent()} </h2>
+    <h2 class="heading2"> ${searchedGuest.name}'s booked rooms:</h1>
     `;
     enableClickOnRoomBooking();
 }
@@ -547,9 +547,14 @@ function managerBookRoom(event) {
   const roomNumber = event.target.id
   manager.bookRoomForGuest(+userID, date, +roomNumber)
     .then(value => {
-      updateBookingsData(manager);
+      updateBookingsData(manager)
+        .then(value => {
+          displayAllGuestBookings();
+          displayRoomsByDate();
+        })
+
     })
-  showBookedMessage();
+  showBookedMessage(roomNumber);
 }
 
 function showBookedMessage(roomNumber) {
