@@ -58,7 +58,7 @@
         <h1 class="heading">Please choose a date to see available rooms:</h1>
         <div>
           <label for="guest-calendar labels" class="login-label labels">Check-in Date: 
-            <input class="calendar" type="date">
+            <input class="guest-calendar calendar" type="date">
           </label>
           <button class="see-available-rooms-button submit">See available rooms</button>
         </div>
@@ -79,7 +79,7 @@
       <article class="booking">
         <div class="booking-header">
           <button class="back-to-choose-date-button button" id="back-to-choose-date-button" type="button">Choose New Date</button>
-          <h1 class="available-on-date heading">Canyon Overlook Rooms available for <span class="date">2020/12/19</span>:</h1>
+          <h1 class="available-on-date heading">Canyon Overlook Rooms available for <span class="date-available-rooms">2020/12/19</span>:</h1>
         </div>  
         <section class="filter-section">
           <label for="filter-by-room-type">Filter by room type:</label>
@@ -90,7 +90,10 @@
             <option value="suite">Suite</option>
             <option value="residential suite">Residential Suite</option>
           </select>
-        </section>        
+        </section>  
+        <button class="return-homeview submit">
+          Back to Guest Home Page
+        </button>      
       </article>
       <section class="cards-of-rooms guest-rooms-available-by-date">
       </section>
@@ -101,7 +104,7 @@
       <h1 class="room-is-booked heading">
         <span>Sarah</span>, <br> Room <span>25</span> is booked <br> for your adventure headquarters on <br> <span>yyyy/mm/dd</span>!
       </h1>
-      <button class="return-homeview submit">
+      <button class="return-homeview-after-booking submit">
         Back to Guest Home Page
       </button>
       <img src="./images/desert-pool.png" alt="Overlook logo" height="300px" width="400px">
