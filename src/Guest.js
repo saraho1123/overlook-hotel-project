@@ -34,10 +34,6 @@ class Guest extends Hotel {
     }, 0) 
     this.selectedGuestTotalSpent = total / 100;
     return total / 100
-    //this is notes for chai spies!
-    // let finalTotal = total / 100
-    // dom-updates.showTotalSpent(finalTotal)
-    // return finalTotal
   }
 
   filterRoomsByTypeOnDate(date, type) {

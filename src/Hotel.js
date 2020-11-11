@@ -65,28 +65,6 @@ class Hotel {
         return value;
       })
   }
-
-  // updateBookingsData() {
-  //   console.log('beforeBookedguestBookings', this.selectedGuestBookings)
-  //   apiRequests.fetchData('bookings/bookings', 'bookings')
-  //     .then(value => {
-  //       console.log('value', value)
-  //       this.bookings = value;
-  //       this.getSelectedGuestBookings();
-  //       console.log('refetchedGuestBookings', this.selectedGuestBookings)
-  //     })
-  // }
-  /*
-  PERHAPS USE THIS ON A PARENT CLASS??
-  consolidateGuestData() {
-    this.selectedGuestData = {
-      // id: this.selectguest.id,
-      // name: this.selectguest.name,
-      bookings: this.getSelectedGuestBookings(),
-      totalSpent: this.getGuestTotalSpent(),
-    }  
-  }
-  */
 }
 
 export default Hotel;
