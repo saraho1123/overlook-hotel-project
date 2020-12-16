@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Canyon Overlook Hotel</title>
+  </head>
+  <header>
+    <section>
+      <h1 class="header-and-welcome">
+        Canyon Overlook Hotel
+      </h1>
+      <h2 class="welcome">Welcome to your Adventure Headquarters <span class="heading-name"></span>!</h2>
+    </section>
+    <nav>
+      <section class="nav-buttons-section hidden">
+        <button label="past-bookings" class="past-bookings nav-button hidden" type="button">Past Bookings</button>
+      <button label="upcoming-bookings" class="upcoming-bookings nav-button" type="button">Upcoming Bookings</button>
+      <button label="make-booking" class="make-booking nav-button" type="button">Book a room!</button>      
+      </section>
+    </nav>
+    <img class="snake-house-image" src="./images/snake-house-for-overlook.png" alt="Overlook logo" height="1em" width="100%">
+  </header>
+  <body>
+    <section class="login-view "> 
+      <h1 class="heading">Login to set up your adventure headquarters <br> at Canyon Overlook Hotel!</h1>
+      <article class="login">
+        <div>
+          <label for="user-login" class="login-label labels">Enter User Login Name: 
+            <input class="user-login input" label="user-login" type="text"> 
+          </label>
+        </div>
+        <div>
+          <label for="user-password labels" class="login-label labels">Enter Password: 
+            <input class="user-password input" label="user-password" type="password">
+          </label>
+        </div> 
+        <div>
+          <button disabled class="submit-login submit disable-style">Submit</button>
+        </div>
+        <div class="login-alert"></div>
+        <p></p>
+      </article>
+    </section>
+    <section class="guest-home-view hidden">
+      <h1 class="guest-view-heading heading">
+        <span class="spent-name">Sarah</span>, You have spent $<span class="spent-amount">4000.00</span> on your unforgetable adventures so far!
+      </h1>
+      <h2 class="your-bookings heading2">
+        Your previous Adventure Headquarter Bookings:
+      </h2>
+      <section class="current-bookings">
+        <section class="cards-of-rooms booked">     
+        </section>
+      </section>
+      <!-- <img src="./images/san-juan-evening.png" alt="Overlook logo" height="300px" width="400px"> -->
+    </section>
+    <section class="guest-choose-date-view">
+      <article>
+        <h1 class="heading">Please choose a date to see available rooms:</h1>
+        <div>
+          <label for="guest-calendar labels" class="login-label labels">Check-in Date: 
+            <input class="guest-calendar calendar" type="date">
+          </label>
+          <button class="see-available-rooms-button submit">See available rooms</button>
+        </div>
+<!-- USE THESE IF YOU GET TO IT IN THE PROJECT ... -->
+        <!-- <div>
+          <label for="duration-input labels" class="login-label labels">Stay Duration: 
+            <input class="duration-input input" type="text">
+          </label>
+        </div>
+        <div>
+          <label for="number-of-guests-input labels" class="login-label labels">Number of Adventurers: 
+            <input class="number-of-guests-input input" type="text">
+          </label>
+        </div> -->
+      </article>
+    </section>
+    <section class="guest-book-room-view hidden">
+      <article class="booking">
+        <div class="booking-header">
+          <button class="back-to-choose-date-button button" id="back-to-choose-date-button" type="button">Choose New Date</button>
+          <h1 class="available-on-date heading">Canyon Overlook Rooms available for <span class="date-available-rooms">2020/12/19</span>:</h1>
+        </div>  
+        <section class="filter-section">
+          <label for="filter-by-room-type">Filter by room type:</label>
+          <select class="choose-by-type button" aria-label="room-type-dropdown" label="filter-by-room-type" id="room-type">
+            <option value="choose">Choose Room Type</option>
+            <option value="junior suite">Junior</option>
+            <option value="single room">Single</option>
+            <option value="suite">Suite</option>
+            <option value="residential suite">Residential Suite</option>
+          </select>
+        </section>  
+        <button class="return-homeview submit">
+          Back to Guest Home Page
+        </button>      
+      </article>
+      <section class="cards-of-rooms guest-rooms-available-by-date">
+      </section>
+    </section>
+    <section class="room-booked-view hidden">
+      <h1 class="room-is-booked heading">
+        <span>Sarah</span>, <br> Room <span>25</span> is booked <br> for your adventure headquarters on <br> <span>yyyy/mm/dd</span>!
+      </h1>
+      <button class="return-homeview-after-booking submit">
+        Back to Guest Home Page
+      </button>
+      <img src="./images/desert-pool.png" alt="Overlook logo" height="300px" width="400px">
+    </section>
+
+    <section class="manager-view hidden">
+      <section class="all-hotel-info">
+        <h1 class="heading">Hotel Details</h1>
+        <article class="daily-totals">
+          <h2 class="daily-hotel heading2">Hotel overview for <span>yyyy/mm/dd</span>:</h2>
+          <h2 class="total-revenue heading2">
+            Hotel total revenue for <span>yyyy/mm/dd</span>: <br>$<span>40,000</span>
+          </h2>
+          <h2 class="total-percentage heading2">
+            Percent rooms booked for <span>yyyy/mm/dd</span>: <br> <span>90</span>%
+          </h2>
+        </article>
+        <article class="rooms-available-for-date">
+          <div class="manager-calander">
+            <label for="calendar labels" class="login-label labels">Guest Check-in Date: 
+              <input class="manager-calander-dropdown calendar" type="date">
+            </label>
+            <button class="see-available-manager-button submit">See available rooms</button>
+          </div>
+        </article>
+        <div class="display-click-to-book-message">
+        </div>
+        <h2 class="daily-rooms-available heading2">Rooms available for <span>(choose date above)</span>:</h1>
+        <section class="list-rooms-available cards-of-rooms">
+        </section>
+      </section>
+
+      <div class="center-bar"></div>
+
+      <section class="specific-guest-info">
+        <h1 class="heading">Individual Guest Details</h1>
+        <label for="find-guest-input labels" class="login-label labels">Find bookings and total spent for individual guest: 
+          <input class="find-guest-input input"> 
+        </label>
+        <div class="guest-details">
+
+        </div>
+        <section class="list-guest-rooms cards-of-rooms">
+        </section>
+      </section>
+
+    </section>
+    <div class="image">
+      <img src="./images/san-juan-evening.png" alt="san-juan-evening" height="300px" width="400px">
+      <img src="./images/desert-magic.png" alt="desert-magic" height="300px" width="400px">
+      <img src="./images/great-people-great-place.png" alt="great-people-great-place logo" height="300px" width="400px">
+      <img src="./images/desert-highway.png" alt="desert-highway" height="300px" width="400px">
+      <img src="./images/desert-wisdom.png" alt="desert-wisdom" height="600px" width="400px">
+      <img src="/images/san-juan-dawn.png" alt="san-juan-dawn" height="300px" width="400px">
+    </div>
+    
+
+    <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
+  <script type="text/javascript" src="main.bundle.js"></script></body>
+</html>
