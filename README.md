@@ -64,13 +64,12 @@ As a manager, my app's functionality includes me being able to:
 
 ## Challenges
 
-* I struggled a bit with POSTing and DELETEing, mainly because I called those in my classes. I learned that it would have been better to call them in my index.js file.
-* I also did not have time to refactor. A big piece of that would have been reducing the number of query selectors. But more importantly, I had planned to move all my dom manipulation into my dom-updates folder. I am disappointed I did not have time to do that. It is still an issue on my project board though!
+* POSTing and DELETEing - This was my first project using these. It was a great learning experience!
+* I did not have time to refactor. A big piece of that would have been reducing the number of query selectors. But more importantly, I had planned to move all my dom manipulation into my dom-updates folder. I am disappointed I did not have time to do that. It is still an issue on my project board though!
 * Testing with chai spies.
 
 ## Wins
 
-* Coming into this project off of an incredibly difficult inning was a challenge. But I am counting as a win because I was able to meet the MVP for this project, something that I doubted several times that I would be able to do!
 * I successfully used fetch APIs! 
 * I successsfully used class inheritance! 
 
@@ -114,7 +113,7 @@ As a manager, my app's functionality includes me being able to:
 * Add pictures to rooms based on the room type (perhaps eventually adding a different picture for each room).
 * Allow customers to filter available rooms by cost (min/max), bed size, and/or number of beds
 * Allow customers and managers to add a room service charge to a booking
-* Deploy to GitHub Pages
+* Deploy to GitHub Pages - This is now done! 
 
 ## Credits
 
@@ -134,13 +133,3 @@ As a manager, my app's functionality includes me being able to:
 [GitHub Profile](https://github.com/nathanielmillard)
 
 * *Thank you for helping me navigate my way through a very tough inning!*
-
-## Deploying to GitHub Pages
-
-* I am leaving this here because I would like to clean up a few things before I deploy.
-
-_If you are finished with the functionality and testing of your project_, then you can consider deploying your project to the web! This way anyone can play it without cloning down your repo.
-
-[GitHub Pages](https://pages.github.com/) is a great way to deploy your project to the web. Don't worry about this until your project is free of bugs and well tested!
-
-If you _are_ done, you can follow [this procedure](./gh-pages-procedure.md) to get your project live on GitHub Pages.
