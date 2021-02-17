@@ -64,14 +64,15 @@ As a manager, my app's functionality includes me being able to:
 
 ## Challenges
 
-* POSTing and DELETEing - This was my first project using these. It was a great learning experience!
+* POSTing and DELETEing - This was only my second project using these. It was a great learning experience!
 * I did not have time to refactor. A big piece of that would have been reducing the number of query selectors. But more importantly, I had planned to move all my dom manipulation into my dom-updates folder. I am disappointed I did not have time to do that. It is still an issue on my project board though!
-* Testing with chai spies.
+* Testing with chai spies. I am getting better at it and I am beginning to rather like TDD.
 
 ## Wins
 
 * I successfully used fetch APIs! 
 * I successsfully used class inheritance! 
+* I am getting better at TDD!
 
 ## ScreenShots and Demos
 
